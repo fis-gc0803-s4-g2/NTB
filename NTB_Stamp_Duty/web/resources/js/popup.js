@@ -1,4 +1,8 @@
 $(document).ready(function () {
+     $('.carousel').carousel({
+                interval: 3000 //changes the speed
+            });
+            
     $("#button1").click(function () {
 	
         var dialog = new BootstrapDialog(
@@ -12,7 +16,7 @@ $(document).ready(function () {
                     return result;
                 },
                 data: {
-                    "page_to_load": 'login.html'
+                    "page_to_load": 'localhost:8080/NTB_Stamp_Duty/login.html'
                 },
                 type: BootstrapDialog.TYPE_INFO,
                 closable: true,

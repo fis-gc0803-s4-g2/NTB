@@ -4,17 +4,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <link  type="text/javascript"
-               href="${pageContext.request.contextPath}resources/js/jquery-1.11.0.js"/>
-        <link  type="text/javascript"
-               href="${pageContext.request.contextPath}resources/js/bootstrap.min.js"/>
+        <script type="text/javascript"
+               src="${pageContext.request.contextPath}resources/js/jquery-1.11.0.js"/>
+        <script  type="text/javascript"
+               src="${pageContext.request.contextPath}resources/js/bootstrap.min.js"/>
         <link rel="stylesheet" type="text/css"
               href="${pageContext.request.contextPath}resources/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css"
               href="${pageContext.request.contextPath}resources/css/half-slider.css"/>
+          <link rel="stylesheet" type="text/css"
+              href="${pageContext.request.contextPath}resources/css/bootstrap-dialog.min.css"/>
+          <script  type="text/javascript"
+              src ="${pageContext.request.contextPath}resources/js/bootstrap-dialog.min.js"/>
+        <script  type="text/javascript"
+              src ="${pageContext.request.contextPath}resources/js/popup.js"/>
     </h:head>
     <h:body>
-
+6
         <!--        <h:outputScript library="js" name=”jquery-1.11.0.js”/>
                 <h:outputScript library="js" name=”bootstrap.min.js”/>
                 <h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -230,39 +236,30 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <hr></hr>
 
-        <!-- Footer -->
-        <footer>
+            <hr></hr>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-4">
-                    </div>
-                    <div class="col-lg-4">
-                        <p>Copyright &copy; Your Website 2014</p>
-                        <p>Designed by ...</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p class="pull-right"><a href="#">Back to top</a></p>
+            <!-- Footer -->
+            <footer>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <p>Copyright &copy; Your Website 2014</p>
+                            <p>Designed by ...</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p class="pull-right"><a href="#">Back to top</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
+                <!-- /.row -->
+            </footer>
+        </div>
         <!-- /.container -->
-
-
-
-        <!-- Script to Activate the Carousel -->
-        <script>
-            $('.carousel').carousel({
-                interval: 3000 //changes the speed
-            })
-        </script>
 
     </h:body>
 </html>
