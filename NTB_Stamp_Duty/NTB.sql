@@ -45,7 +45,6 @@ insert into Land values('No 10 Ton That Thuyet St, My Dinh','FPT University, My 
 go
 select * from Land
 go
-
 Create table Building(
     BId int identity primary key,
 	LId int foreign key references Land(LId),
@@ -115,6 +114,7 @@ Create table Customer(
     CEmail nvarchar(100),
     CPhone nvarchar(50),
 )
+
 go
 insert into Customer values('guesta','fpt','Nguyen Van A','Hanoi','090000001','guesta@yahoo.com.vn')
 insert into Customer values('guestb','fpt','Nguyen Van B','HaiPhong','090000002','guestb@yahoo.com.vn')

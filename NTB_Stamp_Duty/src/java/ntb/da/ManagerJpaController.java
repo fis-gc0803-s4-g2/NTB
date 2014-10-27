@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
@@ -19,6 +20,7 @@ import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Manager;
+import ntb.validation.CheckValidation;
 
 /**
  *
@@ -35,6 +37,44 @@ public class ManagerJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public boolean managerLogin(String username, String password) {
+        boolean checkValidationResult = CheckValidation.checkLoginValidation(username, password);
+        if (checkValidationResult == false) {
+            return false;
+        }
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            String sqlCommand = "m.mUsername = :mUsername and m.mPassword = :mPassword";
+            TypedQuery<Manager> createQuery = em.createQuery(sqlCommand, Manager.class);
+            int firstResult = createQuery.getFirstResult();
+            if (checkValidationResult) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean checkAccountExist(String username) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            String sqlCommand = "m.mUsername = :mUsername";
+            TypedQuery<Manager> createQuery = em.createQuery(sqlCommand, Manager.class);
+            createQuery.setParameter("mUsername", username);
+            int firstResult = createQuery.getFirstResult();
+            if (firstResult > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
     }
 
     public void create(Manager manager) throws PreexistingEntityException, RollbackFailureException, Exception {
@@ -162,5 +202,5 @@ public class ManagerJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }
