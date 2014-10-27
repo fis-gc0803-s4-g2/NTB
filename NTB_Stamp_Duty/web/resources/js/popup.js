@@ -16,7 +16,7 @@ $(document).ready(function () {
                     return result;
                 },
                 data: {
-                    "page_to_load": 'localhost:8080/NTB_Stamp_Duty/login.html'
+                    "page_to_load": '${pageContext.request.contextPath}/login.html'
                 },
                 type: BootstrapDialog.TYPE_INFO,
                 closable: true,

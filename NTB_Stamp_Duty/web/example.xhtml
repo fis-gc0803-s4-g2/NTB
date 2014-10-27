@@ -4,16 +4,55 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>NTB</title>
+        <script type="text/javascript"
+                src="${pageContext.request.contextPath}resources/js/jquery-1.11.0.js"/>
+        <script  type="text/javascript"
+                 src="${pageContext.request.contextPath}resources/js/bootstrap.min.js"/>
+        <link rel="stylesheet" type="text/css"
+              href="${pageContext.request.contextPath}resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css"
+              href="${pageContext.request.contextPath}resources/css/half-slider.css"/>
+        <link rel="stylesheet" type="text/css"
+              href="${pageContext.request.contextPath}resources/css/bootstrap-dialog.min.css"/>
+        <script  type="text/javascript"
+                 src ="${pageContext.request.contextPath}resources/js/bootstrap-dialog.min.js"/>
+        <script  type="text/javascript"
+                 src ="${pageContext.request.contextPath}resources/js/popup.js"/>
     </h:head>
     <h:body>
-        <ui:repeat var="l" value="#{showAllLand.list}">
-            <h2><h:outputText value="#{l.LId}"/></h2>
-            <p><h:outputText value="#{l.LNearByLandmark}"/></p>
-            <p><h:outputText value="#{l.LAddress}"/></p>
-            <p><h:outputText value="#{l.LDist}"/></p>
-
-        </ui:repeat>
+        <div class="table-responsive">
+            <table  class="table table-bordered">
+                <tr>
+                    <td>ID</td>
+                    <td>Address</td>
+                    <td>NearBy</td>
+                    <td>District</td>
+                    <td>Location</td>
+                    <td>Area</td>
+                    <td>Purchased Cost</td>
+                    <td>Present Cost</td>
+                    <td> Building Permission Date</td>
+                    <td>Status</td>
+                    <td>Option</td>
+                </tr>
+                <ui:repeat var="l" value="#{showAllLand.list}">
+                    <tr >
+                        <td>#{l.LId}</td>
+                        <td>#{l.LAddress}</td>
+                        <td>#{l.LNearByLandmark}</td>
+                        <td>#{l.LDist}</td>
+                        <td>#{l.LLocaltion}</td>
+                        <td>#{l.LArea}</td>
+                        <td>#{l.LPresentCost}</td>
+                        <td>#{l.LPresentCost}</td>
+                        <td>#{l.LBuildingPermissionDate}</td>
+                        <td>#{l.LStatus}</td>
+                        <td><a href="#">Detail</a>&nbsp;<a href="#">Edit</a>&nbsp;<a href="#">Delete</a></td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
     </h:body>
-</html>
+</html> 
 
