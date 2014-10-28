@@ -6,10 +6,11 @@
 
 package ntb.ui;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import ntb.biz.LandManager;
 import ntb.entity.Land;
 
@@ -18,8 +19,8 @@ import ntb.entity.Land;
  * @author TUNG
  */
 @ManagedBean
-@SessionScoped
-public class ShowAllLand {
+@ViewScoped
+public class ShowAllLand implements Serializable{
     
     @EJB
     private LandManager landManager;
