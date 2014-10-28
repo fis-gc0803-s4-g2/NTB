@@ -44,6 +44,15 @@ public class LandJpaController implements Serializable {
          TypedQuery<Land> query = getEntityManager().createQuery("SELECT l FROM Land l",Land.class);
             return query.getResultList();
     }
+    
+    public Land getLandById(int lId){
+         TypedQuery<Land> query = getEntityManager().createQuery("SELECT l FROM Land l where l.lId = :lId",Land.class);
+         query.setParameter("lId", lId);
+            if (!query.getResultList().isEmpty()) {
+            return query.getResultList().get(0);
+        }
+        return null;
+    }
 
     public void create(Land land) throws PreexistingEntityException, RollbackFailureException, Exception {
         if (land.getBuildingList() == null) {

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <script type="text/javascript"
+                src="${pageContext.request.contextPath}resources/js/jquery-1.11.0.js"/>
+        <script  type="text/javascript"
+                 src="${pageContext.request.contextPath}resources/js/bootstrap.min.js"/>
+        <link rel="stylesheet" type="text/css"
+              href="${pageContext.request.contextPath}resources/css/bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="row">
+            <div class="col-sm-4">        
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Create a new land</div>
+                    <div class="panel-body">
+                        <h:form>
+                            <div class="form-group">
+                                <h:outputLabel value="Address"/><h:inputText value="#{createALand.address}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Near By "/><h:inputText value="#{createALand.nearBy}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="District"/><h:inputText value="#{createALand.dist}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Location"/><h:inputText value="#{createALand.location}" class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="Area"/><h:inputText value="#{createALand.area}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Purchase Cost"/><h:inputText value="#{createALand.purchaseCost}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Present Cost"/><h:inputText value="#{createALand.presentCost}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Building Premission date"/><h:inputText value="#{createALand.buildingPermissionDate}" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Status"/><h:inputText value="#{createALand.status}" class="form-control"/>
+                            </div>
+                            <h:commandButton action="#{createALand.createALand()}" value="Submit" class="btn btn-default"/>
+                        </h:form>
+                        <h:outputText value="#{createALand.notice}" style="color: red"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">        
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

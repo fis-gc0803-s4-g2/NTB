@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.LandJpaController;
+import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Land;
 
 /**
@@ -43,7 +44,25 @@ public class LandManager {
         return daController;
     }
     
+    /**
+     * 
+     * @return list
+     */
     public List<Land> getAllLand(){
         return getDaController().getAllLand();
+    }
+    
+    /**
+     *
+     * @param land
+     * @throws RollbackFailureException
+     * @throws Exception
+     */
+    public void createLand(Land land) throws RollbackFailureException, Exception{
+        getDaController().create(land);
+    }
+    
+    public Land getLandById(int lId){
+        return getDaController().getLandById(lId);
     }
 }
