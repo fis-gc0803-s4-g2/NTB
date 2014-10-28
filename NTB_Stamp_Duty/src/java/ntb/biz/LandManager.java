@@ -53,7 +53,7 @@ public class LandManager {
     }
     
     /**
-     *
+     *Create a new land
      * @param land
      * @throws RollbackFailureException
      * @throws Exception
@@ -62,7 +62,32 @@ public class LandManager {
         getDaController().create(land);
     }
     
+    /**
+     * get Land by Id
+     * @param lId
+     * @return 
+     */
     public Land getLandById(int lId){
         return getDaController().getLandById(lId);
+    }
+    
+    /**
+     * edit a land
+     * @param land
+     * @throws RollbackFailureException
+     * @throws Exception 
+     */
+    public void editLand(Land land) throws RollbackFailureException, Exception{
+        getDaController().edit(land);
+    }
+
+    /**
+     * delete a land by Id
+     * @param lId
+     * @throws RollbackFailureException
+     * @throws Exception 
+     */
+    public void deleteLand(int lId) throws RollbackFailureException, Exception{
+        getDaController().destroy(lId);
     }
 }
