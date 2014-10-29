@@ -2,23 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <title>Admin's Template</title>
-        <!-- Bootstrap Core CSS -->
         <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
-        <!-- Admin CSS -->
-
         <link href="resources/css/sb_admin.css" rel="stylesheet"/>
-
         <link href="resources/font-awesome-4.1.0/css/font-awesome.css" rel="stylesheet"/>
-        <!-- jQuery Version 1.11.0 -->
         <script src="resources/js/jquery-1.11.0.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
         <script src="resources/js/bootstrap.min.js"></script>
 
     </h:head>
@@ -158,59 +149,45 @@
 
         <div id="page-wrapper">
 
-            <!--            <h2>Welcome to admin page</h2>-->
-            <div>&nbsp;</div>
-            <h:link outcome="addALand" value="Create a new land" class="btn btn-info"/><br></br>
-            <div>&nbsp;</div>
-            <h:form>
+           <h:link outcome="addALand" value="Create a new land" class="btn btn-info"/><br></br>
 
-                <p:dataTable id="lands" value="#{showAllLand.list}" var="l" paginator="true" rows="5" 
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15" sortMode="multiple">
-
-
-                    <f:facet name="header" >
-                        Land Management
-                    </f:facet>
-
-                    <p:column headerText="ID" sortBy="#{l.LId}">
-                        <h:outputText value="#{l.LId}"/>
-                    </p:column>
-
-                    <p:column headerText="Address" sortBy="#{l.LAddress}">
-                        <h:outputText value="#{l.LAddress}"/>
-                    </p:column>
-
-                    <p:column headerText="Near By" sortBy="#{l.LNearByLandmark}">
-                        <h:outputText value="#{l.LNearByLandmark}"/>
-                    </p:column>
-
-                    <p:column headerText="Dítrict">
-                        <h:outputText value="#{l.LDist}"/>
-                    </p:column>
-
-                    <p:column headerText="Location">
-                        <h:outputText value="#{l.LLocaltion}"/>
-                    </p:column>
-
-                    <p:column headerText="Purchase Price">
-                        <h:outputText value="#{l.LPurchasedCost}"/>
-                    </p:column>
-
-                    <p:column headerText="Present Price">
-                        <h:outputText value="#{l.LPresentCost}"/>
-                    </p:column>
-
-                    <p:column headerText="Building Permission Date">
-                        <h:outputText value="#{l.LBuildingPermissionDate}"/>
-                    </p:column>
-
-                    <p:column headerText="Status">
-                        <h:outputText value="#{l.LStatus}"/>
-                    </p:column>
-
-                </p:dataTable>
-            </h:form>
+        <div class="panel panel-info">
+            <div class="panel-heading">Create a new land</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table  class="table">
+                        <tr>
+                            <td>ID</td>
+                            <td>Address</td>
+                            <td>NearBy</td>
+                            <td>District</td>
+                            <td>Location</td>
+                            <td>Area</td>
+                            <td>Purchased Cost</td>
+                            <td>Present Cost</td>
+                            <td> Building Permission Date</td>
+                            <td>Status</td>
+                            <td>Option</td>
+                        </tr>
+                        <ui:repeat var="l" value="#{showAllLand.list}">
+                            <tr >
+                                <td>#{l.LId}</td>
+                                <td>#{l.LAddress}</td>
+                                <td>#{l.LNearByLandmark}</td>
+                                <td>#{l.LDist}</td>
+                                <td>#{l.LLocaltion}</td>
+                                <td>#{l.LArea}</td>
+                                <td>#{l.LPresentCost}</td>
+                                <td>#{l.LPresentCost}</td>
+                                <td>#{l.LBuildingPermissionDate}</td>
+                                <td>#{l.LStatus}</td>
+                                <td> <h:link outcome="landDetail" value="Detail" class="btn btn-info"/>&nbsp;<a href="#" class="btn btn-info">Delete</a></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         </div>
 
