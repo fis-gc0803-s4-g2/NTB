@@ -25,6 +25,7 @@ public class CreateALand {
     @EJB
     private LandManager landManager;
     
+    
     private String address;
     private String nearBy;
     private String dist;
@@ -135,7 +136,7 @@ public class CreateALand {
          }else{
             try {
                 landManager.createLand(land);
-                 return "home?faces-redirect=true";
+                 return "admin?faces-redirect=true";
             } catch (Exception ex) {
                 Logger.getLogger(CreateALand.class.getName()).log(Level.SEVERE, null, ex);
             }

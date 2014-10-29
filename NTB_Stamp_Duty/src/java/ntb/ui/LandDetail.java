@@ -6,6 +6,8 @@
 
 package ntb.ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,17 +26,17 @@ public class LandDetail {
 
     
     
-    private int id;
+    //private int id;
     
     private Land land;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public Land getLand() {
         return land;
@@ -44,8 +46,21 @@ public class LandDetail {
         this.land = land;
     }
     
-    public void landDetail(){
-        land=landManager.getLandById(id);
+//    public void landDetail(){
+//        land=landManager.getLandById(id);
+//    }
+    
+    public void landDetailById(int id){
+        land = landManager.getLandById(id);
+       
     }
     
+    
+    public void deleteLandById(int id){
+        try {
+            landManager.deleteLand(id);
+        } catch (Exception ex) {
+            Logger.getLogger(LandDetail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
