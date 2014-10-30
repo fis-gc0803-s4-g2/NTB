@@ -9,8 +9,12 @@ package ntb.ui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import ntb.biz.LandManager;
 import ntb.entity.Land;
 
@@ -117,7 +121,21 @@ public class CreateALand {
         this.notice = notice;
     }
     
-    
+    public void validateAddress(FacesContext f, UIComponent c, Object obj){
+        String s=(String)obj;
+        if(s.length()==0)
+            throw new ValidatorException(new FacesMessage("Address is required"));        
+    }
+    public void validateNearBy(FacesContext f, UIComponent c, Object obj){
+        String s=(String)obj;
+        if(s.length()==0)
+            throw new ValidatorException(new FacesMessage("Near by landmark is required"));        
+    }
+    public void validateDist(FacesContext f, UIComponent c, Object obj){
+        String s=(String)obj;
+        if(s.length()==0)
+            throw new ValidatorException(new FacesMessage("District is required "));        
+    }
     
     public String createALand() {
         Land land = new Land();
@@ -130,7 +148,7 @@ public class CreateALand {
         land.setLPresentCost(presentCost);
         land.setLBuildingPermissionDate(buildingPermissionDate);
         land.setLStatus(status);
-         if(address == null || address.trim().equals("")){
+         if(dist == null || dist.trim().equals("")){
              notice="Required";
              return "";
          }else{

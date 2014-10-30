@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Admin's Template</title>
@@ -12,6 +13,14 @@
         <script src="resources/js/jquery-1.11.0.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
 
+        <link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
     </h:head>
     <h:body>
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -97,18 +106,12 @@
                         </li>
 
                         <!--Land-->
-                        <li><a href="#collapseLand" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-cloud-upload fa-fw"></i> Land Management<i class="pull-right fa fa-plus"></i></a>
-                            <div id="collapseLand" class="panel-collapse collapse">
-                                <ul class="nav nav-second-level">
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
-                                </ul>
-                            </div>
+                        <li><a  ><i class="fa fa-cloud-upload fa-fw"></i> Land Management<i class="pull-right fa fa-plus"></i></a>
+
                         </li>
 
                         <!--Building-->
-                        <li><a href="#collapseBuilding" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-cloud-upload fa-fw"></i> Building Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseBuilding" data-toggle="collapse" data-parent="#accordion" ><i class="fa fa-cloud-upload fa-fw"></i> Building Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseBuilding" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
@@ -150,96 +153,59 @@
         <div id="page-wrapper">
             <div>&nbsp;</div>
             <h:link outcome="addALand" value="Create a new land" class="btn btn-info"/><br></br>
+
             <div>&nbsp;</div>
 
             <div class="panel panel-info">
-                <div class="panel-heading">Land detail</div>
+                <div class="panel-heading">Land Management</div>
                 <div class="panel-body">
-                    <h:form>
-                        <div class="form-group">
-                            <h:outputLabel value="Id"/><h:inputText value="#{landDetail.land.LId}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Address"/><h:inputText value="#{landDetail.land.LAddress}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Near By "/><h:inputText value="#{landDetail.land.LNearByLandmark}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="District"/><h:inputText value="#{landDetail.land.LDist}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Location"/><h:inputText value="#{landDetail.land.LLocaltion}" class="form-control"/>
-                        </div>
+                    <div class="table-responsive">
+                        <h:form>
+                            <table  class="display"  cellspacing="0" id="example">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Address</th>
+                                        <th>NearBy</th>
+                                        <th>District</th>
+                                        <th>Location</th>
+                                        <th>Area</th>
+                                        <th>Purchased Cost</th>
+                                        <th>Present Cost</th>
+                                        <th> Building Permission Date</th>
+                                        <th>Status</th>
+                                        <th>Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="l" items="#{showAllLand.list}">
+                                        <tr >
+                                            <td>#{l.LId}</td>
+                                            <td>#{l.LAddress}</td>
+                                            <td>#{l.LNearByLandmark}</td>
+                                            <td>#{l.LDist}</td>
+                                            <td>#{l.LLocaltion}</td>
+                                            <td>#{l.LArea}</td>
+                                            <td>#{l.LPresentCost}</td>
+                                            <td>#{l.LPresentCost}</td>
+                                            <td>#{l.LBuildingPermissionDate}</td>
+                                            <td>#{l.LStatus}</td>
 
-                        <div class="form-group">
-                            <h:outputLabel value="Area"/><h:inputText value="#{landDetail.land.LArea}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Purchase Price"/><h:inputText value="#{landDetail.land.LPurchasedCost}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Present Price"/><h:inputText value="#{landDetail.land.LPresentCost}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Building Premission date"/><h:inputText value="#{landDetail.land.LBuildingPermissionDate}" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Status"/><h:inputText value="#{landDetail.land.LStatus}" class="form-control"/>
-                        </div>
-                        <h:commandButton action="#" value="Edit" class="btn btn-default"/>
-                    </h:form>
+                                            <td>   <a class="btn btn-xs btn-link" href="landDetail.xhtml?LId=#{l.LId}"><i class="fa fa-edit fa-fw"></i>Edit</a> &nbsp;<h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/></td>
+                                            <h:commandButton >
+                                                <f:setPropertyActionListener target="" value="#{l.LId}"/>
+                                            </h:commandButton>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+
+                        </h:form>
+
+                    </div>
                 </div>
             </div>
-        
-        <div>&nbsp;</div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">Create a new land</div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <h:form>
-                        <table  class="table">
-                            <tr>
-                                <td>ID</td>
-                                <td>Address</td>
-                                <td>NearBy</td>
-                                <td>District</td>
-                                <td>Location</td>
-                                <td>Area</td>
-                                <td>Purchased Cost</td>
-                                <td>Present Cost</td>
-                                <td> Building Permission Date</td>
-                                <td>Status</td>
-                                <td>Option</td>
-                            </tr>
-                            <ui:repeat var="l" value="#{showAllLand.list}">
-                                <tr >
-                                    <td>#{l.LId}</td>
-                                    <td>#{l.LAddress}</td>
-                                    <td>#{l.LNearByLandmark}</td>
-                                    <td>#{l.LDist}</td>
-                                    <td>#{l.LLocaltion}</td>
-                                    <td>#{l.LArea}</td>
-                                    <td>#{l.LPresentCost}</td>
-                                    <td>#{l.LPresentCost}</td>
-                                    <td>#{l.LBuildingPermissionDate}</td>
-                                    <td>#{l.LStatus}</td>
-
-                                    <td><h:commandButton actionListener="#{landDetail.landDetailById(l.LId)}" value="Detail" class="btn btn-default"/> &nbsp;<h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/></td>
-                                </tr>
-                            </ui:repeat>
-                        </table>
-
-
-                    </h:form>
-
-                </div>
-            </div>
-        </div>
-
-
-
         </div>
 
         <footer>
@@ -254,6 +220,7 @@
                 </div>
             </footer>
         </footer>
+
     </h:body>
 </html>
 

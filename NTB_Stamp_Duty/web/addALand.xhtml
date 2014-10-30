@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <script type="text/javascript"
-                src="${pageContext.request.contextPath}resources/js/jquery-1.11.0.js"/>
+                src="resources/js/jquery-1.11.0.js"/>
         <script  type="text/javascript"
-                 src="${pageContext.request.contextPath}resources/js/bootstrap.min.js"/>
+                 src="resources/js/bootstrap.min.js"/>
         <link rel="stylesheet" type="text/css"
-              href="${pageContext.request.contextPath}resources/css/bootstrap.min.css"/>
+              href="resources/css/bootstrap.min.css"/>
     </h:head>
     <h:body>
         <div class="row">
@@ -21,7 +22,11 @@
                     <div class="panel-body">
                         <h:form>
                             <div class="form-group">
-                                <h:outputLabel value="Address"/><h:inputText value="#{createALand.address}" class="form-control"/>
+                                <h:outputLabel value="Address"/><h:inputText id="address" value="#{createALand.address}" class="form-control" 
+                                                                             validator="#{createALand.validateAddress}">
+                                    <f:ajax event="blur" execute="@this" render="addressError"/>
+                                </h:inputText>
+                                <h:message for="addres" id="addressError" style="color: red"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Near By "/><h:inputText value="#{createALand.nearBy}" class="form-control"/>
