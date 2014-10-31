@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.ui;
 
 import java.util.logging.Level;
@@ -25,11 +24,10 @@ import ntb.entity.Land;
 @ManagedBean
 @SessionScoped
 public class CreateALand {
-    
+
     @EJB
     private LandManager landManager;
-    
-    
+
     private String address;
     private String nearBy;
     private String dist;
@@ -40,75 +38,75 @@ public class CreateALand {
     private String buildingPermissionDate;
     private String status;
     private String notice;
-    
+
     public String getAddress() {
         return address;
     }
-    
+
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
     public String getNearBy() {
         return nearBy;
     }
-    
+
     public void setNearBy(String nearBy) {
         this.nearBy = nearBy;
     }
-    
+
     public String getDist() {
         return dist;
     }
-    
+
     public void setDist(String dist) {
         this.dist = dist;
     }
-    
+
     public String getLocation() {
         return location;
     }
-    
+
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
     public int getArea() {
         return area;
     }
-    
+
     public void setArea(int area) {
         this.area = area;
     }
-    
+
     public int getPurchaseCost() {
         return purchaseCost;
     }
-    
+
     public void setPurchaseCost(int purchaseCost) {
         this.purchaseCost = purchaseCost;
     }
-    
+
     public int getPresentCost() {
         return presentCost;
     }
-    
+
     public void setPresentCost(int presentCost) {
         this.presentCost = presentCost;
     }
-    
+
     public String getBuildingPermissionDate() {
         return buildingPermissionDate;
     }
-    
+
     public void setBuildingPermissionDate(String buildingPermissionDate) {
         this.buildingPermissionDate = buildingPermissionDate;
     }
-    
+
     public String getStatus() {
         return status;
     }
-    
+
     public void setStatus(String status) {
         this.status = status;
     }
@@ -120,23 +118,49 @@ public class CreateALand {
     public void setNotice(String notice) {
         this.notice = notice;
     }
+
+    public void validateAddress(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Address is required"));
+        }
+        if (" ".contains(s)) {
+            throw new ValidatorException(new FacesMessage("Address is not correct format"));
+        }
+    }
+
+    public void validateNearBy(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Near by landmark is required"));
+        }
+    }
+
+    public void validateDist(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("District is required "));
+        }
+    }
+
+    public void validateLocation(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Location is required "));
+        }
+    }
     
-    public void validateAddress(FacesContext f, UIComponent c, Object obj){
-        String s=(String)obj;
-        if(s.length()==0)
-            throw new ValidatorException(new FacesMessage("Address is required"));        
+     public void validateArea(FacesContext f, UIComponent c, Object obj) {
+       Integer s = (Integer) obj;
+        if (s==0) {
+            throw new ValidatorException(new FacesMessage("Area is required "));
+        }else if (s<0) {
+            throw new ValidatorException(new FacesMessage("Area must be greater than 0 "));
+        }else if (obj instanceof Integer) {
+            throw new ValidatorException(new FacesMessage("Area must be a number "));
+        }
     }
-    public void validateNearBy(FacesContext f, UIComponent c, Object obj){
-        String s=(String)obj;
-        if(s.length()==0)
-            throw new ValidatorException(new FacesMessage("Near by landmark is required"));        
-    }
-    public void validateDist(FacesContext f, UIComponent c, Object obj){
-        String s=(String)obj;
-        if(s.length()==0)
-            throw new ValidatorException(new FacesMessage("District is required "));        
-    }
-    
+
     public String createALand() {
         Land land = new Land();
         land.setLAddress(address);
@@ -148,19 +172,22 @@ public class CreateALand {
         land.setLPresentCost(presentCost);
         land.setLBuildingPermissionDate(buildingPermissionDate);
         land.setLStatus(status);
-         if(dist == null || dist.trim().equals("")){
-             notice="Required";
-             return "";
-         }else{
-            try {
-                landManager.createLand(land);
-                 return "admin?faces-redirect=true";
-            } catch (Exception ex) {
-                Logger.getLogger(CreateALand.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         }
-        return null;
         
+        if (landManager.createLand(land)) {
+                address = null;
+                nearBy = null;
+                dist = null;
+                location = null;
+                area = 0;
+                purchaseCost = 0;
+                presentCost = 0;
+                buildingPermissionDate = null;
+                status = null;
+                return "admin?faces-redirect=true";
+        }else{
+                notice = "Error";
+                return "addLand?faces-redirect=true";
+        }  
     }
-    
+
 }

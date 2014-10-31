@@ -6,6 +6,7 @@
 
 package ntb.biz;
 
+import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.BuildingJpaController;
+import ntb.entity.Building;
 
 /**
  *
@@ -39,6 +41,11 @@ public class BuildingManager {
         return daController;
     }
     
+    public List<Building> getAllBuilding(){
+        return getDaController().getAllBuilding();
+    }
     
-    
+    public Building find(int id){
+        return getDaController().findBuilding(id);
+    }
 }

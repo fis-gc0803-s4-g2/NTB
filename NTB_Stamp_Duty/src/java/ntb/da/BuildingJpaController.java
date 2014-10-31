@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
@@ -38,6 +38,11 @@ public class BuildingJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public List<Building> getAllBuilding() {
+        TypedQuery<Building> query = getEntityManager().createQuery("SELECT b FROM Building b", Building.class);
+        return query.getResultList();
     }
 
     public void create(Building building) throws PreexistingEntityException, RollbackFailureException, Exception {
@@ -243,5 +248,5 @@ public class BuildingJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

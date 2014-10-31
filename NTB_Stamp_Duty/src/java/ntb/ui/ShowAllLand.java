@@ -24,6 +24,12 @@ public class ShowAllLand implements Serializable{
     
     @EJB
     private LandManager landManager;
+    
+    public String landManagerIndex(){
+            
+        return "landManager?faces-redirect=true";
+        
+    }
 
     
    private List<Land> list;

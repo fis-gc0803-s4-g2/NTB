@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div>&nbsp;</div>
+                <h:link outcome="addLand" value="Create a new land" class="btn btn-info"/><br></br>
+
+                <div>&nbsp;</div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">Land Management</div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <table  class="display"  cellspacing="0" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Address</th>
+                                            <th>NearBy</th>
+                                            <th>District</th>
+                                            <th>Location</th>
+                                            <th>Area</th>
+                                            <th>Purchased Cost</th>
+                                            <th>Present Cost</th>
+                                            <th> Building Permission Date</th>
+                                            <th>Status</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="l" items="#{showAllLand.list}">
+                                            <tr >
+                                                <td>#{l.LId}</td>
+                                                <td>#{l.LAddress}</td>
+                                                <td>#{l.LNearByLandmark}</td>
+                                                <td>#{l.LDist}</td>
+                                                <td>#{l.LLocaltion}</td>
+                                                <td>#{l.LArea}</td>
+                                                <td>#{l.LPresentCost}</td>
+                                                <td>#{l.LPresentCost}</td>
+                                                <td>#{l.LBuildingPermissionDate}</td>
+                                                <td>#{l.LStatus}</td>
+
+                                                <td> 
+                                                    <h:commandLink action="#{landDetail.editLandIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener target="#{landDetail.landId}" value="#{l.LId}"/>
+                                                    </h:commandLink>    
+
+
+                                                    <h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/>  
+                                                    <ui:fragment rendered="#{'Yet received the building permit' eq l.LStatus.toString()}">
+                                                        <h:commandLink action="#{addBuildingManagedBean.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
+                                                            <f:setPropertyActionListener  target="#{addBuildingManagedBean.landId}" value="#{l.LId}"/>
+                                                        </h:commandLink>     
+                                                    </ui:fragment>
+                                                </td >
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

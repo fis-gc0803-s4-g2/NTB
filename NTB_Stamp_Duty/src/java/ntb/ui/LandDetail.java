@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.ui;
 
 import java.util.logging.Level;
@@ -11,7 +10,9 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import ntb.biz.BuildingManager;
 import ntb.biz.LandManager;
+import ntb.da.BuildingJpaController;
 import ntb.entity.Land;
 
 /**
@@ -21,22 +22,77 @@ import ntb.entity.Land;
 @ManagedBean
 @SessionScoped
 public class LandDetail {
+
+    @EJB
+    private BuildingManager buildingManager;
+
     @EJB
     private LandManager landManager;
 
-    
-    
-    //private int id;
-    
+    private int landId;
+    private String address;
+    private String nearBy;
+    private String dist;
+    private String location;
+    private int area;
+    private int purchaseCost;
+    private int presentCost;
+    private String buildingPermissionDate;
+    private String status;
+    private String notice;
+
     private Land land;
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public String editLandIndex() {
+        land = landManager.getLandById(landId);
+        address = land.getLAddress();
+        nearBy = land.getLNearByLandmark();
+        dist = land.getLDist();
+        location = land.getLLocaltion();
+        area = land.getLArea();
+        purchaseCost = land.getLPurchasedCost();
+        presentCost = land.getLPresentCost();
+        buildingPermissionDate = land.getLBuildingPermissionDate();
+        status = land.getLStatus();
+        return "editLand?faces-redirect=true";
+    }
+
+    public String editLandById() {
+
+        land.setLAddress(address);
+        land.setLNearByLandmark(nearBy);
+        land.setLDist(dist);
+        land.setLLocaltion(location);
+        land.setLArea(area);
+        land.setLPurchasedCost(purchaseCost);
+        land.setLPresentCost(presentCost);
+        land.setLBuildingPermissionDate(buildingPermissionDate);
+        land.setLStatus(status);
+        if (landManager.editLand(land)) {
+            address = null;
+            nearBy = null;
+            dist = null;
+            location = null;
+            area = 0;
+            purchaseCost = 0;
+            presentCost = 0;
+            buildingPermissionDate = null;
+            status = null;
+            return "adminHome?faces-redirect=true";
+        }
+        return null;
+
+    }
+
+    public void deleteLandById(int id) {
+        try {
+            if (buildingManager.find(id) == null) {
+                landManager.deleteLand(id);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(LandDetail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public Land getLand() {
         return land;
@@ -45,22 +101,93 @@ public class LandDetail {
     public void setLand(Land land) {
         this.land = land;
     }
-    
-//    public void landDetail(){
-//        land=landManager.getLandById(id);
-//    }
-    
-    public void landDetailById(int id){
-        land = landManager.getLandById(id);
-       
+
+    public int getLandId() {
+        return landId;
     }
-    
-    
-    public void deleteLandById(int id){
-        try {
-            landManager.deleteLand(id);
-        } catch (Exception ex) {
-            Logger.getLogger(LandDetail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public void setLandId(int landId) {
+        this.landId = landId;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNearBy() {
+        return nearBy;
+    }
+
+    public void setNearBy(String nearBy) {
+        this.nearBy = nearBy;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+
+    public int getPurchaseCost() {
+        return purchaseCost;
+    }
+
+    public void setPurchaseCost(int purchaseCost) {
+        this.purchaseCost = purchaseCost;
+    }
+
+    public int getPresentCost() {
+        return presentCost;
+    }
+
+    public void setPresentCost(int presentCost) {
+        this.presentCost = presentCost;
+    }
+
+    public String getBuildingPermissionDate() {
+        return buildingPermissionDate;
+    }
+
+    public void setBuildingPermissionDate(String buildingPermissionDate) {
+        this.buildingPermissionDate = buildingPermissionDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
 }

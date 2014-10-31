@@ -6,6 +6,8 @@
 package ntb.biz;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -14,7 +16,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.LandJpaController;
-import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Land;
 
 /**
@@ -55,11 +56,16 @@ public class LandManager {
     /**
      *Create a new land
      * @param land
-     * @throws RollbackFailureException
-     * @throws Exception
+     * 
      */
-    public void createLand(Land land) throws RollbackFailureException, Exception{
-        getDaController().create(land);
+    public boolean createLand(Land land) {
+        try {
+            getDaController().create(land);
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(LandManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     /**
@@ -74,20 +80,29 @@ public class LandManager {
     /**
      * edit a land
      * @param land
-     * @throws RollbackFailureException
-     * @throws Exception 
      */
-    public void editLand(Land land) throws RollbackFailureException, Exception{
-        getDaController().edit(land);
+    public boolean editLand(Land land){
+        try {
+            getDaController().edit(land);
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(LandManager.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return false;
     }
 
     /**
      * delete a land by Id
      * @param lId
-     * @throws RollbackFailureException
-     * @throws Exception 
+     
      */
-    public void deleteLand(int lId) throws RollbackFailureException, Exception{
-        getDaController().destroy(lId);
+    public boolean deleteLand(int lId) {
+        try {
+            getDaController().destroy(lId);
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(LandManager.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return false;
     }
 }
