@@ -7,6 +7,8 @@
 package ntb.biz;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -16,6 +18,7 @@ import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.BuildingJpaController;
 import ntb.entity.Building;
+
 
 /**
  *
@@ -47,5 +50,15 @@ public class BuildingManager {
     
     public Building find(int id){
         return getDaController().findBuilding(id);
+    }
+    
+   public boolean createBuilding(Building building) {
+        try {
+            getDaController().create(building);
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(LandManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

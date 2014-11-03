@@ -11,9 +11,7 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-                <div>&nbsp;</div>
-                <h:link outcome="addLand" value="Create a new land" class="btn btn-info"/><br></br>
-
+               
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
@@ -59,8 +57,8 @@
 
                                                     <h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/>  
                                                     <ui:fragment rendered="#{'Yet received the building permit' eq l.LStatus.toString()}">
-                                                        <h:commandLink action="#{addBuildingManagedBean.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
-                                                            <f:setPropertyActionListener  target="#{addBuildingManagedBean.landId}" value="#{l.LId}"/>
+                                                        <h:commandLink action="#{createABuilding.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
+                                                            <f:setPropertyActionListener  target="#{createABuilding.landId}" value="#{l.LId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>
                                                 </td >

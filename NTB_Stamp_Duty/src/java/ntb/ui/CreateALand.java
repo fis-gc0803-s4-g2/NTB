@@ -183,7 +183,7 @@ public class CreateALand {
                 presentCost = 0;
                 buildingPermissionDate = null;
                 status = null;
-                return "admin?faces-redirect=true";
+                return "adminHome?faces-redirect=true";
         }else{
                 notice = "Error";
                 return "addLand?faces-redirect=true";

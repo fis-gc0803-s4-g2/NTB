@@ -33,36 +33,36 @@
                                         <h:message for="near" id="nearError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="District"/><h:inputText id="dist" value="#{createALand.dist}" class="form-control" validator="#{createALand.validateDist}">
+                                        <h:outputLabel value="District"/><h:inputText id="dist" value="#{createALand.dist}" class="form-control" validator="#{createALand.validateDist}" style="width: 40%">
                                             <f:ajax event="blur" execute="@this" render="distError"/>
                                         </h:inputText>
                                         <h:message for="dist" id="distError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Location"/><h:inputText id="location" value="#{createALand.location}" class="form-control" validator="#{createALand.validateLocation}">
+                                        <h:outputLabel value="Location"/><h:inputText id="location" value="#{createALand.location}" class="form-control" validator="#{createALand.validateLocation}" style="width: 40%">
                                             <f:ajax event="blur" execute="@this" render="locationError"/>
                                         </h:inputText>
                                         <h:message for="location" id="locationError" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Area"/><h:inputText id="area" value="#{createALand.area}" class="form-control" validator="#{createALand.validateArea}">
+                                        <h:outputLabel value="Area"/><h:inputText id="area" value="#{createALand.area}" class="form-control" validator="#{createALand.validateArea}" style="width: 30%">
                                             <f:ajax event="blur" execute="@this" render="areaError"/>
                                         </h:inputText>
                                         <h:message for="area" id="areaError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Purchase Cost"/><h:inputText value="#{createALand.purchaseCost}" class="form-control"/>
+                                        <h:outputLabel value="Purchase Cost"/><h:inputText value="#{createALand.purchaseCost}" class="form-control" style="width: 30%"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Present Cost"/><h:inputText value="#{createALand.presentCost}" class="form-control"/>
+                                        <h:outputLabel value="Present Cost"/><h:inputText value="#{createALand.presentCost}" class="form-control" style="width: 30%"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building Premission date"/><h:inputText id="datepicker" value="#{createALand.buildingPermissionDate}" class="form-control"/>
+                                        <h:outputLabel value="Building Premission date"/><h:inputText id="datepicker" value="#{createALand.buildingPermissionDate}" class="form-control" style="width: 40%"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
-                                        <h:selectOneMenu value="#{createALand.status}" class="form-control" >
+                                        <h:selectOneMenu value="#{createALand.status}" class="form-control" style="width: 70%" >
                                             <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                             <f:selectItem itemValue="Not yet to be applied for the building permit" itemLabel="Not yet to be applied for the building permit"/>  
                                             <f:selectItem itemValue="Yet to be applied for the building permit" itemLabel="Yet to be applied for the building permit"/>                                                                     
@@ -74,8 +74,8 @@
                                             <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
                                         </h:selectOneMenu>&nbsp; 
                                     </div>
-                                    <h:commandButton action="#{createALand.createALand()}" value="Submit" class="btn btn-default"/>
-                                    <input type="reset" value="Reset"/>
+                                    <h:commandButton action="#{createALand.createALand()}" value="Submit" class="btn btn-info"/>
+                                   
                                 </h:form>
                                 <h:outputText value="#{createALand.notice}" style="color: red"/>
                             </div>

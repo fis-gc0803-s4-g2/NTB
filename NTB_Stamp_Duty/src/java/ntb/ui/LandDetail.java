@@ -12,7 +12,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import ntb.biz.BuildingManager;
 import ntb.biz.LandManager;
-import ntb.da.BuildingJpaController;
 import ntb.entity.Land;
 
 /**

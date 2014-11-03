@@ -105,4 +105,8 @@ public class LandManager {
         } 
         return false;
     }
+    
+    public Land findLand(int id){
+        return getDaController().findLand(id);
+    }
 }

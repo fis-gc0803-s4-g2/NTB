@@ -14,14 +14,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.ManagerJpaController;
+import ntb.entity.Manager;
 
-/**
- *
- * @author Phuong Van
- */
+
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
-public class AdminLogin {
+public class AdminLoginManager {
     
     @PersistenceUnit(unitName = "NTB_Stamp_DutyPU")
 
@@ -41,9 +39,8 @@ public class AdminLogin {
     }
     
 
-    public boolean login(String username, String password){
-        ManagerJpaController mjc = getDaController();
-        return mjc.managerLogin(username, password);
+    public Manager login(String username, String password){
+        return getDaController().managerLogin(username, password);
     }
     
     public boolean checkAccountExist(String username){

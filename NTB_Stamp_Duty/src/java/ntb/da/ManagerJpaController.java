@@ -39,24 +39,14 @@ public class ManagerJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public boolean managerLogin(String username, String password) {
-        boolean checkValidationResult = CheckValidation.checkLoginValidation(username, password);
-        if (checkValidationResult == false) {
-            return false;
+    public Manager managerLogin(String mUsername, String mPassword) {
+        TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m WHERE m.mUsername = :mUsername and m.mPassword = :mPassword",Manager.class);
+        query.setParameter("mUsername", mUsername);
+        query.setParameter("mPassword", mPassword);
+        if (!query.getResultList().isEmpty()) {
+            return query.getResultList().get(0);
         }
-        EntityManager em = null;
-        try {
-            em = getEntityManager();
-            String sqlCommand = "m.mUsername = :mUsername and m.mPassword = :mPassword";
-            TypedQuery<Manager> createQuery = em.createQuery(sqlCommand, Manager.class);
-            int firstResult = createQuery.getFirstResult();
-            if (checkValidationResult) {
-                return true;
-            }
-        } catch (Exception e) {
-            return false;
-        }
-        return false;
+        return null; 
     }
 
     public boolean checkAccountExist(String username) {
