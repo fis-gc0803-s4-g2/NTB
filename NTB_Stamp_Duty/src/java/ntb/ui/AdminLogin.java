@@ -10,9 +10,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletResponse;
 import ntb.biz.AdminLoginManager;
 import ntb.entity.Manager;
@@ -84,6 +87,19 @@ public class AdminLogin {
         this.message = message;
     }
     
+    public void validateUsername(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Username is required"));
+        }
+    }
+    
+    public void validatePassword(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Password is required"));
+        }
+    }
     
      public String autoLogin() {
         try {
@@ -114,12 +130,13 @@ public class AdminLogin {
                 return "";
             }
         }
-        acc="Username and Password is required";
+        acc="";
         return "";
     }
     
        public String logout() {
         role = null;
+        acc=null;
         return "login?faces-redirect=true";
     }
     

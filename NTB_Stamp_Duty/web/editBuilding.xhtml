@@ -19,23 +19,29 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="panel panel-info">
-                            <div class="panel-heading">Create a new building</div>
+                            <div class="panel-heading">Edit building</div>
                             <div class="panel-body">
                                 <h:form enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <h:outputLabel value="Land Code"/><h:inputText id="lId" value="#{createABuilding.landId}" class="form-control" style="width: 30%" readonly="true" >
+                                        <h:outputLabel value="Building Id"/><h:inputText id="bId" value="#{editBuilding.buildingId}" class="form-control" style="width: 30%" readonly="true" >
+
+                                        </h:inputText>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <h:outputLabel value="Land Id"/><h:inputText id="lId" value="#{editBuilding.landId}" class="form-control" style="width: 30%" readonly="true" >
 
                                         </h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{createABuilding.buildingName}" class="form-control"  style="width: 70%" > 
+                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{editBuilding.buildingName}" class="form-control"  style="width: 70%" > 
                                             <f:ajax event="blur" execute="@this" render="nameError"/>
                                         </h:inputText>
                                         <h:message for="name" id="nameError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Building Type"/>
-                                        <h:selectOneMenu value="#{createABuilding.buildingType}" class="form-control" style="width: 40%">
+                                        <h:selectOneMenu value="#{editBuilding.buildingType}" class="form-control" style="width: 40%">
                                             <f:selectItem itemValue="" itemLabel="Choose Building Type"/>
                                             <f:selectItem itemValue="official" itemLabel="official"/>
                                             <f:selectItem itemValue="residental" itemLabel="residental"/>
@@ -43,39 +49,35 @@
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{createABuilding.floorNumber}" class="form-control" style="width: 30%" >
+                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{editBuilding.floorNumber}" class="form-control" style="width: 30%" >
                                             <f:ajax event="blur" execute="@this" render="locationError"/>
                                         </h:inputText>
                                         <h:message for="location" id="locationError" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Department Number"/><h:inputText id="area" value="#{createABuilding.departmentNumber}" class="form-control" style="width: 30%" >
+                                        <h:outputLabel value="Department Number"/><h:inputText id="area" value="#{editBuilding.departmentNumber}" class="form-control" style="width: 30%" >
                                             <f:ajax event="blur" execute="@this" render="areaError"/>
                                         </h:inputText>
                                         <h:message for="area" id="areaError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Start Date"/><h:inputText value="#{createABuilding.startDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Start Date"/><h:inputText value="#{editBuilding.startDate}" class="form-control" style="width: 50%"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Completed Date"/><h:inputText value="#{createABuilding.completionDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Completed Date"/><h:inputText value="#{editBuilding.completionDate}" class="form-control" style="width: 50%"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Occupancy Date"/><h:inputText  value="#{createABuilding.occupancyDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Occupancy Date"/><h:inputText  value="#{editBuilding.occupancyDate}" class="form-control" style="width: 50%"/>
                                     </div>
+                                   
                                     <div class="form-group">
-                                        <h:outputLabel value="Image Upload"/><p:fileUpload value="#{createABuilding.file}" mode="simple"/>     
-                                        
-<!--                                        <h:inputText  value="#{createABuilding.image}" class="form-control" style="width: 50%"/>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <h:outputLabel value="Description"/><h:inputTextarea  value="#{createABuilding.description}" class="form-control"/>
+                                        <h:outputLabel value="Description"/><h:inputTextarea  value="#{editBuilding.description}" class="form-control"/>
                                     </div>
 
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
-                                        <h:selectOneMenu value="#{createABuilding.status}" class="form-control" style="width: 70%" >
+                                        <h:selectOneMenu value="#{editBuilding.status}" class="form-control" style="width: 70%" >
                                             <f:selectItem itemValue="" itemLabel="Choose Building Status"/>
                                             <f:selectItem itemValue="Yet to be contructed" itemLabel="Yet to be contructed"/> 
                                             <f:selectItem itemValue="Not yet to be applied for the occupancy permit" itemLabel="Not yet to be applied for the occupancy permit"/>
@@ -83,10 +85,10 @@
                                             <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
                                         </h:selectOneMenu>&nbsp; 
                                     </div>
-                                    <h:commandButton action="#{createABuilding.createABuilding()}" value="Create" class="btn btn-info"/>
+                                    <h:commandButton action="#{editBuilding.edit() }" value="Edit" class="btn btn-info"/>
                                    
                                 </h:form>
-                                <h:outputText value="#{createABuilding.m}" style="color: red"/>
+                                <h:outputText value="#{editBuilding.m}" style="color: red"/>
                             </div>
                         </div>
                     </div>

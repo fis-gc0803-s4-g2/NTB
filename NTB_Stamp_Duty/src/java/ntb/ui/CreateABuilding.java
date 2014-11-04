@@ -32,10 +32,9 @@ import org.primefaces.model.UploadedFile;
 public class CreateABuilding {
 
     @EJB
-    private LandManager landManager;
-
-    @EJB
     private BuildingManager buildingManager;
+    @EJB
+    private LandManager landManager;
 
     private int landId;
     private String buildingName;
@@ -48,17 +47,115 @@ public class CreateABuilding {
     private String image;
     private String description;
     private String status;
-
-    private UploadedFile file;
-    
     private String m;
 
-    public UploadedFile getFile() {
-        return file;
+    private UploadedFile file;
+
+    public String buildingIndex() {
+        buildingName = null;
+        buildingType = null;
+        floorNumber = 0;
+        departmentNumber = 0;
+        startDate = null;
+        completionDate = null;
+        occupancyDate = null;
+        image = null;
+        description = null;
+        status = null;
+        m = null;
+        return "addBuilding?faces-redirect=true";
     }
 
-    public void setFile(UploadedFile file) {
-        this.file = file;
+    public String createABuilding() {
+        if(!"".equals(upload())){
+            m=upload();
+            return "";
+        }
+
+        Building building = new Building();
+
+        building.setLId(landManager.findLand(landId));
+        building.setBBuildingName(buildingName);
+        building.setBBuildingType(buildingType);
+        building.setBFloorNumber(floorNumber);
+        building.setBDepartmentNumber(departmentNumber);
+        building.setBStartDate(startDate);
+        building.setBCompletionDate(completionDate);
+        building.setBOccupancyDate(occupancyDate);
+        building.setBImage(getFile().getFileName());
+        building.setBDescription(description);
+        building.setBStatus(status);
+        if (buildingManager.createBuilding(building)) {
+            buildingName = null;
+            buildingType = null;
+            floorNumber = 0;
+            departmentNumber = 0;
+            startDate = null;
+            completionDate = null;
+            occupancyDate = null;
+            image = null;
+            description = null;
+            status = null;
+            return "adminHome?faces-redirect=true";
+        } else {
+            return "addBuilding?faces-redirect=true";
+        }
+
+    }
+    
+    
+      public String upload() {
+        String extValidate;
+        String ext = getFile().getFileName();
+        if (ext != null) {
+            extValidate = ext.substring(ext.indexOf(".") + 1);
+        } else {
+            extValidate = "null";
+        }
+        if (extValidate.equalsIgnoreCase("jpg") || extValidate.equalsIgnoreCase("png")) {
+            try {
+                String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/") + "resources\\uploads\\" + file.getFileName();
+                transferFile(destination, getFile().getFileName(), getFile().getInputstream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Wrong", "Error upload file"));
+                return "Error upload file";
+            }
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Successful", getFile().getFileName() + "is upladed"));
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Wrong_ext", "Only extension .pdf"));
+            return "Only extension: img,png";
+        }
+        return "";
+    }
+
+    public void transferFile(String destination, String fileName, InputStream in) {
+        OutputStream out = null;
+        try {
+//            out = new FileOutputStream(new File("C:\\EJB_DEMO\\anntgc00492_ejb_assignment_travelnetwork_2\\build\\web\\resources\\uploads\\" + file.getFileName()));
+            out = new FileOutputStream(new File(destination));
+            int reader = 0;
+            byte[] bytes = new byte[(int) getFile().getSize()];
+            while ((reader = in.read(bytes)) != -1) {
+                out.write(bytes, 0, reader);
+            }
+            in.close();
+            out.flush();
+            out.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public int getLandId() {
@@ -157,155 +254,11 @@ public class CreateABuilding {
         this.m = m;
     }
 
-    
-    
-    
-    public String buildingIndex() {
-        buildingName = null;
-        buildingType = null;
-        floorNumber = 0;
-        departmentNumber = 0;
-        startDate = null;
-        completionDate = null;
-        occupancyDate = null;
-        image = null;
-        description = null;
-        status = null;
-        m=null;
-        return "addBuilding?faces-redirect=true";
+    public UploadedFile getFile() {
+        return file;
     }
 
-    public String createABuilding() {
-         if (
-                landId != 0
-                && floorNumber != 0 && departmentNumber != 0
-                && null != buildingName && !buildingName.trim().isEmpty() && buildingName.length() < 100
-                && null != buildingType && !buildingType.trim().isEmpty() && buildingType.length() < 100
-                && null != startDate && !startDate.trim().isEmpty() && startDate.length() < 100
-                && null != completionDate && !completionDate.trim().isEmpty() && completionDate.length() < 100
-                && null != occupancyDate && !occupancyDate.trim().isEmpty() && occupancyDate.length() < 200
-                && null != description && !description.trim().isEmpty() && description.length() < 200
-                && null != status && !status.trim().isEmpty() && status.length() < 200
-                && file.getSize() != 0
-                ) {
-            if (!"".equals(upload())) {
-                m = upload();
-                return "ok?faces-redirect=true";
-            }
-            Building b = new Building();
-            b.setLId(landManager.findLand(landId));
-            b.setBBuildingName(buildingName);
-            b.setBBuildingType(buildingType);
-            b.setBFloorNumber(floorNumber);
-            b.setBDepartmentNumber(departmentNumber);
-            b.setBStartDate(startDate);
-            b.setBCompletionDate(completionDate);
-            b.setBOccupancyDate(occupancyDate);
-            b.setBImage(getFile().getFileName());
-            b.setBDescription(description);
-            b.setBStatus(status);
-            if (buildingManager.createBuilding(b)) {
-                buildingName = null;
-                buildingType = null;
-                floorNumber = 0;
-                departmentNumber = 0;
-                startDate = null;
-                completionDate = null;
-                occupancyDate = null;
-               // image = null;
-                description=null;
-                status = null;
-                return "buildingManager?faces-redirect=true";
-            } else {
-                m = "Error";
-                return "buildingManager?faces-redirect=true";
-            }
-        }
-        m = "Please fill all the blank";
-        return "buildingManager?faces-redirect=true";        
-//        Building building = new Building();
-//
-//        building.setLId(landManager.findLand(landId));
-//        building.setBBuildingName(buildingName);
-//        building.setBBuildingType(buildingType);
-//        building.setBFloorNumber(floorNumber);
-//        building.setBDepartmentNumber(departmentNumber);
-//        building.setBStartDate(startDate);
-//        building.setBCompletionDate(completionDate);
-//        building.setBOccupancyDate(occupancyDate);
-//        building.setBImage(image);
-//        building.setBDescription(description);
-//        building.setBStatus(status);
-//        if (buildingManager.createBuilding(building)) {
-//            buildingName = null;
-//            buildingType = null;
-//            floorNumber = 0;
-//            departmentNumber = 0;
-//            startDate = null;
-//            completionDate = null;
-//            occupancyDate = null;
-//            image = null;
-//            description = null;
-//            status = null;
-//            return "adminHome?faces-redirect=true";
-//        } else {
-//            return "addBuilding?faces-redirect=true";
-//        }
-//
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
-
-    public String upload() {
-        String extValidate;
-        String ext = getFile().getFileName();
-        if (ext != null) {
-            extValidate = ext.substring(ext.indexOf(".") + 1);
-        } else {
-            extValidate = "null";
-        }
-        if (extValidate.equalsIgnoreCase("jpg") || extValidate.equalsIgnoreCase("png")) {
-            try {
-                String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/") + "resources\\uploads\\" + file.getFileName();
-                transferFile(destination, getFile().getFileName(), getFile().getInputstream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Wrong", "Error upload file"));
-                return "Error upload file";
-            }
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Successful", getFile().getFileName() + "is upladed"));
-        } else {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Wrong_ext", "Only extension .pdf"));
-            return "Only extension: img,png";
-        }
-        return "";
-    }
-
-    public void transferFile(String destination, String fileName, InputStream in) {
-        OutputStream out = null;
-        try {
-//            out = new FileOutputStream(new File("C:\\EJB_DEMO\\anntgc00492_ejb_assignment_travelnetwork_2\\build\\web\\resources\\uploads\\" + file.getFileName()));
-            out = new FileOutputStream(new File(destination));
-            int reader = 0;
-            byte[] bytes = new byte[(int) getFile().getSize()];
-            while ((reader = in.read(bytes)) != -1) {
-                out.write(bytes, 0, reader);
-            }
-            in.close();
-            out.flush();
-            out.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                out.close();
-            } catch (IOException ex) {
-                Logger.getLogger(CreateABuilding.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
 }

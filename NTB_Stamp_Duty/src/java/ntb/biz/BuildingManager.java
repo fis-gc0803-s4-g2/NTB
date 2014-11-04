@@ -17,6 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import ntb.da.BuildingJpaController;
+import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Building;
 
 
@@ -61,4 +62,19 @@ public class BuildingManager {
         }
         return false;
     }
+   
+   public boolean editBuilding(Building building){
+         try {
+             getDaController().edit(building);
+             return true;
+         } catch (Exception ex) {
+             Logger.getLogger(BuildingManager.class.getName()).log(Level.SEVERE, null, ex);
+         } 
+         return false;
+       
+   }
+   
+   public Building findBuilding(int id){
+       return getDaController().findBuilding(id);
+   }
 }
