@@ -5,12 +5,10 @@
  */
 package ntb.ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import ntb.biz.BuildingManager;
 import ntb.biz.LandManager;
 import ntb.entity.Land;
 
@@ -20,10 +18,7 @@ import ntb.entity.Land;
  */
 @ManagedBean
 @SessionScoped
-public class LandDetail {
-
-    @EJB
-    private BuildingManager buildingManager;
+public class EditLand {
 
     @EJB
     private LandManager landManager;
@@ -83,15 +78,7 @@ public class LandDetail {
 
     }
 
-    public void deleteLandById(int id) {
-        try {
-            if (buildingManager.find(id) == null) {
-                landManager.deleteLand(id);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(LandDetail.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     public Land getLand() {
         return land;

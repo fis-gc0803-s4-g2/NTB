@@ -21,36 +21,36 @@
                             <div class="panel-body">
                                 <h:form >
                                     <div class="form-group">
-                                        <h:outputLabel value="Id"/><h:inputText value="#{landDetail.landId}" class="form-control"/>
+                                        <h:outputLabel value="Id"/><h:inputText value="#{editLand.landId}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Address"/><h:inputText value="#{landDetail.address}" class="form-control"/>
+                                        <h:outputLabel value="Address"/><h:inputText value="#{editLand.address}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Near By "/><h:inputText value="#{landDetail.nearBy}" class="form-control"/>
+                                        <h:outputLabel value="Near By "/><h:inputText value="#{editLand.nearBy}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="District"/><h:inputText value="#{landDetail.dist}" class="form-control"/>
+                                        <h:outputLabel value="District"/><h:inputText value="#{editLand.dist}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Location"/><h:inputText value="#{landDetail.location}" class="form-control"/>
+                                        <h:outputLabel value="Location"/><h:inputText value="#{editLand.location}" class="form-control"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Area"/><h:inputText value="#{landDetail.area}" class="form-control"/>
+                                        <h:outputLabel value="Area"/><h:inputText value="#{editLand.area}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Purchase Price"/><h:inputText value="#{landDetail.purchaseCost}" class="form-control"/>
+                                        <h:outputLabel value="Purchase Price"/><h:inputText value="#{editLand.purchaseCost}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Present Price"/><h:inputText value="#{landDetail.presentCost}" class="form-control"/>
+                                        <h:outputLabel value="Present Price"/><h:inputText value="#{editLand.presentCost}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building Premission date"/><h:inputText value="#{landDetail.buildingPermissionDate}" class="form-control"/>
+                                        <h:outputLabel value="Building Premission date"/><h:inputText value="#{editLand.buildingPermissionDate}" class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
-                                        <h:selectOneMenu value="#{landDetail.status}" class="form-control" >
+                                        <h:selectOneMenu value="#{editLand.status}" class="form-control" >
                                             <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                             <f:selectItem itemValue="Not yet to be applied for the building permit" itemLabel="Not yet to be applied for the building permit"/>  
                                             <f:selectItem itemValue="Yet to be applied for the building permit" itemLabel="Yet to be applied for the building permit"/>                                                                     
@@ -62,7 +62,7 @@
                                             <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
                                         </h:selectOneMenu>&nbsp; 
                                     </div>
-                                    <h:commandButton action="#{landDetail.editLandById()}" value="Edit" class="btn btn-default"/>
+                                    <h:commandButton action="#{editLand.editLandById()}" value="Edit" class="btn btn-default"/>
 
                                 </h:form>
                             </div>

@@ -50,12 +50,16 @@
                                                 <td>#{l.LStatus}</td>
 
                                                 <td> 
-                                                    <h:commandLink action="#{landDetail.editLandIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
-                                                        <f:setPropertyActionListener target="#{landDetail.landId}" value="#{l.LId}"/>
+                                                    <h:commandLink action="#{editLand.editLandIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener target="#{editLand.landId}" value="#{l.LId}"/>
                                                     </h:commandLink>    
 
-
-                                                    <h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/>  
+                                                      <ui:fragment rendered="#{'Not yet to be applied for the building permit' eq l.LStatus.toString()}">
+                                                          <h:commandLink action="#{deleteLand.deleteLand()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                              <f:setPropertyActionListener  target="#{deleteLand.id}" value="#{l.LId}"/>
+                                                        </h:commandLink>     
+                                                    </ui:fragment>         
+                                                    
                                                     <ui:fragment rendered="#{'Yet received the building permit' eq l.LStatus.toString()}">
                                                         <h:commandLink action="#{createABuilding.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
                                                             <f:setPropertyActionListener  target="#{createABuilding.landId}" value="#{l.LId}"/>

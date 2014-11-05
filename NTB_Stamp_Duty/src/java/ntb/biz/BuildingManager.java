@@ -77,4 +77,15 @@ public class BuildingManager {
    public Building findBuilding(int id){
        return getDaController().findBuilding(id);
    }
+   
+   
+   public boolean deleteBuilding(int id){
+         try {
+             getDaController().destroy(id);
+             return true;
+         } catch (Exception ex) {
+             Logger.getLogger(BuildingManager.class.getName()).log(Level.SEVERE, null, ex);
+         } 
+         return false;
+   }
 }

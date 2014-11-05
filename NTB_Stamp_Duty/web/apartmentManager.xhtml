@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div>&nbsp;</div>
+                <h:link outcome="addLand" value="Apartment Management" class="btn btn-info"/><br></br>
+
+                <div>&nbsp;</div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">Apartment Management</div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <table  class="display"  cellspacing="0" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Building name</th>
+                                            <th>On floor</th>
+                                            <th>Area(m2)</th>
+                                            <th>Cost($)</th>
+                                            <th> Task</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="a" items="#{showAllApartment.list}">
+                                            <tr >
+                                                <td>#{a.APId}</td>
+                                                <td>#{a.BId.BBuildingName}</td>
+                                                <td>#{a.APOnFloor}</td>
+                                                <td>#{a.APArea}</td>
+                                                <td>#{a.APCost}</td>
+                                                <td>
+                                                    <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
+                                                    </h:commandLink>   
+                                                    
+                                                     <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
+                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                             <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
+                                                        </h:commandLink>     
+                                                    </ui:fragment>      
+                                                   
+                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
+                                                        </h:commandLink>     
+                                                   
+                                                </td >
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

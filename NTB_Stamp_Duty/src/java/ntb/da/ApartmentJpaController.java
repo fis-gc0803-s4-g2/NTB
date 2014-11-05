@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
@@ -38,6 +39,12 @@ public class ApartmentJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public List<Apartment> getApartmentById(int id){
+          TypedQuery<Apartment> query = getEntityManager().createQuery("SELECT a FROM Apartment a where a.bId.bId =:id", Apartment.class);
+          query.setParameter("id", id);
+        return query.getResultList();
     }
 
     public void create(Apartment apartment) throws PreexistingEntityException, RollbackFailureException, Exception {

@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <div>&nbsp;</div>
-                <h:link outcome="addLand" value="Create a new land" class="btn btn-info"/><br></br>
+                <h:link outcome="addLand" value="Building Management" class="btn btn-info"/><br></br>
 
                 <div>&nbsp;</div>
 
@@ -53,13 +53,18 @@
                                                 <td> 
                                                     <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
-                                                    </h:commandLink>    
-                                                    <h:commandButton actionListener="#{landDetail.deleteLandById(l.LId)}" value="Delete" class="btn btn-default"/>  
-                                                    <ui:fragment rendered="#{'Yet received the building permit' eq l.LStatus.toString()}">
-                                                        <h:commandLink action="#{addBuildingManagedBean.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
-                                                            <f:setPropertyActionListener  target="#{addBuildingManagedBean.landId}" value="#{l.LId}"/>
+                                                    </h:commandLink>   
+                                                    
+                                                     <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
+                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                             <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
                                                         </h:commandLink>     
-                                                    </ui:fragment>
+                                                    </ui:fragment>      
+                                                   
+                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
+                                                        </h:commandLink>     
+                                                   
                                                 </td >
 
                                             </tr>
