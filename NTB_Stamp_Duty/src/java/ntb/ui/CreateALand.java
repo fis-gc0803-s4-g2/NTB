@@ -149,15 +149,45 @@ public class CreateALand {
             throw new ValidatorException(new FacesMessage("Location is required "));
         }
     }
-    
-     public void validateArea(FacesContext f, UIComponent c, Object obj) {
-       Integer s = (Integer) obj;
-        if (s==0) {
+
+    public void validateArea(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
             throw new ValidatorException(new FacesMessage("Area is required "));
-        }else if (s<0) {
+        } else if (s < 0) {
             throw new ValidatorException(new FacesMessage("Area must be greater than 0 "));
-        }else if (obj instanceof Integer) {
-            throw new ValidatorException(new FacesMessage("Area must be a number "));
+        }
+    }
+
+    public void validatePurchaseCost(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Purchase cost is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Purchase cost must be greater than 0 "));
+        }
+    }
+
+    public void validatePresentCost(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Present cost is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Present cost must be greater than 0 "));
+        }
+    }
+
+    public void validatePermissionDate(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Building permission date is required "));
+        }
+    }
+    
+     public void validateStatus(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Status is required "));
         }
     }
 
@@ -172,22 +202,22 @@ public class CreateALand {
         land.setLPresentCost(presentCost);
         land.setLBuildingPermissionDate(buildingPermissionDate);
         land.setLStatus(status);
-        
+
         if (landManager.createLand(land)) {
-                address = null;
-                nearBy = null;
-                dist = null;
-                location = null;
-                area = 0;
-                purchaseCost = 0;
-                presentCost = 0;
-                buildingPermissionDate = null;
-                status = null;
-                return "adminHome?faces-redirect=true";
-        }else{
-                notice = "Error";
-                return "addLand?faces-redirect=true";
-        }  
+            address = null;
+            nearBy = null;
+            dist = null;
+            location = null;
+            area = 0;
+            purchaseCost = 0;
+            presentCost = 0;
+            buildingPermissionDate = null;
+            status = null;
+            return "adminHome?faces-redirect=true";
+        } else {
+            notice = "Error";
+            return "addLand?faces-redirect=true";
+        }
     }
 
 }

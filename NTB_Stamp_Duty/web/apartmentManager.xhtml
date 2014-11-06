@@ -12,8 +12,6 @@
 
             <ui:define name="content">
                 <div>&nbsp;</div>
-                <h:link outcome="addLand" value="Apartment Management" class="btn btn-info"/><br></br>
-
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
@@ -30,7 +28,7 @@
                                             <th>Area(m2)</th>
                                             <th>Cost($)</th>
                                             <th> Task</th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,20 +40,24 @@
                                                 <td>#{a.APArea}</td>
                                                 <td>#{a.APCost}</td>
                                                 <td>
-                                                    <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
-                                                        <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
+                                                    <h:commandLink action="#{editApartment.editApartmentIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener target="#{editApartment.apartmentId}" value="#{a.APId}"/>
                                                     </h:commandLink>   
-                                                    
-                                                     <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
-                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
-                                                             <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
+
+                                                    <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
+                                                        <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                            <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>      
-                                                   
+
                                                     <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-edit fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                        </h:commandLink>     
-                                                   
+                                                    </h:commandLink> 
+
+                                                    <h:commandLink action="#{createAApartment.addApartmentIndex()}" title="Create a new apartment" styleClass="fa fa-edit fa-fw">
+                                                        <f:setPropertyActionListener target="#{createAApartment.buildingId}" value="#{b.BId}"/>
+                                                    </h:commandLink>  
+
                                                 </td >
 
                                             </tr>

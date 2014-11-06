@@ -21,36 +21,60 @@
                             <div class="panel-body">
                                 <h:form >
                                     <div class="form-group">
-                                        <h:outputLabel value="Id"/><h:inputText value="#{editLand.landId}" class="form-control"/>
+                                        <h:outputLabel value="Id"/><h:inputText value="#{editLand.landId}" class="form-control" readonly="true" style="width: 30%"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Address"/><h:inputText value="#{editLand.address}" class="form-control"/>
+                                        <h:outputLabel value="Address"/><h:inputText id="address1" value="#{editLand.address}" class="form-control" validator="#{editLand.validateAddress}">
+                                            <f:ajax event="blur" execute="@this" render="address1Error"/>
+                                        </h:inputText>
+                                        <h:message for="address1" id="address1Error" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Near By "/><h:inputText value="#{editLand.nearBy}" class="form-control"/>
+                                        <h:outputLabel value="Near By "/><h:inputText id="near" value="#{editLand.nearBy}" class="form-control" >
+                                            <f:ajax event="blur" execute="@this" render="nearError"/>
+                                        </h:inputText>
+                                        <h:message for="near" id="nearError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="District"/><h:inputText value="#{editLand.dist}" class="form-control"/>
+                                        <h:outputLabel value="District"/><h:inputText id="dist" value="#{editLand.dist}" class="form-control" style="width: 40%" validator="#{editLand.validateDist}">
+                                            <f:ajax event="blur" execute="@this" render="distError"/>
+                                        </h:inputText>
+                                        <h:message for="dist" id="distError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Location"/><h:inputText value="#{editLand.location}" class="form-control"/>
+                                        <h:outputLabel value="Location"/><h:inputText id="location" value="#{editLand.location}" class="form-control" style="width: 40%" validator="#{editLand.validateLocation}">
+                                            <f:ajax event="blur" execute="@this" render="locationError"/>
+                                        </h:inputText>
+                                        <h:message for="location" id="locationError" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Area"/><h:inputText value="#{editLand.area}" class="form-control"/>
+                                        <h:outputLabel value="Area"/><h:inputText id="area" value="#{editLand.area}" class="form-control" style="width: 30%" validator="#{editLand.validateArea}">
+                                            <f:ajax event="blur" execute="@this" render="areaError"/>
+                                        </h:inputText>
+                                        <h:message for="area" id="areaError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Purchase Price"/><h:inputText value="#{editLand.purchaseCost}" class="form-control"/>
+                                        <h:outputLabel value="Purchase Price"/><h:inputText id="purchase" value="#{editLand.purchaseCost}" class="form-control" style="width: 30%" validator="#{editLand.validatePurchaseCost}">
+                                            <f:ajax event="blur" execute="@this" render="purchaseError"/>
+                                        </h:inputText>
+                                        <h:message for="purchase" id="purchaseError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Present Price"/><h:inputText value="#{editLand.presentCost}" class="form-control"/>
+                                        <h:outputLabel value="Present Price"/><h:inputText id="present" value="#{editLand.presentCost}" class="form-control" style="width: 30%" validator="#{editLand.validatePresentCost}">
+                                            <f:ajax event="blur" execute="@this" render="presentError"/>
+                                        </h:inputText>
+                                        <h:message for="present" id="presentError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building Premission date"/><h:inputText value="#{editLand.buildingPermissionDate}" class="form-control"/>
+                                        <h:outputLabel value="Building Premission date"/><h:inputText id="date" value="#{editLand.buildingPermissionDate}" class="form-control" style="width: 50%" validator="#{editLand.validatePermissionDate}">
+                                            <f:ajax event="blur" execute="@this" render="dateError"/>
+                                        </h:inputText>
+                                        <h:message for="date" id="dateError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
-                                        <h:selectOneMenu value="#{editLand.status}" class="form-control" >
+                                        <h:selectOneMenu value="#{editLand.status}" class="form-control"  style="width: 70%">
                                             <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                             <f:selectItem itemValue="Not yet to be applied for the building permit" itemLabel="Not yet to be applied for the building permit"/>  
                                             <f:selectItem itemValue="Yet to be applied for the building permit" itemLabel="Yet to be applied for the building permit"/>                                                                     
@@ -70,7 +94,7 @@
                     </div>
                     <div class="col-sm-4">        
                     </div>
-                </div>F
+                </div>
             </ui:define>
 
         </ui:composition>

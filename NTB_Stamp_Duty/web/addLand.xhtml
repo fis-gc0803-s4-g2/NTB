@@ -10,8 +10,8 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-                 <div>&nbsp;</div>
-                  <div>&nbsp;</div>
+                <div>&nbsp;</div>
+                <div>&nbsp;</div>
                 <div class="row">
                     <div class="col-sm-2">        
                     </div>
@@ -52,17 +52,27 @@
                                         <h:message for="area" id="areaError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Purchase Cost"/><h:inputText value="#{createALand.purchaseCost}" class="form-control" style="width: 30%"/>
+                                        <h:outputLabel value="Purchase Cost"/><h:inputText id="purchase" value="#{createALand.purchaseCost}" class="form-control" style="width: 30%" validator="#{createALand.validatePurchaseCost}">
+                                            <f:ajax event="blur" execute="@this" render="purchaseError"/>
+                                        </h:inputText>
+                                        <h:message for="purchase" id="purchaseError" style="color: red"/>
+
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Present Cost"/><h:inputText value="#{createALand.presentCost}" class="form-control" style="width: 30%"/>
+                                        <h:outputLabel value="Present Cost"/><h:inputText id="present" value="#{createALand.presentCost}" class="form-control" style="width: 30%" validator="#{createALand.validatePresentCost}">
+                                         <f:ajax event="blur" execute="@this" render="presentError"/>
+                                        </h:inputText>
+                                         <h:message for="present" id="presentError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building Premission date"/><h:inputText id="datepicker" value="#{createALand.buildingPermissionDate}" class="form-control" style="width: 40%"/>
+                                        <h:outputLabel value="Building Premission date"/><h:inputText id="date" value="#{createALand.buildingPermissionDate}" class="form-control" style="width: 40%" validator="#{createALand.validatePermissionDate}">
+                                          <f:ajax event="blur" execute="@this" render="dateError"/>
+                                        </h:inputText>
+                                         <h:message for="date" id="dateError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
-                                        <h:selectOneMenu value="#{createALand.status}" class="form-control" style="width: 70%" >
+                                        <h:selectOneMenu id="status" value="#{createALand.status}" class="form-control" style="width: 70%" validator="#{createALand.validateStatus}" >
                                             <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                             <f:selectItem itemValue="Not yet to be applied for the building permit" itemLabel="Not yet to be applied for the building permit"/>  
                                             <f:selectItem itemValue="Yet to be applied for the building permit" itemLabel="Yet to be applied for the building permit"/>                                                                     
@@ -72,10 +82,12 @@
                                             <f:selectItem itemValue="Not yet to be applied for the occupaappliedncy permit" itemLabel="Not yet to be applied for the occupancy permit"/>
                                             <f:selectItem itemValue="Yet to be  for the occupancy permit" itemLabel="Yet to be applied for the occupancy permit"/>
                                             <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
+                                             <f:ajax event="blur" execute="@this" render="statusError"/>
                                         </h:selectOneMenu>&nbsp; 
+                                        <h:message for="status" id="statusError"  style="color: red"/>
                                     </div>
                                     <h:commandButton action="#{createALand.createALand()}" value="Submit" class="btn btn-info"/>
-                                   
+
                                 </h:form>
                                 <h:outputText value="#{createALand.notice}" style="color: red"/>
                             </div>

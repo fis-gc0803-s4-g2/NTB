@@ -7,8 +7,12 @@ package ntb.ui;
 
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import ntb.biz.LandManager;
 import ntb.entity.Land;
 
@@ -78,6 +82,77 @@ public class EditLand {
 
     }
 
+    public void validateAddress(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Address is required"));
+        }
+        if (" ".contains(s)) {
+            throw new ValidatorException(new FacesMessage("Address is not correct format"));
+        }
+    }
+
+    public void validateNearBy(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Near by landmark is required"));
+        }
+    }
+
+    public void validateDist(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("District is required "));
+        }
+    }
+
+    public void validateLocation(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Location is required "));
+        }
+    }
+
+    public void validateArea(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Area is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Area must be greater than 0 "));
+        }
+    }
+
+    public void validatePurchaseCost(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Purchase cost is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Purchase cost must be greater than 0 "));
+        }
+    }
+
+    public void validatePresentCost(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Present cost is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Present cost must be greater than 0 "));
+        }
+    }
+
+    public void validatePermissionDate(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Building permission date is required "));
+        }
+    }
+    
+     public void validateStatus(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Status is required "));
+        }
+    }
     
 
     public Land getLand() {
