@@ -213,7 +213,7 @@ public class CreateALand {
             presentCost = 0;
             buildingPermissionDate = null;
             status = null;
-            return "adminHome?faces-redirect=true";
+            return "landManager?faces-redirect=true";
         } else {
             notice = "Error";
             return "addLand?faces-redirect=true";

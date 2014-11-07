@@ -7,22 +7,22 @@
 package ntb.da;
 
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import ntb.entity.Building;
-import ntb.entity.Sale;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Apartment;
+import ntb.entity.Building;
+import ntb.entity.Contract;
 
 /**
  *
@@ -47,9 +47,10 @@ public class ApartmentJpaController implements Serializable {
         return query.getResultList();
     }
 
+
     public void create(Apartment apartment) throws PreexistingEntityException, RollbackFailureException, Exception {
-        if (apartment.getSaleList() == null) {
-            apartment.setSaleList(new ArrayList<Sale>());
+        if (apartment.getContractList() == null) {
+            apartment.setContractList(new ArrayList<Contract>());
         }
         EntityManager em = null;
         try {
@@ -60,24 +61,24 @@ public class ApartmentJpaController implements Serializable {
                 BId = em.getReference(BId.getClass(), BId.getBId());
                 apartment.setBId(BId);
             }
-            List<Sale> attachedSaleList = new ArrayList<Sale>();
-            for (Sale saleListSaleToAttach : apartment.getSaleList()) {
-                saleListSaleToAttach = em.getReference(saleListSaleToAttach.getClass(), saleListSaleToAttach.getSAId());
-                attachedSaleList.add(saleListSaleToAttach);
+            List<Contract> attachedContractList = new ArrayList<Contract>();
+            for (Contract contractListContractToAttach : apartment.getContractList()) {
+                contractListContractToAttach = em.getReference(contractListContractToAttach.getClass(), contractListContractToAttach.getSAId());
+                attachedContractList.add(contractListContractToAttach);
             }
-            apartment.setSaleList(attachedSaleList);
+            apartment.setContractList(attachedContractList);
             em.persist(apartment);
             if (BId != null) {
                 BId.getApartmentList().add(apartment);
                 BId = em.merge(BId);
             }
-            for (Sale saleListSale : apartment.getSaleList()) {
-                Apartment oldAPIdOfSaleListSale = saleListSale.getAPId();
-                saleListSale.setAPId(apartment);
-                saleListSale = em.merge(saleListSale);
-                if (oldAPIdOfSaleListSale != null) {
-                    oldAPIdOfSaleListSale.getSaleList().remove(saleListSale);
-                    oldAPIdOfSaleListSale = em.merge(oldAPIdOfSaleListSale);
+            for (Contract contractListContract : apartment.getContractList()) {
+                Apartment oldAPIdOfContractListContract = contractListContract.getAPId();
+                contractListContract.setAPId(apartment);
+                contractListContract = em.merge(contractListContract);
+                if (oldAPIdOfContractListContract != null) {
+                    oldAPIdOfContractListContract.getContractList().remove(contractListContract);
+                    oldAPIdOfContractListContract = em.merge(oldAPIdOfContractListContract);
                 }
             }
             utx.commit();
@@ -106,19 +107,19 @@ public class ApartmentJpaController implements Serializable {
             Apartment persistentApartment = em.find(Apartment.class, apartment.getAPId());
             Building BIdOld = persistentApartment.getBId();
             Building BIdNew = apartment.getBId();
-            List<Sale> saleListOld = persistentApartment.getSaleList();
-            List<Sale> saleListNew = apartment.getSaleList();
+            List<Contract> contractListOld = persistentApartment.getContractList();
+            List<Contract> contractListNew = apartment.getContractList();
             if (BIdNew != null) {
                 BIdNew = em.getReference(BIdNew.getClass(), BIdNew.getBId());
                 apartment.setBId(BIdNew);
             }
-            List<Sale> attachedSaleListNew = new ArrayList<Sale>();
-            for (Sale saleListNewSaleToAttach : saleListNew) {
-                saleListNewSaleToAttach = em.getReference(saleListNewSaleToAttach.getClass(), saleListNewSaleToAttach.getSAId());
-                attachedSaleListNew.add(saleListNewSaleToAttach);
+            List<Contract> attachedContractListNew = new ArrayList<Contract>();
+            for (Contract contractListNewContractToAttach : contractListNew) {
+                contractListNewContractToAttach = em.getReference(contractListNewContractToAttach.getClass(), contractListNewContractToAttach.getSAId());
+                attachedContractListNew.add(contractListNewContractToAttach);
             }
-            saleListNew = attachedSaleListNew;
-            apartment.setSaleList(saleListNew);
+            contractListNew = attachedContractListNew;
+            apartment.setContractList(contractListNew);
             apartment = em.merge(apartment);
             if (BIdOld != null && !BIdOld.equals(BIdNew)) {
                 BIdOld.getApartmentList().remove(apartment);
@@ -128,20 +129,20 @@ public class ApartmentJpaController implements Serializable {
                 BIdNew.getApartmentList().add(apartment);
                 BIdNew = em.merge(BIdNew);
             }
-            for (Sale saleListOldSale : saleListOld) {
-                if (!saleListNew.contains(saleListOldSale)) {
-                    saleListOldSale.setAPId(null);
-                    saleListOldSale = em.merge(saleListOldSale);
+            for (Contract contractListOldContract : contractListOld) {
+                if (!contractListNew.contains(contractListOldContract)) {
+                    contractListOldContract.setAPId(null);
+                    contractListOldContract = em.merge(contractListOldContract);
                 }
             }
-            for (Sale saleListNewSale : saleListNew) {
-                if (!saleListOld.contains(saleListNewSale)) {
-                    Apartment oldAPIdOfSaleListNewSale = saleListNewSale.getAPId();
-                    saleListNewSale.setAPId(apartment);
-                    saleListNewSale = em.merge(saleListNewSale);
-                    if (oldAPIdOfSaleListNewSale != null && !oldAPIdOfSaleListNewSale.equals(apartment)) {
-                        oldAPIdOfSaleListNewSale.getSaleList().remove(saleListNewSale);
-                        oldAPIdOfSaleListNewSale = em.merge(oldAPIdOfSaleListNewSale);
+            for (Contract contractListNewContract : contractListNew) {
+                if (!contractListOld.contains(contractListNewContract)) {
+                    Apartment oldAPIdOfContractListNewContract = contractListNewContract.getAPId();
+                    contractListNewContract.setAPId(apartment);
+                    contractListNewContract = em.merge(contractListNewContract);
+                    if (oldAPIdOfContractListNewContract != null && !oldAPIdOfContractListNewContract.equals(apartment)) {
+                        oldAPIdOfContractListNewContract.getContractList().remove(contractListNewContract);
+                        oldAPIdOfContractListNewContract = em.merge(oldAPIdOfContractListNewContract);
                     }
                 }
             }
@@ -184,10 +185,10 @@ public class ApartmentJpaController implements Serializable {
                 BId.getApartmentList().remove(apartment);
                 BId = em.merge(BId);
             }
-            List<Sale> saleList = apartment.getSaleList();
-            for (Sale saleListSale : saleList) {
-                saleListSale.setAPId(null);
-                saleListSale = em.merge(saleListSale);
+            List<Contract> contractList = apartment.getContractList();
+            for (Contract contractListContract : contractList) {
+                contractListContract.setAPId(null);
+                contractListContract = em.merge(contractListContract);
             }
             em.remove(apartment);
             utx.commit();

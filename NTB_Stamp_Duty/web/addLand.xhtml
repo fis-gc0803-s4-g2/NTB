@@ -65,23 +65,24 @@
                                          <h:message for="present" id="presentError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building Premission date"/><h:inputText id="date" value="#{createALand.buildingPermissionDate}" class="form-control" style="width: 40%" validator="#{createALand.validatePermissionDate}">
-                                          <f:ajax event="blur" execute="@this" render="dateError"/>
+                                        <h:outputLabel value="Building Premission date"/><h:inputText id="datepicker" value="#{createALand.buildingPermissionDate}" class="form-control" style="width: 40%" validator="#{createALand.validatePermissionDate}">
+<!--                                          <f:ajax event="blur" execute="@this" render="dateError"/>-->
                                         </h:inputText>
-                                         <h:message for="date" id="dateError" style="color: red"/>
+                                         <!--<h:message for="date" id="dateError" style="color: red"/>-->
+                                         
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
                                         <h:selectOneMenu id="status" value="#{createALand.status}" class="form-control" style="width: 70%" validator="#{createALand.validateStatus}" >
                                             <f:selectItem itemValue="" itemLabel="Choose Status"/>
-                                            <f:selectItem itemValue="Not yet to be applied for the building permit" itemLabel="Not yet to be applied for the building permit"/>  
-                                            <f:selectItem itemValue="Yet to be applied for the building permit" itemLabel="Yet to be applied for the building permit"/>                                                                     
-                                            <f:selectItem itemValue="Yet received the building permit" itemLabel="Yet received the building permit"/> 
-                                            <f:selectItem itemValue="Not yet to be contructed" itemLabel="Not yet to be contructed"/> 
-                                            <f:selectItem itemValue="Yet to be contructed" itemLabel="Yet to be contructed"/> 
-                                            <f:selectItem itemValue="Not yet to be applied for the occupaappliedncy permit" itemLabel="Not yet to be applied for the occupancy permit"/>
-                                            <f:selectItem itemValue="Yet to be  for the occupancy permit" itemLabel="Yet to be applied for the occupancy permit"/>
-                                            <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
+                                            <f:selectItem itemValue="Not to be applied for the building permit" itemLabel="Not to be applied for the building permit"/>  
+                                            <f:selectItem itemValue="To be applied for the building permit" itemLabel="To be applied for the building permit"/>                                                                     
+                                            <f:selectItem itemValue="To be received the building permit" itemLabel="To be received the building permit"/> 
+                                            <f:selectItem itemValue="Not to be completely contructed" itemLabel="Not to be completely contructed"/> 
+                                            <f:selectItem itemValue="To be completely contructed" itemLabel="To be completely contructed"/> 
+                                            <f:selectItem itemValue="Not  to be applied for the occupancy permit" itemLabel="Not to be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be applied for the occupancy permit" itemLabel="To be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be received the occupancy permit" itemLabel="To be received the occupancy permit"/>
                                              <f:ajax event="blur" execute="@this" render="statusError"/>
                                         </h:selectOneMenu>&nbsp; 
                                         <h:message for="status" id="statusError"  style="color: red"/>
@@ -99,6 +100,12 @@
             </ui:define>
 
         </ui:composition>
-
+        
+         <script>
+            $(document).ready(function() {
+               
+                $('#datepicker').datepicker();
+            });
+        </script>
     </body>
 </html>

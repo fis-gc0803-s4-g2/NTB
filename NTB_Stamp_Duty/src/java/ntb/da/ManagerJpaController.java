@@ -7,11 +7,10 @@ package ntb.da;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -20,7 +19,6 @@ import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Manager;
-import ntb.validation.CheckValidation;
 
 /**
  *
@@ -40,31 +38,13 @@ public class ManagerJpaController implements Serializable {
     }
 
     public Manager managerLogin(String mUsername, String mPassword) {
-        TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m WHERE m.mUsername = :mUsername and m.mPassword = :mPassword",Manager.class);
+        TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m WHERE m.mUsername = :mUsername and m.mPassword = :mPassword", Manager.class);
         query.setParameter("mUsername", mUsername);
         query.setParameter("mPassword", mPassword);
         if (!query.getResultList().isEmpty()) {
             return query.getResultList().get(0);
         }
-        return null; 
-    }
-
-    public boolean checkAccountExist(String username) {
-        EntityManager em = null;
-        try {
-            em = getEntityManager();
-            String sqlCommand = "m.mUsername = :mUsername";
-            TypedQuery<Manager> createQuery = em.createQuery(sqlCommand, Manager.class);
-            createQuery.setParameter("mUsername", username);
-            int firstResult = createQuery.getFirstResult();
-            if (firstResult > 0) {
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-
+        return null;
     }
 
     public void create(Manager manager) throws PreexistingEntityException, RollbackFailureException, Exception {

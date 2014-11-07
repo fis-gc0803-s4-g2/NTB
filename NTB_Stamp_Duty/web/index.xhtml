@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
@@ -18,27 +19,31 @@
                 <!-- /.row -->
 
                 <div class="row">
+
                     <div class="col-lg-12">
-                       
-                            <c:forEach items="#{showAllBuilding.bl}" var="bl">
-                                 <div class="col-md-3 col-sm-6 hero-feature">
-                                  <div class="thumbnail">
-                                <img src="http://placehold.it/800x500" alt=""/>
-                                <div class="caption">
-                                    <h3>#{bl.BBuildingName}</h3>
-                                    <p>#{bl.BDescription}</p>
-                                    <p>
-                                        <a href="#" class="btn btn-primary">View Detail</a> 
-                                    </p>
+
+                        <c:forEach items="#{showAllBuilding.bl}" var="bl">
+                            <div class="col-md-2 col-sm-8 hero-feature">
+                                <div class="thumbnail">
+                                    <h:graphicImage library="uploads" name="#{bl.BImage}" width="200px" height="150px" />
+                                    <div class="caption">
+                                        <h3>#{bl.BBuildingName}</h3>
+                                        <p>#{bl.BDescription}</p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary">View Detail</a> 
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                                 </div>
-                            </c:forEach>
-                          
-                       
-
+                        </c:forEach>
                     </div>
+
                 </div>
+
+
+
+
+
 
 
             </ui:define>

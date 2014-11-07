@@ -22,14 +22,14 @@
                                 <table  class="display"  cellspacing="0" id="example">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Image</th>
                                             <th>Land Id</th>
                                             <th>Name</th>
                                             <th>Type</th>
                                             <th>Floor nums</th>
                                             <th>Depart nums</th>
-                                            <th>Date Of Commencement</th>
-                                            <th>Date Of Occupancy</th>
+                                            <th>D.O.C</th>
+                                            <th>D.O.O</th>
                                             <th>Description</th>
                                             <th>Status</th>
                                             <th>Tasks</th>
@@ -38,7 +38,7 @@
                                     <tbody>
                                         <c:forEach var="b" items="#{showAllBuilding.bl}">
                                             <tr >
-                                                <td>#{b.BId}</td>
+                                                <td><h:graphicImage library="uploads" name="#{b.BImage}" width="40px" height="40px" /></td>
                                                 <td>#{b.LId.LAddress}</td>
                                                 <td>#{b.BBuildingName}</td>
                                                 <td>#{b.BBuildingType}</td>
@@ -53,13 +53,13 @@
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
                                                     </h:commandLink>   
                                                     
-                                                     <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
-                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                     <ui:fragment rendered="#{'Not to be completely constructed' eq l.LStatus.toString()}">
+                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
                                                              <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>      
                                                    
-                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-edit fa-fw">
+                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
                                                         </h:commandLink>     
                                                    

@@ -54,14 +54,14 @@
                                                         <f:setPropertyActionListener target="#{editLand.landId}" value="#{l.LId}"/>
                                                     </h:commandLink>    
 
-                                                      <ui:fragment rendered="#{'Not yet to be applied for the building permit' eq l.LStatus.toString()}">
-                                                          <h:commandLink action="#{deleteLand.deleteLand()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
+                                                      <ui:fragment rendered="#{'Not to be applied for the building permit' eq l.LStatus.toString()}">
+                                                          <h:commandLink action="#{deleteLand.deleteLand()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
                                                               <f:setPropertyActionListener  target="#{deleteLand.id}" value="#{l.LId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>         
                                                     
-                                                    <ui:fragment rendered="#{'Yet received the building permit' eq l.LStatus.toString()}">
-                                                        <h:commandLink action="#{createABuilding.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-edit fa-fw">
+                                                    <ui:fragment rendered="#{'To be received the building permit' eq l.LStatus.toString()}">
+                                                        <h:commandLink action="#{createABuilding.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-plus-square fa-fw">
                                                             <f:setPropertyActionListener  target="#{createABuilding.landId}" value="#{l.LId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>

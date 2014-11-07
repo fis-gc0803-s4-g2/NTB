@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import ntb.entity.Sale;
+import ntb.entity.Contract;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -40,27 +40,27 @@ public class CustomerJpaController implements Serializable {
     }
 
     public void create(Customer customer) throws PreexistingEntityException, RollbackFailureException, Exception {
-        if (customer.getSaleList() == null) {
-            customer.setSaleList(new ArrayList<Sale>());
+        if (customer.getContractList() == null) {
+            customer.setContractList(new ArrayList<Contract>());
         }
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            List<Sale> attachedSaleList = new ArrayList<Sale>();
-            for (Sale saleListSaleToAttach : customer.getSaleList()) {
-                saleListSaleToAttach = em.getReference(saleListSaleToAttach.getClass(), saleListSaleToAttach.getSAId());
-                attachedSaleList.add(saleListSaleToAttach);
+            List<Contract> attachedContractList = new ArrayList<Contract>();
+            for (Contract contractListContractToAttach : customer.getContractList()) {
+                contractListContractToAttach = em.getReference(contractListContractToAttach.getClass(), contractListContractToAttach.getSAId());
+                attachedContractList.add(contractListContractToAttach);
             }
-            customer.setSaleList(attachedSaleList);
+            customer.setContractList(attachedContractList);
             em.persist(customer);
-            for (Sale saleListSale : customer.getSaleList()) {
-                Customer oldCIdOfSaleListSale = saleListSale.getCId();
-                saleListSale.setCId(customer);
-                saleListSale = em.merge(saleListSale);
-                if (oldCIdOfSaleListSale != null) {
-                    oldCIdOfSaleListSale.getSaleList().remove(saleListSale);
-                    oldCIdOfSaleListSale = em.merge(oldCIdOfSaleListSale);
+            for (Contract contractListContract : customer.getContractList()) {
+                Customer oldCIdOfContractListContract = contractListContract.getCId();
+                contractListContract.setCId(customer);
+                contractListContract = em.merge(contractListContract);
+                if (oldCIdOfContractListContract != null) {
+                    oldCIdOfContractListContract.getContractList().remove(contractListContract);
+                    oldCIdOfContractListContract = em.merge(oldCIdOfContractListContract);
                 }
             }
             utx.commit();
@@ -87,30 +87,30 @@ public class CustomerJpaController implements Serializable {
             utx.begin();
             em = getEntityManager();
             Customer persistentCustomer = em.find(Customer.class, customer.getCId());
-            List<Sale> saleListOld = persistentCustomer.getSaleList();
-            List<Sale> saleListNew = customer.getSaleList();
-            List<Sale> attachedSaleListNew = new ArrayList<Sale>();
-            for (Sale saleListNewSaleToAttach : saleListNew) {
-                saleListNewSaleToAttach = em.getReference(saleListNewSaleToAttach.getClass(), saleListNewSaleToAttach.getSAId());
-                attachedSaleListNew.add(saleListNewSaleToAttach);
+            List<Contract> contractListOld = persistentCustomer.getContractList();
+            List<Contract> contractListNew = customer.getContractList();
+            List<Contract> attachedContractListNew = new ArrayList<Contract>();
+            for (Contract contractListNewContractToAttach : contractListNew) {
+                contractListNewContractToAttach = em.getReference(contractListNewContractToAttach.getClass(), contractListNewContractToAttach.getSAId());
+                attachedContractListNew.add(contractListNewContractToAttach);
             }
-            saleListNew = attachedSaleListNew;
-            customer.setSaleList(saleListNew);
+            contractListNew = attachedContractListNew;
+            customer.setContractList(contractListNew);
             customer = em.merge(customer);
-            for (Sale saleListOldSale : saleListOld) {
-                if (!saleListNew.contains(saleListOldSale)) {
-                    saleListOldSale.setCId(null);
-                    saleListOldSale = em.merge(saleListOldSale);
+            for (Contract contractListOldContract : contractListOld) {
+                if (!contractListNew.contains(contractListOldContract)) {
+                    contractListOldContract.setCId(null);
+                    contractListOldContract = em.merge(contractListOldContract);
                 }
             }
-            for (Sale saleListNewSale : saleListNew) {
-                if (!saleListOld.contains(saleListNewSale)) {
-                    Customer oldCIdOfSaleListNewSale = saleListNewSale.getCId();
-                    saleListNewSale.setCId(customer);
-                    saleListNewSale = em.merge(saleListNewSale);
-                    if (oldCIdOfSaleListNewSale != null && !oldCIdOfSaleListNewSale.equals(customer)) {
-                        oldCIdOfSaleListNewSale.getSaleList().remove(saleListNewSale);
-                        oldCIdOfSaleListNewSale = em.merge(oldCIdOfSaleListNewSale);
+            for (Contract contractListNewContract : contractListNew) {
+                if (!contractListOld.contains(contractListNewContract)) {
+                    Customer oldCIdOfContractListNewContract = contractListNewContract.getCId();
+                    contractListNewContract.setCId(customer);
+                    contractListNewContract = em.merge(contractListNewContract);
+                    if (oldCIdOfContractListNewContract != null && !oldCIdOfContractListNewContract.equals(customer)) {
+                        oldCIdOfContractListNewContract.getContractList().remove(contractListNewContract);
+                        oldCIdOfContractListNewContract = em.merge(oldCIdOfContractListNewContract);
                     }
                 }
             }
@@ -148,10 +148,10 @@ public class CustomerJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The customer with id " + id + " no longer exists.", enfe);
             }
-            List<Sale> saleList = customer.getSaleList();
-            for (Sale saleListSale : saleList) {
-                saleListSale.setCId(null);
-                saleListSale = em.merge(saleListSale);
+            List<Contract> contractList = customer.getContractList();
+            for (Contract contractListContract : contractList) {
+                contractListContract.setCId(null);
+                contractListContract = em.merge(contractListContract);
             }
             em.remove(customer);
             utx.commit();

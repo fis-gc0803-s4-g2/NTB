@@ -28,21 +28,21 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author TUNG
  */
 @Entity
-@Table(name = "Sale")
+@Table(name = "Contract")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Sale.findAll", query = "SELECT s FROM Sale s"),
-    @NamedQuery(name = "Sale.findBySAId", query = "SELECT s FROM Sale s WHERE s.sAId = :sAId"),
-    @NamedQuery(name = "Sale.findBySAPaymentType", query = "SELECT s FROM Sale s WHERE s.sAPaymentType = :sAPaymentType"),
-    @NamedQuery(name = "Sale.findBySATotalCost", query = "SELECT s FROM Sale s WHERE s.sATotalCost = :sATotalCost"),
-    @NamedQuery(name = "Sale.findBySATotalPayment", query = "SELECT s FROM Sale s WHERE s.sATotalPayment = :sATotalPayment"),
-    @NamedQuery(name = "Sale.findBySAAmountPaid", query = "SELECT s FROM Sale s WHERE s.sAAmountPaid = :sAAmountPaid"),
-    @NamedQuery(name = "Sale.findBySAAmmountDue", query = "SELECT s FROM Sale s WHERE s.sAAmmountDue = :sAAmmountDue"),
-    @NamedQuery(name = "Sale.findBySATax", query = "SELECT s FROM Sale s WHERE s.sATax = :sATax"),
-    @NamedQuery(name = "Sale.findBySCreateDate", query = "SELECT s FROM Sale s WHERE s.sCreateDate = :sCreateDate"),
-    @NamedQuery(name = "Sale.findBySNote", query = "SELECT s FROM Sale s WHERE s.sNote = :sNote"),
-    @NamedQuery(name = "Sale.findBySAStatus", query = "SELECT s FROM Sale s WHERE s.sAStatus = :sAStatus")})
-public class Sale implements Serializable {
+    @NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"),
+    @NamedQuery(name = "Contract.findBySAId", query = "SELECT c FROM Contract c WHERE c.sAId = :sAId"),
+    @NamedQuery(name = "Contract.findBySAPaymentType", query = "SELECT c FROM Contract c WHERE c.sAPaymentType = :sAPaymentType"),
+    @NamedQuery(name = "Contract.findBySATotalCost", query = "SELECT c FROM Contract c WHERE c.sATotalCost = :sATotalCost"),
+    @NamedQuery(name = "Contract.findBySATotalPayment", query = "SELECT c FROM Contract c WHERE c.sATotalPayment = :sATotalPayment"),
+    @NamedQuery(name = "Contract.findBySAAmountPaid", query = "SELECT c FROM Contract c WHERE c.sAAmountPaid = :sAAmountPaid"),
+    @NamedQuery(name = "Contract.findBySAAmmountDue", query = "SELECT c FROM Contract c WHERE c.sAAmmountDue = :sAAmmountDue"),
+    @NamedQuery(name = "Contract.findBySATax", query = "SELECT c FROM Contract c WHERE c.sATax = :sATax"),
+    @NamedQuery(name = "Contract.findBySACreateDate", query = "SELECT c FROM Contract c WHERE c.sACreateDate = :sACreateDate"),
+    @NamedQuery(name = "Contract.findBySANote", query = "SELECT c FROM Contract c WHERE c.sANote = :sANote"),
+    @NamedQuery(name = "Contract.findBySAStatus", query = "SELECT c FROM Contract c WHERE c.sAStatus = :sAStatus")})
+public class Contract implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -64,11 +64,11 @@ public class Sale implements Serializable {
     @Column(name = "SATax")
     private Integer sATax;
     @Size(max = 50)
-    @Column(name = "SCreateDate")
-    private String sCreateDate;
+    @Column(name = "SACreateDate")
+    private String sACreateDate;
     @Size(max = 500)
-    @Column(name = "SNote")
-    private String sNote;
+    @Column(name = "SANote")
+    private String sANote;
     @Size(max = 100)
     @Column(name = "SAStatus")
     private String sAStatus;
@@ -81,10 +81,10 @@ public class Sale implements Serializable {
     @ManyToOne
     private Apartment aPId;
 
-    public Sale() {
+    public Contract() {
     }
 
-    public Sale(Integer sAId) {
+    public Contract(Integer sAId) {
         this.sAId = sAId;
     }
 
@@ -144,20 +144,20 @@ public class Sale implements Serializable {
         this.sATax = sATax;
     }
 
-    public String getSCreateDate() {
-        return sCreateDate;
+    public String getSACreateDate() {
+        return sACreateDate;
     }
 
-    public void setSCreateDate(String sCreateDate) {
-        this.sCreateDate = sCreateDate;
+    public void setSACreateDate(String sACreateDate) {
+        this.sACreateDate = sACreateDate;
     }
 
-    public String getSNote() {
-        return sNote;
+    public String getSANote() {
+        return sANote;
     }
 
-    public void setSNote(String sNote) {
-        this.sNote = sNote;
+    public void setSANote(String sANote) {
+        this.sANote = sANote;
     }
 
     public String getSAStatus() {
@@ -203,10 +203,10 @@ public class Sale implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Sale)) {
+        if (!(object instanceof Contract)) {
             return false;
         }
-        Sale other = (Sale) object;
+        Contract other = (Contract) object;
         if ((this.sAId == null && other.sAId != null) || (this.sAId != null && !this.sAId.equals(other.sAId))) {
             return false;
         }
@@ -215,7 +215,7 @@ public class Sale implements Serializable {
 
     @Override
     public String toString() {
-        return "ntb.entity.Sale[ sAId=" + sAId + " ]";
+        return "ntb.entity.Contract[ sAId=" + sAId + " ]";
     }
     
 }

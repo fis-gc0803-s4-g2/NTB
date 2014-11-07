@@ -54,7 +54,7 @@ public class PaymentDetail implements Serializable {
     private Double pDAmountPaid;
     @JoinColumn(name = "SAId", referencedColumnName = "SAId")
     @ManyToOne
-    private Sale sAId;
+    private Contract sAId;
 
     public PaymentDetail() {
     }
@@ -103,11 +103,11 @@ public class PaymentDetail implements Serializable {
         this.pDAmountPaid = pDAmountPaid;
     }
 
-    public Sale getSAId() {
+    public Contract getSAId() {
         return sAId;
     }
 
-    public void setSAId(Sale sAId) {
+    public void setSAId(Contract sAId) {
         this.sAId = sAId;
     }
 

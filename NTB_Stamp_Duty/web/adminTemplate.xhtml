@@ -14,14 +14,18 @@
 
         <link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
         <script src="resources/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        
+        <link href="resources/css/datepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
+                $('#datepicker').datepicker();
             });
         </script>
     </h:head>
-     <h:form>
+    <h:form>
         <h:inputHidden id="login_hidden" value="#{adminLogin.autoLogin()}" />
     </h:form>
 
@@ -84,8 +88,9 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                      
-                        <li><i class="fa fa-gear fa-fw"></i> <h:outputText value="#{adminLogin.username}"/>
+
+                        <li> 
+                            <i class="fa fa-user fa-fw"></i><h:outputText value="#{adminLogin.username}"/>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>Profile</a>
                         </li>
@@ -103,72 +108,72 @@
                     <ul class="nav" id="side-menu">
 
                         <!--Account-->
-                        <li><a href="#collapseAccount" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-cloud-upload fa-fw"></i> Account Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseAccount" data-toggle="collapse" data-parent="#accordion"> Account Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseAccount" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
+
                                 </ul>
                             </div>
                         </li>
 
                         <!--Land-->
 
-                        <li><a href="#collapseLand" data-toggle="collapse" data-parent="#accordion" ><i class="fa fa-cloud-upload fa-fw"></i>Land Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseLand" data-toggle="collapse" data-parent="#accordion" >Land Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseLand" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <h:form>
                                             <h:commandLink action="#{showAllLand.landManagerIndex()}">
-                                                <i class="fa fa-upload fa-fw"></i> Land Manage
+                                                <i class="fa fa-list-alt fa-fw"></i> Land Manage
                                             </h:commandLink>
                                         </h:form>
                                     </li>
                                     <li>
-                                        <h:link outcome="addLand"> <i class="fa fa-upload fa-fw"></i>Create a land</h:link>
-                                  </li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
+                                        <h:link outcome="addLand"> <i class="fa fa-plus-square fa-fw"></i>Create a land</h:link>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>
 
 
                         <!--Building-->
-                        <li><a href="#collapseBuilding" data-toggle="collapse" data-parent="#accordion" ><i class="fa fa-cloud-upload fa-fw"></i> Building Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseBuilding" data-toggle="collapse" data-parent="#accordion" > Building Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseBuilding" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <h:form>
                                             <h:commandLink action="#{showAllBuilding.buildingIndex()}">
-                                                <i class="fa fa-cloud-upload fa-fw"></i>Building Manage
+                                                <i class="fa fa-list-alt fa-fw"></i>Building Manage
                                             </h:commandLink>
                                         </h:form>
                                     </li>
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
+
                                 </ul>
                             </div>
                         </li>
 
                         <!--Apartment-->
-                        <li><a href="#collapseApartment" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-cloud-upload fa-fw"></i>Apartment Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseApartment" data-toggle="collapse" data-parent="#accordion">Apartment Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseApartment" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
+                                    <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>Apartment Manage </a></li>
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
+
                                 </ul>
                             </div>
                         </li>
 
                         <!--Contract-->
-                        <li><a href="#collapseContract" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-cloud-upload fa-fw"></i>Contract Management<i class="pull-right fa fa-plus"></i></a>
+                        <li><a href="#collapseContract" data-toggle="collapse" data-parent="#accordion">Contract Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseContract" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
+                                    <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>Contract Manage </a></li>
                                     <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Delete</a></li>
+
                                 </ul>
                             </div>
                         </li>

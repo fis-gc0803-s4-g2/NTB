@@ -18,8 +18,8 @@ import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
+import ntb.entity.Contract;
 import ntb.entity.PaymentDetail;
-import ntb.entity.Sale;
 
 /**
  *
@@ -43,7 +43,7 @@ public class PaymentDetailJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            Sale SAId = paymentDetail.getSAId();
+            Contract SAId = paymentDetail.getSAId();
             if (SAId != null) {
                 SAId = em.getReference(SAId.getClass(), SAId.getSAId());
                 paymentDetail.setSAId(SAId);
@@ -77,8 +77,8 @@ public class PaymentDetailJpaController implements Serializable {
             utx.begin();
             em = getEntityManager();
             PaymentDetail persistentPaymentDetail = em.find(PaymentDetail.class, paymentDetail.getPDId());
-            Sale SAIdOld = persistentPaymentDetail.getSAId();
-            Sale SAIdNew = paymentDetail.getSAId();
+            Contract SAIdOld = persistentPaymentDetail.getSAId();
+            Contract SAIdNew = paymentDetail.getSAId();
             if (SAIdNew != null) {
                 SAIdNew = em.getReference(SAIdNew.getClass(), SAIdNew.getSAId());
                 paymentDetail.setSAId(SAIdNew);
@@ -126,7 +126,7 @@ public class PaymentDetailJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The paymentDetail with id " + id + " no longer exists.", enfe);
             }
-            Sale SAId = paymentDetail.getSAId();
+            Contract SAId = paymentDetail.getSAId();
             if (SAId != null) {
                 SAId.getPaymentDetailList().remove(paymentDetail);
                 SAId = em.merge(SAId);

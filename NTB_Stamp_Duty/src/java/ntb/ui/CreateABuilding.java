@@ -96,7 +96,7 @@ public class CreateABuilding {
             image = null;
             description = null;
             status = null;
-            return "adminHome?faces-redirect=true";
+            return "buildingManager?faces-redirect=true";
         } else {
             return "addBuilding?faces-redirect=true";
         }

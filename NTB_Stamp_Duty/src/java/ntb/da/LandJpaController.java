@@ -7,20 +7,20 @@
 package ntb.da;
 
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import ntb.entity.Building;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
+import ntb.entity.Building;
 import ntb.entity.Land;
 
 /**
@@ -53,6 +53,7 @@ public class LandJpaController implements Serializable {
         }
         return null;
     }
+
 
     public void create(Land land) throws PreexistingEntityException, RollbackFailureException, Exception {
         if (land.getBuildingList() == null) {

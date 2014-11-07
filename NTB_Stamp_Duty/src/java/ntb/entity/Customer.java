@@ -63,7 +63,7 @@ public class Customer implements Serializable {
     @Column(name = "CPhone")
     private String cPhone;
     @OneToMany(mappedBy = "cId")
-    private List<Sale> saleList;
+    private List<Contract> contractList;
 
     public Customer() {
     }
@@ -129,12 +129,12 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public List<Sale> getSaleList() {
-        return saleList;
+    public List<Contract> getContractList() {
+        return contractList;
     }
 
-    public void setSaleList(List<Sale> saleList) {
-        this.saleList = saleList;
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
     @Override

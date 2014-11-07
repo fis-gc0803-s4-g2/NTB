@@ -43,7 +43,5 @@ public class AdminLoginManager {
         return getDaController().managerLogin(username, password);
     }
     
-    public boolean checkAccountExist(String username){
-        return getDaController().checkAccountExist(username);
-    }
+    
 }
