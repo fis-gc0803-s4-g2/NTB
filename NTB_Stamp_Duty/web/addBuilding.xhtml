@@ -28,7 +28,7 @@
                                         </h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{createABuilding.buildingName}" class="form-control"  style="width: 70%" > 
+                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{createABuilding.buildingName}" class="form-control"  style="width: 70%" validator="#{createABuilding.validateBName}" > 
                                             <f:ajax event="blur" execute="@this" render="nameError"/>
                                         </h:inputText>
                                         <h:message for="name" id="nameError" style="color: red"/>
@@ -43,33 +43,45 @@
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{createABuilding.floorNumber}" class="form-control" style="width: 30%" >
-                                            <f:ajax event="blur" execute="@this" render="locationError"/>
+                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{createABuilding.floorNumber}" class="form-control" style="width: 30%"  validator="#{createABuilding.validateFNumber}">
+                                            <f:ajax event="blur" execute="@this" render="floorError"/>
                                         </h:inputText>
-                                        <h:message for="location" id="locationError" style="color: red"/>
+                                        <h:message for="floor" id="floorError" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Department Number"/><h:inputText id="area" value="#{createABuilding.departmentNumber}" class="form-control" style="width: 30%" >
-                                            <f:ajax event="blur" execute="@this" render="areaError"/>
+                                        <h:outputLabel value="Department Number"/><h:inputText id="depart" value="#{createABuilding.departmentNumber}" class="form-control" style="width: 30%" validator="#{createABuilding.validateDNumber}" >
+                                            <f:ajax event="blur" execute="@this" render="departError"/>
                                         </h:inputText>
-                                        <h:message for="area" id="areaError" style="color: red"/>
+                                        <h:message for="depart" id="departError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Start Date"/><h:inputText value="#{createABuilding.startDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Start Date"/><h:inputText id="start" value="#{createABuilding.startDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateStartDate}">
+                                         <f:ajax event="blur" execute="@this" render="startError"/>
+                                        </h:inputText>
+                                        <h:message for="start" id="startError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Completed Date"/><h:inputText value="#{createABuilding.completionDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Completed Date"/><h:inputText id="complete" value="#{createABuilding.completionDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateCompletionDate}">
+                                         <f:ajax event="blur" execute="@this" render="completeError"/>
+                                        </h:inputText>
+                                         <h:message for="complete" id="completeError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Occupancy Date"/><h:inputText  value="#{createABuilding.occupancyDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Occupancy Date"/><h:inputText id="occupancy"  value="#{createABuilding.occupancyDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateOccupancyDate}">
+                                        <f:ajax event="blur" execute="@this" render="occupancyError"/>
+                                        </h:inputText>
+                                         <h:message for="occupancy" id="occupancyError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Image Upload"/><p:fileUpload value="#{createABuilding.file}" mode="simple"/>     
                                        
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Description"/><h:inputTextarea  value="#{createABuilding.description}" class="form-control"/>
+                                        <h:outputLabel value="Description"/><h:inputTextarea  id="description" value="#{createABuilding.description}" class="form-control">
+                                        <f:ajax event="blur" execute="@this" render="descriptionError"/>
+                                        </h:inputTextarea>
+                                         <h:message for="description" id="descriptionError" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
