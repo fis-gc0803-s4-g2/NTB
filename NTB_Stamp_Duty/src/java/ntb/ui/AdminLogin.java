@@ -92,6 +92,13 @@ public class AdminLogin {
         if (s.length() == 0) {
             throw new ValidatorException(new FacesMessage("Username is required"));
         }
+         if (s.startsWith(" ")) {
+            throw new ValidatorException(new FacesMessage("Special chars not allowed"));
+        }
+         
+         if (s.length()<5) {
+            throw new ValidatorException(new FacesMessage("Username not less than 5 characters"));
+        }
     }
     
     public void validatePassword(FacesContext f, UIComponent c, Object obj) {
@@ -126,7 +133,7 @@ public class AdminLogin {
                 role="ok";
                 return "adminHome?faces-redirect=true";
             }else{
-                acc="This Account doesn't exist";
+                acc="Invalid username or password";
                 return "";
             }
         }

@@ -76,7 +76,7 @@ public class EditLand {
             presentCost = 0;
             buildingPermissionDate = null;
             status = null;
-            return "adminHome?faces-redirect=true";
+            return "landManager?faces-redirect=true";
         }
         return null;
 

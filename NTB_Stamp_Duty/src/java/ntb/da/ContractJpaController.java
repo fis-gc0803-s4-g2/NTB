@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import ntb.entity.Customer;
-import ntb.entity.Apartment;
-import ntb.entity.PaymentDetail;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
 import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
+import ntb.entity.Apartment;
 import ntb.entity.Contract;
+import ntb.entity.Customer;
+import ntb.entity.PaymentDetail;
 
 /**
  *
@@ -39,6 +39,27 @@ public class ContractJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+     public List<Contract> getAllContractById(int bId) {
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId",Contract.class);
+         query.setParameter("bId",bId);
+        return query.getResultList();
+    }
+
+    public List<Contract> searchContract(int bId, String paymentType, String status) {
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId and c.sAPaymentType =:paymentType and c.sAStatus =:status", Contract.class);
+        query.setParameter("bId",bId);
+        query.setParameter("paymentType","%"+paymentType+"%");
+        query.setParameter("status","%"+status+"%");
+        return query.getResultList();
+    }
+
+    public boolean searchContractById(int aId) {
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.aPId =:aId", Contract.class);
+        query.setParameter("aId", aId);
+        List<Contract> contract=query.getResultList();
+        return !contract.isEmpty();
     }
 
     public void create(Contract contract) throws PreexistingEntityException, RollbackFailureException, Exception {
@@ -272,5 +293,7 @@ public class ContractJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+   
+
 }

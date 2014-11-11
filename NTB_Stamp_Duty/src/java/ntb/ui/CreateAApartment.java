@@ -7,8 +7,12 @@
 package ntb.ui;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import ntb.biz.ApartmentManager;
 import ntb.biz.BuildingManager;
 import ntb.entity.Apartment;
@@ -89,6 +93,23 @@ public class CreateAApartment {
         this.m = m;
     }
     
+     public void validateArea(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Area is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Area must be greater than 0 "));
+        }
+    }
+     
+      public void validateOnFloor(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("On floor is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("On floor must be greater than 0 "));
+        }
+    }
     
      
 }

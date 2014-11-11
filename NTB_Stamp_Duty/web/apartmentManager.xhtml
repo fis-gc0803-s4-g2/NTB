@@ -44,9 +44,9 @@
                                                         <f:setPropertyActionListener target="#{editApartment.apartmentId}" value="#{a.APId}"/>
                                                     </h:commandLink>   
 
-                                                    <ui:fragment rendered="#{'Not yet to be completely constructed' eq l.LStatus.toString()}">
-                                                        <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-edit fa-fw">
-                                                            <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
+                                                    <ui:fragment rendered="#{createAContract.searchContractById(a.APId) eq false}">
+                                                        <h:commandLink action="#{createAContract.contractIndex()}"  title="Make a contract on this apartment"  styleClass="fa fa-plus-circle fa-fw">
+                                                            <f:setPropertyActionListener  target="#{createAContract.apartmentId}" value="#{a.APId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>      
 

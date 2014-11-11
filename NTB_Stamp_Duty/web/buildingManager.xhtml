@@ -53,11 +53,11 @@
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
                                                     </h:commandLink>   
                                                     
-                                                     <ui:fragment rendered="#{'Not to be completely constructed' eq l.LStatus.toString()}">
-                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
-                                                             <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
+                                                  
+                                                    <h:commandLink action="#{showAllContract.contractIndex()}"  title="Go to it contracts"  styleClass="fa fa-dedent fa-fw">
+                                                        <f:setPropertyActionListener  target="#{showAllContract.buildingId}" value="#{b.BId}"/>
                                                         </h:commandLink>     
-                                                    </ui:fragment>      
+                                                         
                                                    
                                                     <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
