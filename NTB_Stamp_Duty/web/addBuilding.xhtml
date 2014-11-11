@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-          
+
       xmlns:p="http://primefaces.org/ui">
 
     <body>
@@ -57,45 +57,46 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Start Date"/><h:inputText id="start" value="#{createABuilding.startDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateStartDate}">
-                                         <f:ajax event="blur" execute="@this" render="startError"/>
+                                            <f:ajax event="blur" execute="@this" render="startError"/>
                                         </h:inputText>
                                         <h:message for="start" id="startError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Completed Date"/><h:inputText id="complete" value="#{createABuilding.completionDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateCompletionDate}">
-                                         <f:ajax event="blur" execute="@this" render="completeError"/>
+                                            <f:ajax event="blur" execute="@this" render="completeError"/>
                                         </h:inputText>
-                                         <h:message for="complete" id="completeError" style="color: red"/>
+                                        <h:message for="complete" id="completeError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Occupancy Date"/><h:inputText id="occupancy"  value="#{createABuilding.occupancyDate}" class="form-control" style="width: 50%" validator="#{createABuilding.validateOccupancyDate}">
-                                        <f:ajax event="blur" execute="@this" render="occupancyError"/>
+                                            <f:ajax event="blur" execute="@this" render="occupancyError"/>
                                         </h:inputText>
-                                         <h:message for="occupancy" id="occupancyError" style="color: red"/>
+                                        <h:message for="occupancy" id="occupancyError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Image Upload"/><p:fileUpload value="#{createABuilding.file}" mode="simple"/>     
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Description"/><h:inputTextarea  id="description" value="#{createABuilding.description}" class="form-control" required="true">
-<!--                                        <f:ajax event="blur" execute="@this" render="descriptionError"/>-->
+                                            <!--                                        <f:ajax event="blur" execute="@this" render="descriptionError"/>-->
                                         </h:inputTextarea>
-                                         <h:message for="description" style="color: red"/>
+                                        <h:message for="description" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
                                         <h:outputLabel value="Status"/>
                                         <h:selectOneMenu value="#{createABuilding.status}" class="form-control" style="width: 70%" >
                                             <f:selectItem itemValue="" itemLabel="Choose Building Status"/>
-                                            <f:selectItem itemValue="Yet to be contructed" itemLabel="Yet to be contructed"/> 
-                                            <f:selectItem itemValue="Not yet to be applied for the occupancy permit" itemLabel="Not yet to be applied for the occupancy permit"/>
-                                            <f:selectItem itemValue="Yet to be applied for the occupancy permit" itemLabel="Yet to be applied for the occupancy permit"/>
-                                            <f:selectItem itemValue="Yet received the occupancy permit" itemLabel="Yet received the occupancy permit"/>
+                                            <f:selectItem itemValue="To be completely contructed" itemLabel="To be completely contructed"/> 
+                                            <f:selectItem itemValue="Not to be completely contructed" itemLabel="Not to be completely contructed"/> 
+                                            <f:selectItem itemValue="Not to be applied for the occupancy permit" itemLabel="Not to be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be applied for the occupancy permit" itemLabel="To be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be received the occupancy permit" itemLabel="To be received the occupancy permit"/>
                                         </h:selectOneMenu>&nbsp; 
                                     </div>
                                     <h:commandButton action="#{createABuilding.createABuilding()}" value="Create" class="btn btn-info"/>
-                                   
+
                                 </h:form>
                                 <h:outputText value="#{createABuilding.m}" style="color: red"/>
                             </div>
