@@ -10,7 +10,7 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-              <div>&nbsp;</div>
+                <div>&nbsp;</div>
                 <div>&nbsp;</div>
                 <div class="row">
                     <div class="col-sm-2">        
@@ -21,59 +21,73 @@
                             <div class="panel-body">
                                 <h:form >
                                     <div class="form-group">
-                                        <h:outputLabel value="Apartment Id"/><h:inputText id="onfloor" value="#{createAContract.apartmentId}" class="form-control" style="width: 30%"  >
+                                        <h:outputLabel value="Apartment Id"/><h:inputText value="#{createAContract.apartmentId}" class="form-control" style="width: 30%" readonly="true"  >
                                         </h:inputText>
                                     </div>
-                                    
-                                      <div class="form-group">
-                                         <h:outputLabel value="Payment Type"/>
-                                         <h:selectOneMenu value="#{createAContract.paymentType}" class="form-control" style="width: 90%">
+
+                                    <div class="form-group">
+                                        <h:outputLabel value="Payment Type"/>
+                                        <h:selectOneMenu value="#{createAContract.paymentType}" class="form-control" style="width: 90%">
                                             <f:selectItem itemValue="Choose Payment Type" itemLabel="Choose Payment Type"/>
                                             <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
                                             <f:selectItem itemValue="Payment through Installments on a monthly basics for 2 years" itemLabel="Payment through Installments on a monthly basics for 2 years"/>
                                             <f:selectItem itemValue="Payment through Installments on a yearly basics for 2 years" itemLabel="Payment through Installments on a yearly basics for 2 years"/>
                                         </h:selectOneMenu>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Username"/><h:inputText  value="#{createAContract.username}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Username"/><h:inputText id="username"  value="#{createAContract.username}" class="form-control" style="width: 60%" validator="#{createAContract.validateUsername}"  >
+                                            <f:ajax event="blur" execute="@this" render="usernameError"/>
                                         </h:inputText>
+                                        <h:message for="username" id="usernameError" style="color: red"/>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Password"/><h:inputSecret value="#{createAContract.password}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Password"/><h:inputSecret id="password" value="#{createAContract.password}" class="form-control" style="width: 60%" validator="#{createAContract.validatePassword}"  >
+                                            <f:ajax event="blur" execute="@this" render="passwordError"/>
                                         </h:inputSecret>
+                                        <h:message for="password" id="passwordError" style="color: red"/>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Confirm passowrd"/><h:inputSecret  value="#{createAContract.confirmPassword}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Confirm passowrd"/><h:inputSecret id="confirm"  value="#{createAContract.confirmPassword}" class="form-control" style="width: 60%" validator="#{createAContract.validateConfirm}"  >
+                                            <f:ajax event="blur" execute="@this" render="confirmError"/>
+
                                         </h:inputSecret>
+                                        <h:message for="confirm" id="confirmError" style="color: red"/>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Full name"/><h:inputText  value="#{createAContract.fullname}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Full name"/><h:inputText  id="fullname" value="#{createAContract.fullname}" class="form-control" style="width: 60%"  validator="#{createAContract.validateFullname}" >
+                                            <f:ajax event="blur" execute="@this" render="fullnameError"/>
                                         </h:inputText>
+                                        <h:message for="fullname" id="fullnameError" style="color: red"/>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Address"/><h:inputText  value="#{createAContract.address}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Address"/><h:inputText id="address"  value="#{createAContract.address}" class="form-control" style="width: 60%" validator="#{createAContract.validateAddress}" >
+                                            <f:ajax event="blur" execute="@this" render="addressError"/>
                                         </h:inputText>
+                                        <h:message for="address" id="addressError" style="color: red"/>
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Email"/><h:inputText value="#{createAContract.email}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Email"/><h:inputText  id="email" value="#{createAContract.email}" class="form-control" style="width: 60%" validator="#{createAContract.validateEmail}"  >
+                                            <f:ajax event="blur" execute="@this" render="emailError"/>
                                         </h:inputText>
-                                        
+                                        <h:message for="email" id="emailError" style="color: red"/>
+
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <h:outputLabel value="Phone"/><h:inputText value="#{createAContract.phone}" class="form-control" style="width: 60%"  >
+                                        <h:outputLabel value="Phone"/><h:inputText id="phone" value="#{createAContract.phone}" class="form-control" style="width: 60%"  validator="#{createAContract.validatePhone}" >
+                                            <f:ajax event="blur" execute="@this" render="phoneError"/>
                                         </h:inputText>
-<!--                                        <h:message for="onfloor" id="onfloorError" style="color: red"/>-->
+                                        <h:message for="phone" id="phoneError" style="color: red"/>
                                     </div>
- 
+
                                     <h:commandButton action="#{createAContract.createAContract()}" value="Create" class="btn btn-info"/>
-                                   
+
                                 </h:form>
                                 <h:outputText value="#{createAContract.m}" style="color: red"/>
                             </div>

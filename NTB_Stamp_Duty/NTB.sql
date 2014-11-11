@@ -1,4 +1,5 @@
-﻿--Create database dbNTB
+﻿--drop database dbNTB
+Create database dbNTB
 go
 use dbNTB
 go
@@ -11,6 +12,7 @@ create table Manager(
 	MFullName nvarchar(100),
 )
 go
+insert into Manager values('admin','admin','admin')
 insert into Manager values('anntgc00492','fpt','Nguyen Trong An')
 insert into Manager values('tungptgc00641','fpt','Pham Thanh Tung')
 insert into Manager values('vinhhv00574','fpt','Hoang Van Vinh')
@@ -63,9 +65,9 @@ Create table Building(
 	BStatus nvarchar(100),      
 )
 go
-insert into Building values(1,'ThatHa1 official compelex','official',11,22,'1/1/2013','1/1/2014','1/2/2014','thatha1.jpg','40-50-60 m2 available','To be received the occupancy permit')
-insert into Building values(2,'ThaiHa2 official compelex','official',12,24,'2/2/2013','2/2/2014','2/3/2014','thatha2.jpg','40-50-60 m2 available','To be received the occupancy permit')
-insert into Building values(3,'XuanThuy1 residental compelex','residental',13,26,'3/3/2013','3/3/2014',null,'xuanthuy1,jpg','40-50-60 m2 available','To be applied for the occupancy permit')
+insert into Building values(1,'ThaiHa1 official compelex','official',11,22,'1/1/2013','1/1/2014','1/2/2014','thaiha1.jpg','40-50-60 m2 available','To be received the occupancy permit')
+insert into Building values(2,'ThaiHa2 official compelex','official',12,24,'2/2/2013','2/2/2014','2/3/2014','thaiha2.jpg','40-50-60 m2 available','To be received the occupancy permit')
+insert into Building values(3,'XuanThuy1 residental compelex','residental',13,26,'3/3/2013','3/3/2014',null,'xuanthuy1.jpg','40-50-60 m2 available','To be applied for the occupancy permit')
 insert into Building values(4,'XuanThuy2 residental compelex','residental',14,28,'4/4/2013','4/4/2014',null,'xuanthuy2.jpg','40-50-60 m2 available','Not to be applied for the occupancy permit')
 insert into Building values(5,'HoTungMau1 shop compelex','shop',15,15,'5/5/2014','5/12/2014',null,'hotungmau1.jpg','90m2 availabe','To be completely constructed')
 insert into Building values(6,'HoTungMau2 shop compelex','shop',15,15,'5/5/2014','5/12/2014',null,'hotungmau1.jpg','90m2 availabe','Not to be completely constructed')
@@ -152,7 +154,7 @@ insert into [Contract] values(2,2,'One time payment',55000,55000,55000,0,0,'24/1
 insert into [Contract] values(3,3,'Payment through Installments on a monthly basis for 2 years',55000,57750,7218.75,50531.25,250,'24/10/2014','','Payment Not Received')
 insert into [Contract] values(4,4,'Payment through Installments on a yearly basis for 2 years',55000,56650,7081.25,49568.75,250,'24/10/2014','','Payment Not Received')
 go
-select * from Sale
+select * from Contract
 go
 
 Create table PaymentDetail(

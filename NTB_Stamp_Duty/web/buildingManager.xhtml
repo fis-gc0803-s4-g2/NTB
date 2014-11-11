@@ -52,17 +52,20 @@
                                                     <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
                                                     </h:commandLink>   
-                                                    
-                                                  
-                                                    <h:commandLink action="#{showAllContract.contractIndex()}"  title="Go to it contracts"  styleClass="fa fa-dedent fa-fw">
+
+
+                                                    <h:commandLink action="#{showAllContract.contractIndex()}"  title="Go to it contracts"  styleClass="fa fa-list-ol fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllContract.buildingId}" value="#{b.BId}"/>
-                                                        </h:commandLink>     
-                                                         
-                                                   
+                                                    </h:commandLink>     
+
                                                     <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                        </h:commandLink>     
-                                                   
+                                                    </h:commandLink>   
+
+                                                    <h:commandLink action="#{createAApartment.addApartmentIndex()}" title="Create a new apartment" styleClass="fa fa-plus-square fa-fw">
+                                                        <f:setPropertyActionListener target="#{createAApartment.buildingId}" value="#{b.BId}"/>
+                                                    </h:commandLink> 
+
                                                 </td >
 
                                             </tr>

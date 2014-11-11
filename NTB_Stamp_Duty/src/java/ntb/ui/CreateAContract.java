@@ -8,8 +8,12 @@ package ntb.ui;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import ntb.biz.ApartmentManager;
 import ntb.biz.ContractManager;
 import ntb.biz.CustomerManager;
@@ -72,92 +76,92 @@ public class CreateAContract {
     }
 
     public String createAContract() {
-  
-            Customer customer = new Customer();
 
-            customer.setCUsername(username);
-            customer.setCPassword(password);
-            customer.setCFullName(fullname);
-            customer.setCAddress(address);
-            customer.setCEmail(email);
-            customer.setCPhone(phone);
-            if (customerManager.createCustomer(customer)) {
-                
-                Contract contract = new Contract();
+        Customer customer = new Customer();
 
-                contract.setAPId(apartmentManager.findApartment(apartmentId));
-                contract.setCId(customerManager.findCustomer(customerManager.findCustomer(customerManager.count()).getCId()));
-                contract.setSAPaymentType(paymentType);
-                int totalCost = apartmentManager.findApartment(apartmentId).getAPCost();
-                contract.setSATotalCost(totalCost);
-                double totalPayment = 0.0;
-                switch (paymentType) {
-                    case "Payment through Installments on a monthly basics for 2 years":
-                        totalPayment = totalCost * 1.05;
-                        break;
+        customer.setCUsername(username);
+        customer.setCPassword(password);
+        customer.setCFullName(fullname);
+        customer.setCAddress(address);
+        customer.setCEmail(email);
+        customer.setCPhone(phone);
+        if (customerManager.createCustomer(customer)) {
 
-                    case "Payment through Installments on a yearly basics for 2 years":
-                        totalPayment = totalCost * 1.03;
-                        break;
+            Contract contract = new Contract();
 
-                    case "One time payment":
-                        totalPayment = totalCost;
-                        break;
-                }
-                contract.setSATotalPayment((int) totalPayment);
-                switch (paymentType) {
-                    case "One time payment":
-                        contract.setSAAmountPaid((double) totalPayment);
-                        contract.setSAAmmountDue(0.0);
-                        break;
+            contract.setAPId(apartmentManager.findApartment(apartmentId));
+            contract.setCId(customerManager.findCustomer(customerManager.findCustomer(customerManager.count()).getCId()));
+            contract.setSAPaymentType(paymentType);
+            int totalCost = apartmentManager.findApartment(apartmentId).getAPCost();
+            contract.setSATotalCost(totalCost);
+            double totalPayment = 0.0;
+            switch (paymentType) {
+                case "Payment through Installments on a monthly basics for 2 years":
+                    totalPayment = totalCost * 1.05;
+                    break;
 
-                    case "Payment through Installments on a monthly basics for 2 years":
-                        contract.setSAAmountPaid(0.0);
-                        contract.setSAAmmountDue((double) totalPayment);
-                        break;
+                case "Payment through Installments on a yearly basics for 2 years":
+                    totalPayment = totalCost * 1.03;
+                    break;
 
-                    case "Payment through Installments on a yearly basics for 2 years":
-                        contract.setSAAmountPaid(0.0);
-                        contract.setSAAmmountDue((double) totalPayment);
-                        break;
-                }
-                contract.setSATax(0);
-                contract.setSACreateDate(new SimpleDateFormat("dd/mm/yyyy").format(new Date()));
-                contract.setSANote("");
-                switch (paymentType) {
-                    case "One time payment":
-                        contract.setSAStatus("Yet to be registered");
-                        break;
-                    case "Payment through Installments on a monthly basics for 2 years":
-                        contract.setSAStatus("Payment not received");
-                        break;
-
-                    case "Payment through Installments on a yearly basics for 2 years":
-                        contract.setSAStatus("Payment not received");
-                        break;
-                }
-                if (contractManager.createContract(contract)) {
-                    username = null;
-                    password = null;
-                    fullname = null;
-                    address = null;
-                    email = null;
-                    phone = null;
-                    paymentType = "";
-                    confirmPassword = null;
-                    m = null;
-                    return "ok?faces-redirect=true";
-                }
-                
+                case "One time payment":
+                    totalPayment = totalCost;
+                    break;
             }
+            contract.setSATotalPayment((int) totalPayment);
+            switch (paymentType) {
+                case "One time payment":
+                    contract.setSAAmountPaid((double) totalPayment);
+                    contract.setSAAmmountDue(0.0);
+                    break;
+
+                case "Payment through Installments on a monthly basics for 2 years":
+                    contract.setSAAmountPaid(0.0);
+                    contract.setSAAmmountDue((double) totalPayment);
+                    break;
+
+                case "Payment through Installments on a yearly basics for 2 years":
+                    contract.setSAAmountPaid(0.0);
+                    contract.setSAAmmountDue((double) totalPayment);
+                    break;
+            }
+            contract.setSATax(0);
+            contract.setSACreateDate(new SimpleDateFormat("dd/mm/yyyy").format(new Date()));
+            contract.setSANote("");
+            switch (paymentType) {
+                case "One time payment":
+                    contract.setSAStatus("Yet to be registered");
+                    break;
+                case "Payment through Installments on a monthly basics for 2 years":
+                    contract.setSAStatus("Payment not received");
+                    break;
+
+                case "Payment through Installments on a yearly basics for 2 years":
+                    contract.setSAStatus("Payment not received");
+                    break;
+            }
+            if (contractManager.createContract(contract)) {
+                username = null;
+                password = null;
+                fullname = null;
+                address = null;
+                email = null;
+                phone = null;
+                paymentType = "";
+                confirmPassword = null;
+                m = null;
+                return "ok?faces-redirect=true";
+            }
+
+        }
 //        }
 //        m = "Password not match !"+password+","+confirmPassword;
 //        return "";
         return "";
 
     }
-    
-    public boolean searchContractById(int aId){
+
+    public boolean searchContractById(int aId) {
         return contractManager.searchContractById(aId);
     }
 
@@ -239,6 +243,55 @@ public class CreateAContract {
 
     public void setM(String m) {
         this.m = m;
+    }
+
+    public void validateUsername(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Username is required"));
+        }
+    }
+
+    public void validatePassword(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Password is required"));
+        }
+    }
+
+    public void validateFullname(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Full name is required"));
+        }
+    }
+    
+     public void validateAddress(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Address is required"));
+        }
+    }
+     
+      public void validateEmail(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Email is required"));
+        }
+    }
+      
+       public void validatePhone(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Phone is required"));
+        }
+    }
+       
+        public void validateConfirm(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Confirm password is required"));
+        }
     }
 
 }
