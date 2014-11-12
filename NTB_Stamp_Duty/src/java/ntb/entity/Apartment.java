@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.entity;
 
 import java.io.Serializable;
@@ -11,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,10 +37,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Apartment.findByAPArea", query = "SELECT a FROM Apartment a WHERE a.aPArea = :aPArea"),
     @NamedQuery(name = "Apartment.findByAPCost", query = "SELECT a FROM Apartment a WHERE a.aPCost = :aPCost")})
 public class Apartment implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "APId")
     private Integer aPId;
     @Column(name = "APOnFloor")
@@ -134,5 +138,5 @@ public class Apartment implements Serializable {
     public String toString() {
         return "ntb.entity.Apartment[ aPId=" + aPId + " ]";
     }
-    
+
 }

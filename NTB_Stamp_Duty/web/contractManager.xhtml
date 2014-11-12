@@ -11,18 +11,40 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-                 <div>&nbsp;</div>
+                <div>&nbsp;</div>
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">Contract Management</div>
+                    <div class="panel-heading"><h4>Contract management </h4>
+                        <div class="right">
+                            <h:form>
+                                 
+                                <h:selectOneMenu value="#{showAllContract.paymentType}" style="width: 40%">
+                                    <f:selectItem itemValue="" itemLabel="Choose Payment Type"/>
+                                    <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
+                                    <f:selectItem itemValue="Payment through Installments on a monthly basis for 2 years" itemLabel="Payment through Installments on a monthly basis for 2 years"/>
+                                    <f:selectItem itemValue="Payment through Installments on a yearly basis for 2 years" itemLabel="Payment through Installments on a yearly basis for 2 years"/>
+                                </h:selectOneMenu>
+                                 
+                                 <h:selectOneMenu value="#{showAllContract.status}"  style="width: 20%">
+                                    <f:selectItem itemValue="" itemLabel="Choose Status"/>
+                                    <f:selectItem itemValue="Registration and Stamp Duty Done" itemLabel="Registration and Stamp Duty Done"/>
+                                    <f:selectItem itemValue="Yet to be registered" itemLabel="Yet to be registered"/>
+                                    <f:selectItem itemValue="Payment Not Received" itemLabel="Payment Not Received"/>
+                                 </h:selectOneMenu>
+                                
+                                <h:commandButton action="#{showAllContract.searchContract()}" value="Search" />
+                            </h:form>
+                        </div>
+                    </div>
+
                     <div class="panel-body">
                         <div class="table-responsive">
                             <h:form>
-                                <table  class="display"  cellspacing="0" id="example">
+                                <table  class="display"  cellspacing="0" id="example" >
                                     <thead>
                                         <tr>
-                                          
+
                                             <th>C.Name</th>
                                             <th>ApartId</th>
                                             <th>Payment type</th>
@@ -39,7 +61,7 @@
                                     <tbody>
                                         <c:forEach var="c" items="#{showAllContract.cl}">
                                             <tr>
-                                               
+
                                                 <td>#{c.CId.CUsername}</td>
                                                 <td>#{c.APId.APId}</td>
                                                 <td>#{c.SAPaymentType}</td>
@@ -54,17 +76,17 @@
                                                     <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
                                                     </h:commandLink>   
-                                                    
-                                                     <ui:fragment rendered="#{'Not to be completely constructed' eq l.LStatus.toString()}">
-                                                         <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
-                                                             <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
+
+                                                    <ui:fragment rendered="#{'Not to be completely constructed' eq l.LStatus.toString()}">
+                                                        <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
+                                                            <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>      
-                                                   
+
                                                     <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                        </h:commandLink>     
-                                                   
+                                                    </h:commandLink>     
+
                                                 </td >
 
                                             </tr>

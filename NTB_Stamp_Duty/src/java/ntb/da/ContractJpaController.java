@@ -40,25 +40,27 @@ public class ContractJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-     public List<Contract> getAllContractById(int bId) {
-        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId",Contract.class);
-         query.setParameter("bId",bId);
+
+    public List<Contract> getAllContractById(int bId,String paymentType) {
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType", Contract.class);
+        query.setParameter("bId", bId);
+        query.setParameter("paymentType", "%" + paymentType + "%");
+
         return query.getResultList();
     }
 
     public List<Contract> searchContract(int bId, String paymentType, String status) {
-        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId and c.sAPaymentType =:paymentType and c.sAStatus =:status", Contract.class);
-        query.setParameter("bId",bId);
-        query.setParameter("paymentType","%"+paymentType+"%");
-        query.setParameter("status","%"+status+"%");
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType AND c.sAStatus like :status", Contract.class);
+        query.setParameter("bId", bId);
+        query.setParameter("paymentType", "%" + paymentType + "%");
+        query.setParameter("status", "%" + status + "%");
         return query.getResultList();
     }
 
     public boolean searchContractById(int aId) {
         TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.aPId =:aId", Contract.class);
         query.setParameter("aId", aId);
-        List<Contract> contract=query.getResultList();
+        List<Contract> contract = query.getResultList();
         return !contract.isEmpty();
     }
 
@@ -293,7 +295,5 @@ public class ContractJpaController implements Serializable {
             em.close();
         }
     }
-
-   
 
 }

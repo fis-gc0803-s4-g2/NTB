@@ -43,8 +43,8 @@ public class ContractManager {
         return daController;
     }
     
-    public List<Contract> getAllContract(int bId){
-        return getDaController().getAllContractById(bId);
+    public List<Contract> getAllContract(int bId,String paymentType){
+        return getDaController().getAllContractById(bId,paymentType);
     }
     
     public List<Contract> searchContract(int bId, String paymentType, String status){

@@ -26,6 +26,8 @@ public class ShowAllContract {
    private List<Contract> cl;
    
    private int buildingId;
+   private String paymentType="";
+   private String status="";
    
    
    
@@ -34,13 +36,13 @@ public class ShowAllContract {
         return "contractManager?redirect=true";
    }
    
-//   public String searchContract(){
-//       cl=contractManager.searchContract(key1, key2, key3);
-//        return "contractManager?redirect=true";
-//   }
+   public String searchContract(){
+       cl=contractManager.searchContract(buildingId, paymentType, status);
+        return "contractManager?redirect=true";
+   }
 
     public List<Contract> getCl() {
-        return contractManager.getAllContract(buildingId);
+        return contractManager.searchContract(buildingId, paymentType, status);
     }
 
     public void setCl(List<Contract> cl) {
@@ -54,7 +56,24 @@ public class ShowAllContract {
     public void setBuildingId(int buildingId) {
         this.buildingId = buildingId;
     }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
   
+    
     
     
 }

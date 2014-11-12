@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,10 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PaymentDetail.findByPDPaidDate", query = "SELECT p FROM PaymentDetail p WHERE p.pDPaidDate = :pDPaidDate"),
     @NamedQuery(name = "PaymentDetail.findByPDAmountPaid", query = "SELECT p FROM PaymentDetail p WHERE p.pDAmountPaid = :pDAmountPaid")})
 public class PaymentDetail implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "PDId")
     private Integer pDId;
     @Size(max = 50)
@@ -135,5 +139,5 @@ public class PaymentDetail implements Serializable {
     public String toString() {
         return "ntb.entity.PaymentDetail[ pDId=" + pDId + " ]";
     }
-    
+
 }
