@@ -31,20 +31,20 @@ Create table Land(
 	LArea int,
 	LPurchasedCost int,
 	LPresentCost int,
-	LBuildingPermissionDate nvarchar(50),
+	LBuildingPermissionDate nvarchar(100),
     LStatus nvarchar(100)
 )
 go
-insert into Land values('No 1 Thai Ha St, Trung Liet','Dong Da hospital, Vietnam Trade Union University','Dong Da','Hanoi',100,1000,1100,'1/1/2013','To be received the occupancy permit')
-insert into Land values('No 2 Thai Ha St, Trung Liet','Dong Da hospital, Vietnam Trade Union University','Dong Da','Hanoi',200,1100,1200,'2/2/2013','To be Received the occupancy permit')
-insert into Land values('No 3 Xuan Thuy Street, Quan Hoa','Thu Le zoo, Vietnam National Hospital of Pediatrics','Cau Giay','Hanoi',300,1200,1300,'3/3/2013','To be applied for the occupancy permit')
-insert into Land values('No 4 Xuan Thuy Street, Quan Hoa','Thu Le zoo, Vietnam National Hospital of Pediatrics','Cau Giay','Hanoi',400,1300,1400,'4/4/2013','Not to be applied for the occupancy permit')
-insert into Land values('No 5 Ho Tung Mau St, My Dinh','University of commerce,198 hospital,My Dinh Stadium','Tu Liem','Hanoi',500,1400,1500,'5/5/2013','To be conpletely contructed')
-insert into Land values('No 6 Ho Tung Mau St, My Dinh','University of commerce,198 hospital,My Dinh Stadium','Tu Liem','Hanoi',600,1500,1600,'6/6/2013','Not to be conpletely contructed')
-insert into Land values('No 7 Pham Hung St, My Dinh','My Dinh bus station,My Dinh Stadium','Tu Liem','Hanoi',700,1600,1700,'7/7/2013','To be received the building permit')
-insert into Land values('No 8 Pham Hung St, My Dinh','My Dinh bus station,My Dinh Stadium','Tu Liem','Hanoi',800,1700,1800,'8/8/2013','Not to be received the building permit')
-insert into Land values('No 9 Ton That Thuyet St, My Dinh','FPT University, My Dinh bus station, My Dinh Stadium','Tu Liem','Hanoi',900,1800,1900,null,'To be applied for the building permit')
-insert into Land values('No 10 Ton That Thuyet St, My Dinh','FPT University, My Dinh bus station, My Dinh Stadium','Tu Liem','Hanoi',1000,1900,2000,null,'Not to be applied for the building permit')
+insert into Land values('No 1 Thai Ha St, Trung Liet','Dong Da hospital, Vietnam Trade Union University','Dong Da','Hanoi',100,100000,110000,'2013-1-1','To be received the occupancy permit')
+insert into Land values('No 2 Thai Ha St, Trung Liet','Dong Da hospital, Vietnam Trade Union University','Dong Da','Hanoi',100,110000,120000,'2013-2-2','To be Received the occupancy permit')
+insert into Land values('No 3 Xuan Thuy Street, Quan Hoa','Thu Le zoo, Vietnam National Hospital of Pediatrics','Cau Giay','Hanoi',100,120000,130000,'2013-3-3','To be applied for the occupancy permit')
+insert into Land values('No 4 Xuan Thuy Street, Quan Hoa','Thu Le zoo, Vietnam National Hospital of Pediatrics','Cau Giay','Hanoi',100,130000,140000,'2013-4-4','Not to be applied for the occupancy permit')
+insert into Land values('No 5 Ho Tung Mau St, My Dinh','University of commerce,198 hospital,My Dinh Stadium','Tu Liem','Hanoi',100,140000,150000,'2013-5-5','To be conpletely contructed')
+insert into Land values('No 6 Ho Tung Mau St, My Dinh','University of commerce,198 hospital,My Dinh Stadium','Tu Liem','Hanoi',100,150000,160000,'2013-6-6','Not to be conpletely contructed')
+insert into Land values('No 7 Pham Hung St, My Dinh','My Dinh bus station,My Dinh Stadium','Tu Liem','Hanoi',100,160000,170000,'2013-7-7','To be received the building permit')
+insert into Land values('No 8 Pham Hung St, My Dinh','My Dinh bus station,My Dinh Stadium','Tu Liem','Hanoi',100,170000,180000,'2013-8-8','Not to be received the building permit')
+insert into Land values('No 9 Ton That Thuyet St, My Dinh','FPT University, My Dinh bus station, My Dinh Stadium','Tu Liem','Hanoi',100,180000,190000,null,'To be applied for the building permit')
+insert into Land values('No 10 Ton That Thuyet St, My Dinh','FPT University, My Dinh bus station, My Dinh Stadium','Tu Liem','Hanoi',100,190000,200000,null,'Not to be applied for the building permit')
 go
 select * from Land
 go
@@ -65,12 +65,12 @@ Create table Building(
 	BStatus nvarchar(100),      
 )
 go
-insert into Building values(1,'ThaiHa1 official compelex','official',11,22,'1/1/2013','1/1/2014','1/2/2014','thaiha1.jpg','40-50-60 m2 available','To be received the occupancy permit')
-insert into Building values(2,'ThaiHa2 official compelex','official',12,24,'2/2/2013','2/2/2014','2/3/2014','thaiha2.jpg','40-50-60 m2 available','To be received the occupancy permit')
-insert into Building values(3,'XuanThuy1 residental compelex','residental',13,26,'3/3/2013','3/3/2014',null,'xuanthuy1.jpg','40-50-60 m2 available','To be applied for the occupancy permit')
-insert into Building values(4,'XuanThuy2 residental compelex','residental',14,28,'4/4/2013','4/4/2014',null,'xuanthuy2.jpg','40-50-60 m2 available','Not to be applied for the occupancy permit')
-insert into Building values(5,'HoTungMau1 shop compelex','shop',15,15,'5/5/2014','5/12/2014',null,'hotungmau1.jpg','90m2 availabe','To be completely constructed')
-insert into Building values(6,'HoTungMau2 shop compelex','shop',15,15,'5/5/2014','5/12/2014',null,'hotungmau1.jpg','90m2 availabe','Not to be completely constructed')
+insert into Building values(1,'ThaiHa1 official compelex','official',11,22,'2013-1-1','2014-1-1','2014-1-1','thaiha1.jpg','40-50-60 m2 available','To be received the occupancy permit')
+insert into Building values(2,'ThaiHa2 official compelex','official',12,24,'2013-2-2','2014-2-2','2014-2-2','thaiha2.jpg','40-50-60 m2 available','To be received the occupancy permit')
+insert into Building values(3,'XuanThuy1 residental compelex','residental',13,26,'2013-3-3','2014-3-3',null,'xuanthuy1.jpg','40-50-60 m2 available','To be applied for the occupancy permit')
+insert into Building values(4,'XuanThuy2 residental compelex','residental',14,28,'2013-4-4','2014-4-4',null,'xuanthuy2.jpg','40-50-60 m2 available','Not to be applied for the occupancy permit')
+insert into Building values(5,'HoTungMau1 shop compelex','shop',15,15,'2014-5-5','2014-12-5',null,'hotungmau1.jpg','90m2 availabe','To be completely constructed')
+insert into Building values(6,'HoTungMau2 shop compelex','shop',15,15,'2014-5-5','2014-12-5',null,'hotungmau1.jpg','90m2 availabe','Not to be completely constructed')
 go
 select * from Building
 go
@@ -144,15 +144,15 @@ Create table [Contract](
 	SAAmountPaid float,
 	SAAmmountDue float,
 	SATax int,
-	SACreateDate nvarchar(50),
+	SACreateDate nvarchar(100),
 	SANote nvarchar(500),
 	SAStatus nvarchar(100),
 )		
 go 
-insert into [Contract] values(1,1,'One time payment',55000,55000,55000,0,250,'24/10/2014','','Registration and Stamp Duty Done')
-insert into [Contract] values(2,2,'One time payment',55000,55000,55000,0,0,'24/10/2014','','Yet to be registered')
-insert into [Contract] values(3,3,'Payment through Installments on a monthly basis for 2 years',55000,57750,7218.75,50531.25,250,'24/10/2014','','Payment Not Received')
-insert into [Contract] values(4,4,'Payment through Installments on a yearly basis for 2 years',55000,56650,7081.25,49568.75,250,'24/10/2014','','Payment Not Received')
+insert into [Contract] values(1,1,'One time payment',55000,55000,55000,0,250,'2014-10-24','','Registration and Stamp Duty Done')
+insert into [Contract] values(2,2,'One time payment',55000,55000,55000,0,0,'2014-10-24','','Yet to be registered')
+insert into [Contract] values(3,3,'Payment through Installments on a monthly basis for 2 years',55000,57750,57750.0/24,(57750.0/24)*23,250,'2014-10-24','','Payment Not Received')
+insert into [Contract] values(4,4,'Payment through Installments on a yearly basis for 2 years',55000,56650,56650.0/2,56650.0/2,250,'2014-10-24','','Payment Not Received')
 go
 select * from Contract
 go
@@ -160,13 +160,14 @@ go
 Create table PaymentDetail(
 	PDId int primary key identity,
 	SAId int foreign key references [Contract](SAId),
-	PDDueDate nvarchar(50),
+	PDDueDate nvarchar(100),
 	PDAmountDue float,
-	PDPaidDate nvarchar(50),
-	PDAmountPaid float,	
+	PDPaidDate nvarchar(100),
+	PDAmountPaid float
 )
 go
-insert into PaymentDetail values(3,'24/10/2014',7218.75,'24/10/2014',7218.75)
+insert into PaymentDetail values(3,'2014-10-24',57750.0/24,'2014-10-24',57750.0/24)
+insert into PaymentDetail values(4,'2014-10-24',56650.0/2,'2014-10-24',56650.0/2)
 go
 select * from PaymentDetail
 go

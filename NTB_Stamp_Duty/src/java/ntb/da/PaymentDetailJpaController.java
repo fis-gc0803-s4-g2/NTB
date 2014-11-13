@@ -12,11 +12,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Contract;
 import ntb.entity.PaymentDetail;
@@ -37,8 +37,14 @@ public class PaymentDetailJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+     public List<PaymentDetail> getPaymentDetailByCId(int cId) {
+        TypedQuery<PaymentDetail> query = getEntityManager().createQuery("SELECT p FROM PaymentDetail p WHERE p.sAId.sAId = :cId", PaymentDetail.class);
+        query.setParameter("cId",cId);
+        return query.getResultList();
+    }
 
-    public void create(PaymentDetail paymentDetail) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(PaymentDetail paymentDetail) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -59,9 +65,6 @@ public class PaymentDetailJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findPaymentDetail(paymentDetail.getPDId()) != null) {
-                throw new PreexistingEntityException("PaymentDetail " + paymentDetail + " already exists.", ex);
             }
             throw ex;
         } finally {

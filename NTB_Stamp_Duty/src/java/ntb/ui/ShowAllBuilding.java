@@ -23,19 +23,34 @@ public class ShowAllBuilding {
     @EJB
     private BuildingManager buildingManager;
     private List<Building> bl;
+    private String status="";
 
     public String buildingIndex(){
         return "buildingManager?faces-redirect=true";
     }
+    
+    public String searchBuilding(){
+        bl=buildingManager.searchBuilding(status);
+         return "buildingManager?faces-redirect=true";
+    }
         
     public List<Building> getBl() {
-        return buildingManager.getAllBuilding();
+        return buildingManager.searchBuilding(status);
     }
 
     public void setBl(List<Building> bl) {
         this.bl = bl;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
-    public ShowAllBuilding() {
-    }    
+    
+    
+    
 }

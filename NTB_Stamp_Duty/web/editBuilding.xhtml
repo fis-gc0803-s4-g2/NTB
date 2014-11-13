@@ -61,13 +61,19 @@
                                         <h:message for="area" id="areaError" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Start Date"/><h:inputText value="#{editBuilding.startDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Start Date"/><br></br>
+                                        <h:inputText  value="#{editBuilding.startDate}" styleClass="sample"/>
+                                                                                                                     
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Completed Date"/><h:inputText value="#{editBuilding.completionDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Completed Date"/><br></br>
+                                        <h:inputText id="complete" value="#{editBuilding.completionDate}" styleClass="sample" />
+                                                                                                                  
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Occupancy Date"/><h:inputText  value="#{editBuilding.occupancyDate}" class="form-control" style="width: 50%"/>
+                                        <h:outputLabel value="Occupancy Date"/><br></br>
+                                        <h:inputText id="occupancy"  value="#{editBuilding.occupancyDate}" styleClass="sample" />
+                                      
                                     </div>
 
                                     <div class="form-group">

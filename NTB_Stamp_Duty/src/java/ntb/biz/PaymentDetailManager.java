@@ -6,6 +6,7 @@
 
 package ntb.biz;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -42,6 +43,11 @@ public class PaymentDetailManager {
 
         }
         return daController;
+    }
+    
+    public List<PaymentDetail> getPaymentByCId(int id){
+         return getDaController().getPaymentDetailByCId(id);
+        
     }
    
     

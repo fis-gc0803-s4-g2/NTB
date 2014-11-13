@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemplate.xhtml">
+
+            <ui:define name="content">
+                  <div>&nbsp;</div>
+                <div>&nbsp;</div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h4>Payment management </h4>
+                        <div class="right">
+                            <h:form> 
+                                <h:outputLabel value="Add a payment for this Contract"/>
+                                <h:commandButton action="#{showAllPayment.addPaymentDetail()}" value="Add payment" />
+                                Amount Paid :<h:outputLabel value="#{showAllPayment.ap}"/>
+                                Amount Due: <h:outputLabel value="#{showAllPayment.ad}"/>
+                                <h:outputLabel value="#{showAllPayment.m}"/>
+                                
+                                <h:commandButton action="#{showAllContract.contractIndex()}" value="Add payment" >
+                                    <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
+                                </h:commandButton>
+                                
+                            </h:form>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <h:form>
+                                <table  class="display"  cellspacing="0" id="example" >
+                                    <thead>
+                                        <tr>
+
+                                            <th>Payment Id</th>
+                                            <th>Contract Id</th>
+                                            <th>Amount Due($)</th>
+                                            <th>Paid Date</th>
+                                            <th>Amount Paid($)</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="p" items="#{showAllPayment.pl}">
+                                            <tr>
+
+                                                <td>#{p.PDId}</td>
+                                                <td>#{p.SAId.SAId}</td>
+                                                <td>#{p.PDAmountDue}</td>
+                                                <td>#{p.PDPaidDate}</td>
+                                                <td>#{p.PDAmountPaid}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

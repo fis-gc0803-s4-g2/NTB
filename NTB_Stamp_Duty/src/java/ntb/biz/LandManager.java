@@ -47,15 +47,17 @@ public class LandManager {
     
     /**
      * 
+     * @param status
      * @return list
      */
-    public List<Land> getAllLand(){
-        return getDaController().getAllLand();
+    public List<Land> searchLandByStatus(String status){
+        return getDaController().searchLandByStatus(status);
     }
     
     /**
      *Create a new land
      * @param land
+     * @return 
      * 
      */
     public boolean createLand(Land land) {
@@ -68,18 +70,12 @@ public class LandManager {
         return false;
     }
     
-    /**
-     * get Land by Id
-     * @param lId
-     * @return 
-     */
-    public Land getLandById(int lId){
-        return getDaController().getLandById(lId);
-    }
+  
     
     /**
      * edit a land
      * @param land
+     * @return 
      */
     public boolean editLand(Land land){
         try {
@@ -94,6 +90,7 @@ public class LandManager {
     /**
      * delete a land by Id
      * @param lId
+     * @return 
      
      */
     public boolean deleteLand(int lId) {

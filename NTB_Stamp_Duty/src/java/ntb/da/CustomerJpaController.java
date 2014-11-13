@@ -18,7 +18,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Customer;
 
@@ -39,7 +38,7 @@ public class CustomerJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Customer customer) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Customer customer) throws RollbackFailureException, Exception {
         if (customer.getContractList() == null) {
             customer.setContractList(new ArrayList<Contract>());
         }
@@ -69,9 +68,6 @@ public class CustomerJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findCustomer(customer.getCId()) != null) {
-                throw new PreexistingEntityException("Customer " + customer + " already exists.", ex);
             }
             throw ex;
         } finally {

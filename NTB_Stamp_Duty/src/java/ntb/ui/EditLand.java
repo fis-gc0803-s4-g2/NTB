@@ -6,6 +6,7 @@
 package ntb.ui;
 
 
+import java.text.ParseException;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -38,11 +39,12 @@ public class EditLand {
     private String buildingPermissionDate;
     private String status;
     private String notice;
+      
 
     private Land land;
 
-    public String editLandIndex() {
-        land = landManager.getLandById(landId);
+    public String editLandIndex() throws ParseException {
+        land = landManager.findLand(landId);
         address = land.getLAddress();
         nearBy = land.getLNearByLandmark();
         dist = land.getLDist();
@@ -78,7 +80,7 @@ public class EditLand {
             status = null;
             return "landManager?faces-redirect=true";
         }
-        return null;
+        return "";
 
     }
 
@@ -250,5 +252,6 @@ public class EditLand {
     public void setNotice(String notice) {
         this.notice = notice;
     }
+
 
 }

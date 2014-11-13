@@ -126,7 +126,7 @@ public class CreateAContract {
                     break;
             }
             contract.setSATax(0);
-            contract.setSACreateDate(new SimpleDateFormat("dd/mm/yyyy").format(new Date()));
+            contract.setSACreateDate(new SimpleDateFormat("yyyy-mm-dd").format(new Date()));
             contract.setSANote("");
             switch (paymentType) {
                 case "One time payment":

@@ -15,7 +15,29 @@
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">Building Management</div>
+                    <div class="panel-heading"><h4>Building Management</h4>
+                         <div class="right">
+                            <h:form>
+                                  <h:selectOneMenu value="" >
+                                            <f:selectItem itemValue="" itemLabel="Choose Building Type"/>
+                                            <f:selectItem itemValue="official" itemLabel="official"/>
+                                            <f:selectItem itemValue="residental" itemLabel="residental"/>
+                                            <f:selectItem itemValue="shop" itemLabel="shop"/>
+                                        </h:selectOneMenu>
+
+                                <h:selectOneMenu value="#{showAllBuilding.status}">
+                                            <f:selectItem itemValue="" itemLabel="Choose Building Status"/>
+                                            <f:selectItem itemValue="To be completely contructed" itemLabel="To be completely contructed"/> 
+                                            <f:selectItem itemValue="Not to be completely contructed" itemLabel="Not to be completely contructed"/> 
+                                            <f:selectItem itemValue="Not to be applied for the occupancy permit" itemLabel="Not to be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be applied for the occupancy permit" itemLabel="To be applied for the occupancy permit"/>
+                                            <f:selectItem itemValue="To be received the occupancy permit" itemLabel="To be received the occupancy permit"/>
+                                        </h:selectOneMenu>
+                                <h:commandButton action="#{showAllBuilding.searchBuilding()}" value="Search" />
+                            </h:form>
+                        </div>
+                    
+                    </div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <h:form>

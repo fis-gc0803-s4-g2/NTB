@@ -36,6 +36,8 @@ public class ShowAllApartment {
     
     private int key1;
     
+    private String buildingName;
+    
     public String apartmentIndex(){
         return "apartmentManager?faces-redirect=true";
     }
@@ -45,6 +47,7 @@ public class ShowAllApartment {
     public List<Apartment> getList() {
         list=apartmentManager.getApartmentById(key1);
         updateCost(list);
+        buildingName=buildingManager.findBuilding(key1).getBBuildingName();
         return list;
     }
 
@@ -59,6 +62,16 @@ public class ShowAllApartment {
     public void setKey1(int key1) {
         this.key1 = key1;
     }
+
+    public String getBuildingName() {
+        return buildingName;
+    }
+
+    public void setBuildingName(String buildingName) {
+        this.buildingName = buildingName;
+    }
+    
+    
     
     
     private void updateCost(List<Apartment> al){

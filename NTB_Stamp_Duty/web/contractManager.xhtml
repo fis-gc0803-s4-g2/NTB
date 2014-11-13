@@ -13,26 +13,27 @@
             <ui:define name="content">
                 <div>&nbsp;</div>
                 <div>&nbsp;</div>
+                <h4 style="text-transform: uppercase">THE CONTRACTS OF <span style="color:#2BCDF4">#{showAllApartment.buildingName}</span> BUILDING</h4>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading"><h4>Contract management </h4>
-                        <div class="right">
+                    <div class="panel-heading">
+                        <div style="padding-left: 500px">
                             <h:form>
-                                 
+
                                 <h:selectOneMenu value="#{showAllContract.paymentType}" style="width: 40%">
                                     <f:selectItem itemValue="" itemLabel="Choose Payment Type"/>
                                     <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
                                     <f:selectItem itemValue="Payment through Installments on a monthly basis for 2 years" itemLabel="Payment through Installments on a monthly basis for 2 years"/>
                                     <f:selectItem itemValue="Payment through Installments on a yearly basis for 2 years" itemLabel="Payment through Installments on a yearly basis for 2 years"/>
                                 </h:selectOneMenu>
-                                 
-                                 <h:selectOneMenu value="#{showAllContract.status}"  style="width: 20%">
+
+                                <h:selectOneMenu value="#{showAllContract.status}"  style="width: 20%">
                                     <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                     <f:selectItem itemValue="Registration and Stamp Duty Done" itemLabel="Registration and Stamp Duty Done"/>
                                     <f:selectItem itemValue="Yet to be registered" itemLabel="Yet to be registered"/>
                                     <f:selectItem itemValue="Payment Not Received" itemLabel="Payment Not Received"/>
-                                 </h:selectOneMenu>
-                                
+                                </h:selectOneMenu>
+
                                 <h:commandButton action="#{showAllContract.searchContract()}" value="Search" />
                             </h:form>
                         </div>
@@ -75,17 +76,23 @@
                                                 <td> 
                                                     <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
                                                         <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
-                                                    </h:commandLink>   
-
-                                                    <ui:fragment rendered="#{'Not to be completely constructed' eq l.LStatus.toString()}">
-                                                        <h:commandLink action="#{deleteBuilding.deleteBuilding()}"  title="Delete"  styleClass="fa fa-dedent fa-fw">
-                                                            <f:setPropertyActionListener  target="#{deleteBuilding.id}" value="#{b.BId}"/>
-                                                        </h:commandLink>     
-                                                    </ui:fragment>      
+                                                    </h:commandLink>    
 
                                                     <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
                                                         <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                    </h:commandLink>     
+                                                    </h:commandLink>
+
+                                                    <ui:fragment rendered="#{'One time payment' ne c.SAPaymentType}">
+                                                        <h:commandLink action="#{showAllPayment.paymentDetailIndex()}"  title="Payment for this contract"  styleClass="fa fa-money fa-fw">
+                                                            <f:setPropertyActionListener  target="#{showAllPayment.contractId}" value="#{c.SAId}"/>
+                                                        </h:commandLink>  
+                                                    </ui:fragment>
+
+                                                    <ui:fragment rendered="#{'Yet to be registered' eq c.SAStatus}">
+                                                        <h:commandLink action="#{createTax.addTaxIndex()}"  title="Register the tax for this contract"  styleClass="fa fa-dollar fa-fw">
+                                                            <f:setPropertyActionListener  target="#{createTax.contractId}" value="#{c.SAId}"/>
+                                                        </h:commandLink>                                                                    
+                                                    </ui:fragment>   
 
                                                 </td >
 

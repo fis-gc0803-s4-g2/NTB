@@ -18,7 +18,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Apartment;
 import ntb.entity.Building;
@@ -41,12 +40,13 @@ public class BuildingJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Building> getAllBuilding() {
-        TypedQuery<Building> query = getEntityManager().createQuery("SELECT b FROM Building b", Building.class);
+    public List<Building> searchBuilding(String status) {
+        TypedQuery<Building> query = getEntityManager().createQuery("SELECT b FROM Building b WHERE b.bStatus LIKE :status", Building.class);
+         query.setParameter("status","%"+status+"%");
         return query.getResultList();
     }
 
-    public void create(Building building) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Building building) throws RollbackFailureException, Exception {
         if (building.getApartmentList() == null) {
             building.setApartmentList(new ArrayList<Apartment>());
         }
@@ -85,9 +85,6 @@ public class BuildingJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findBuilding(building.getBId()) != null) {
-                throw new PreexistingEntityException("Building " + building + " already exists.", ex);
             }
             throw ex;
         } finally {

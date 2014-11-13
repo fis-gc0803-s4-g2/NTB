@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ntb.da;
 
 import java.io.Serializable;
@@ -17,7 +18,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Apartment;
 import ntb.entity.Contract;
@@ -40,8 +40,8 @@ public class ContractJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
-    public List<Contract> getAllContractById(int bId,String paymentType) {
+    
+     public List<Contract> getAllContractById(int bId,String paymentType) {
         TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType", Contract.class);
         query.setParameter("bId", bId);
         query.setParameter("paymentType", "%" + paymentType + "%");
@@ -64,7 +64,7 @@ public class ContractJpaController implements Serializable {
         return !contract.isEmpty();
     }
 
-    public void create(Contract contract) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Contract contract) throws RollbackFailureException, Exception {
         if (contract.getPaymentDetailList() == null) {
             contract.setPaymentDetailList(new ArrayList<PaymentDetail>());
         }
@@ -112,9 +112,6 @@ public class ContractJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findContract(contract.getSAId()) != null) {
-                throw new PreexistingEntityException("Contract " + contract + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -295,5 +292,5 @@ public class ContractJpaController implements Serializable {
             em.close();
         }
     }
-
+    
 }

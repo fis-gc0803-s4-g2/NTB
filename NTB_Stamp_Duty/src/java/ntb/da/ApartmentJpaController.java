@@ -18,7 +18,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Apartment;
 import ntb.entity.Building;
@@ -47,8 +46,7 @@ public class ApartmentJpaController implements Serializable {
         return query.getResultList();
     }
 
-
-    public void create(Apartment apartment) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Apartment apartment) throws RollbackFailureException, Exception {
         if (apartment.getContractList() == null) {
             apartment.setContractList(new ArrayList<Contract>());
         }
@@ -87,9 +85,6 @@ public class ApartmentJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findApartment(apartment.getAPId()) != null) {
-                throw new PreexistingEntityException("Apartment " + apartment + " already exists.", ex);
             }
             throw ex;
         } finally {

@@ -47,9 +47,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Contract implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    //@NotNull
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SAId")
     private Integer sAId;
     @Size(max = 100)
@@ -66,7 +65,7 @@ public class Contract implements Serializable {
     private Double sAAmmountDue;
     @Column(name = "SATax")
     private Integer sATax;
-    @Size(max = 50)
+    @Size(max = 100)
     @Column(name = "SACreateDate")
     private String sACreateDate;
     @Size(max = 500)

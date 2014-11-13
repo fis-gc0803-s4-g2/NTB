@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ntb.da;
 
 import java.io.Serializable;
@@ -16,7 +17,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Manager;
 
@@ -36,7 +36,7 @@ public class ManagerJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
     public Manager managerLogin(String mUsername, String mPassword) {
         TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m WHERE m.mUsername = :mUsername and m.mPassword = :mPassword", Manager.class);
         query.setParameter("mUsername", mUsername);
@@ -47,7 +47,7 @@ public class ManagerJpaController implements Serializable {
         return null;
     }
 
-    public void create(Manager manager) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Manager manager) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -59,9 +59,6 @@ public class ManagerJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findManager(manager.getMId()) != null) {
-                throw new PreexistingEntityException("Manager " + manager + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -172,5 +169,5 @@ public class ManagerJpaController implements Serializable {
             em.close();
         }
     }
-
+    
 }

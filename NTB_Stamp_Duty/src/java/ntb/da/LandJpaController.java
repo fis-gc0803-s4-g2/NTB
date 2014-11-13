@@ -18,7 +18,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import ntb.da.exceptions.NonexistentEntityException;
-import ntb.da.exceptions.PreexistingEntityException;
 import ntb.da.exceptions.RollbackFailureException;
 import ntb.entity.Building;
 import ntb.entity.Land;
@@ -40,22 +39,17 @@ public class LandJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Land> getAllLand(){
-         TypedQuery<Land> query = getEntityManager().createQuery("SELECT l FROM Land l",Land.class);
-            return query.getResultList();
+    public List<Land> searchLandByStatus(String status){
+         TypedQuery<Land> query = getEntityManager().createQuery("SELECT l FROM Land l WHERE l.lStatus LIKE :status",Land.class);
+           query.setParameter("status", "%" + status + "%");
+         return query.getResultList();
     }
     
-    public Land getLandById(int lId){
-         TypedQuery<Land> query = getEntityManager().createQuery("SELECT l FROM Land l where l.lId = :lId",Land.class);
-         query.setParameter("lId", lId);
-            if (!query.getResultList().isEmpty()) {
-            return query.getResultList().get(0);
-        }
-        return null;
-    }
+   
+    
+    
 
-
-    public void create(Land land) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Land land) throws RollbackFailureException, Exception {
         if (land.getBuildingList() == null) {
             land.setBuildingList(new ArrayList<Building>());
         }
@@ -85,9 +79,6 @@ public class LandJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findLand(land.getLId()) != null) {
-                throw new PreexistingEntityException("Land " + land + " already exists.", ex);
             }
             throw ex;
         } finally {

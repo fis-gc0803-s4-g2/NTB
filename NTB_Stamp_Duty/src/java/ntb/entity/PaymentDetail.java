@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ntb.entity;
 
 import java.io.Serializable;
@@ -36,22 +37,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PaymentDetail.findByPDPaidDate", query = "SELECT p FROM PaymentDetail p WHERE p.pDPaidDate = :pDPaidDate"),
     @NamedQuery(name = "PaymentDetail.findByPDAmountPaid", query = "SELECT p FROM PaymentDetail p WHERE p.pDAmountPaid = :pDAmountPaid")})
 public class PaymentDetail implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Basic(optional = false)
-    //@NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PDId")
     private Integer pDId;
-    @Size(max = 50)
+    @Size(max = 100)
     @Column(name = "PDDueDate")
     private String pDDueDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PDAmountDue")
     private Double pDAmountDue;
-    @Size(max = 50)
+    @Size(max = 100)
     @Column(name = "PDPaidDate")
     private String pDPaidDate;
     @Column(name = "PDAmountPaid")
@@ -139,5 +137,5 @@ public class PaymentDetail implements Serializable {
     public String toString() {
         return "ntb.entity.PaymentDetail[ pDId=" + pDId + " ]";
     }
-
+    
 }

@@ -6,6 +6,8 @@
 package ntb.ui;
 
 
+
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -37,6 +39,7 @@ public class CreateALand {
     private String buildingPermissionDate;
     private String status;
     private String notice;
+   
 
     public String getAddress() {
         return address;
@@ -117,7 +120,8 @@ public class CreateALand {
     public void setNotice(String notice) {
         this.notice = notice;
     }
-
+    
+    
     public void validateAddress(FacesContext f, UIComponent c, Object obj) {
         String s = (String) obj;
         if (s.length() == 0) {

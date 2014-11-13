@@ -11,11 +11,31 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-               
+
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">Land Management</div>
+                    <div class="panel-heading"><h4>Land Management</h4>
+                        <div class="right">
+                            <h:form>
+
+                                <h:selectOneMenu  value="#{showAllLand.status}" >
+                                    <f:selectItem itemValue="" itemLabel="Choose Status"/>
+                                    <f:selectItem itemValue="Not to be applied for the building permit" itemLabel="Not to be applied for the building permit"/>  
+                                    <f:selectItem itemValue="To be applied for the building permit" itemLabel="To be applied for the building permit"/>                                                                     
+                                    <f:selectItem itemValue="To be received the building permit" itemLabel="To be received the building permit"/> 
+                                    <f:selectItem itemValue="Not to be completely contructed" itemLabel="Not to be completely contructed"/> 
+                                    <f:selectItem itemValue="To be completely contructed" itemLabel="To be completely contructed"/> 
+                                    <f:selectItem itemValue="Not  to be applied for the occupancy permit" itemLabel="Not to be applied for the occupancy permit"/>
+                                    <f:selectItem itemValue="To be applied for the occupancy permit" itemLabel="To be applied for the occupancy permit"/>
+                                    <f:selectItem itemValue="To be received the occupancy permit" itemLabel="To be received the occupancy permit"/>
+                                   
+                                </h:selectOneMenu>
+
+                                <h:commandButton action="#{showAllLand.searchLand()}" value="Search" />
+                            </h:form>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <h:form>
@@ -54,12 +74,12 @@
                                                         <f:setPropertyActionListener target="#{editLand.landId}" value="#{l.LId}"/>
                                                     </h:commandLink>    
 
-                                                      <ui:fragment rendered="#{'Not to be applied for the building permit' eq l.LStatus.toString()}">
-                                                          <h:commandLink action="#{deleteLand.deleteLand()}"  title="Delete"  styleClass="fa fa-trash-o fa-fw">
-                                                              <f:setPropertyActionListener  target="#{deleteLand.id}" value="#{l.LId}"/>
+                                                    <ui:fragment rendered="#{'Not to be applied for the building permit' eq l.LStatus.toString()}">
+                                                        <h:commandLink action="#{deleteLand.deleteLand()}"  title="Delete"  styleClass="fa fa-trash-o fa-fw">
+                                                            <f:setPropertyActionListener  target="#{deleteLand.id}" value="#{l.LId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>         
-                                                    
+
                                                     <ui:fragment rendered="#{'To be received the building permit' eq l.LStatus.toString()}">
                                                         <h:commandLink action="#{createABuilding.buildingIndex()}"  title="Make A Building Profile"  styleClass="fa fa-plus-square fa-fw">
                                                             <f:setPropertyActionListener  target="#{createABuilding.landId}" value="#{l.LId}"/>
