@@ -40,9 +40,10 @@ public class ApartmentJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Apartment> getApartmentById(int id){
-          TypedQuery<Apartment> query = getEntityManager().createQuery("SELECT a FROM Apartment a where a.bId.bId =:id", Apartment.class);
+    public List<Apartment> getApartmentById(int id,int area){
+          TypedQuery<Apartment> query = getEntityManager().createQuery("SELECT a FROM Apartment a where a.bId.bId =:id AND a.aPArea <:area", Apartment.class);
           query.setParameter("id", id);
+          query.setParameter("area", area);
         return query.getResultList();
     }
 

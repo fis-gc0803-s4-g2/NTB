@@ -17,7 +17,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletResponse;
-import ntb.biz.AdminLoginManager;
+import ntb.biz.AccountManager;
 import ntb.entity.Manager;
 
 /**
@@ -28,7 +28,7 @@ import ntb.entity.Manager;
 @SessionScoped
 public class AdminLogin {
     @EJB
-    private AdminLoginManager adminLoginManager;
+    private AccountManager adminLoginManager;
     
     
 

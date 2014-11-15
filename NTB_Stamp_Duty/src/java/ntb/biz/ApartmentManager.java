@@ -44,8 +44,8 @@ public class ApartmentManager {
         return daController;
     }
     
-    public List<Apartment> getApartmentById(int bId){
-        return getDaController().getApartmentById(bId);
+    public List<Apartment> getApartmentById(int bId,int area){
+        return getDaController().getApartmentById(bId,area);
     }
     
      public Apartment findApartment(int id){

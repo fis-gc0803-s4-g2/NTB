@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.entity;
 
 import java.io.Serializable;
@@ -46,10 +45,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Building.findByBDescription", query = "SELECT b FROM Building b WHERE b.bDescription = :bDescription"),
     @NamedQuery(name = "Building.findByBStatus", query = "SELECT b FROM Building b WHERE b.bStatus = :bStatus")})
 public class Building implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "BId")
     private Integer bId;
     @Size(max = 200)
@@ -222,5 +223,5 @@ public class Building implements Serializable {
     public String toString() {
         return "ntb.entity.Building[ bId=" + bId + " ]";
     }
-    
+
 }

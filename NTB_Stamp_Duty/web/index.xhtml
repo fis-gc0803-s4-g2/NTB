@@ -20,14 +20,16 @@
 
                 <div class="row">
 
-                    <div class="col-lg-12">
+                    <ul  class="pagination">
 
                         <c:forEach items="#{showAllBuilding.bl}" var="bl">
-                            <div class="col-md-2 col-sm-8 hero-feature">
+                            <li>
+                            <div class="col-xs-6 col-md-3">
+
                                 <div class="thumbnail">
                                     <h:graphicImage library="uploads" name="#{bl.BImage}" width="200px" height="150px" />
                                     <div class="caption">
-                                        <h3>#{bl.BBuildingName}</h3>
+                                        <h4>#{bl.BBuildingName}</h4>
                                         <p>#{bl.BDescription}</p>
                                         <p>
                                             <a href="#" class="btn btn-primary">View Detail</a> 
@@ -35,17 +37,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
-                    </div>
-
+                                </li>
+                        </c:forEach>                                
+                    </ul>
                 </div>
-
-
-
-
-
-
-
             </ui:define>
 
         </ui:composition>

@@ -76,7 +76,7 @@ public class CreateAContract {
     }
 
     public String createAContract() {
-
+        
         Customer customer = new Customer();
 
         customer.setCUsername(username);

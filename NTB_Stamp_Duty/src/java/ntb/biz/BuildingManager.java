@@ -45,8 +45,8 @@ public class BuildingManager {
         return daController;
     }
     
-    public List<Building> searchBuilding(String status){
-        return getDaController().searchBuilding(status);
+    public List<Building> searchBuilding(String status,String buildingType){
+        return getDaController().searchBuilding(status,buildingType);
     }
     
     public Building find(int id){

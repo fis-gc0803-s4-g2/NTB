@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
@@ -40,8 +39,8 @@ public class ContractJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-     public List<Contract> getAllContractById(int bId,String paymentType) {
+
+    public List<Contract> getAllContractById(int bId, String paymentType) {
         TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType", Contract.class);
         query.setParameter("bId", bId);
         query.setParameter("paymentType", "%" + paymentType + "%");
@@ -49,11 +48,14 @@ public class ContractJpaController implements Serializable {
         return query.getResultList();
     }
 
-    public List<Contract> searchContract(int bId, String paymentType, String status) {
-        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType AND c.sAStatus like :status", Contract.class);
+    public List<Contract> searchContract(int bId, String paymentType, String status, String day, String month, String year) {
+        TypedQuery<Contract> query = getEntityManager().createQuery("SELECT c FROM Contract c WHERE c.aPId.bId.bId =:bId AND c.sAPaymentType like :paymentType AND c.sAStatus like :status AND c.sACreateDate LIKE :day and c.sACreateDate LIKE :month and c.sACreateDate LIKE :year ", Contract.class);
         query.setParameter("bId", bId);
         query.setParameter("paymentType", "%" + paymentType + "%");
         query.setParameter("status", "%" + status + "%");
+        query.setParameter("day", "%" + "-"+day + "%");
+        query.setParameter("month", "%" +"-"+ month + "%");
+        query.setParameter("year", "%" + year+"-" + "%");
         return query.getResultList();
     }
 
@@ -292,5 +294,5 @@ public class ContractJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

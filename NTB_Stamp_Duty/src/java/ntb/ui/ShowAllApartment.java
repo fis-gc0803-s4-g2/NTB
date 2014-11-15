@@ -35,17 +35,23 @@ public class ShowAllApartment {
     private List<Apartment> list;
     
     private int key1;
+    private int area=500;
     
     private String buildingName;
     
     public String apartmentIndex(){
+        list=apartmentManager.getApartmentById(key1, area);
         return "apartmentManager?faces-redirect=true";
     }
     
+    public String searchApartment(){
+        return "apartmentManager?faces-redirect=true";
+        
+    }
     
 
     public List<Apartment> getList() {
-        list=apartmentManager.getApartmentById(key1);
+        list=apartmentManager.getApartmentById(key1,area);
         updateCost(list);
         buildingName=buildingManager.findBuilding(key1).getBBuildingName();
         return list;
@@ -70,16 +76,23 @@ public class ShowAllApartment {
     public void setBuildingName(String buildingName) {
         this.buildingName = buildingName;
     }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
     
     
     
     
     private void updateCost(List<Apartment> al){
         for(Apartment a: al){
-            int area=a.getAPArea();
+            int area1 =a.getAPArea();
             int presentCost=landManager.findLand(buildingManager.findBuilding(a.getBId().getBId()).getBId()).getLPresentCost();
-            int newCost=area*presentCost;
-            
+            int newCost=area1*presentCost;
             Apartment apartment=apartmentManager.findApartment(a.getAPId());
             apartment.setAPCost(newCost);
             apartmentManager.editApartment(apartment);

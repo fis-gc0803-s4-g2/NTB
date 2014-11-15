@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div>&nbsp;</div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <div class="col-sm-2">        
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading"><h4>Contract Detail</h4></div>
+                            <div class="panel-body" >         
+                                <h4><h:outputLabel value="Customer information" class="label label-info"/></h4><br></br>
+                                <h:outputLabel value="Fullname:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.CId.CFullName}" ></h:outputLabel><br></br>
+                                <h:outputLabel value="Address:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.CId.CAddress}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Email:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.CId.CEmail}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Phone:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.CId.CPhone}"></h:outputLabel><br></br>
+                                <hr></hr>
+
+                                <h4><h:outputLabel value="Contract information" class="label label-info"/></h4><br></br>
+                                <h:outputLabel value="Contract Id:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SAId}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Building name:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.APId.BId.BBuildingName}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Building address:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.APId.BId.LId.LAddress}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Apartment Id:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.APId.APId}"></h:outputLabel><br></br>
+                                <h:outputLabel value="On floor:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.APId.APOnFloor}"></h:outputLabel><br></br>
+                                <hr></hr>
+
+                                <h4><h:outputLabel value="Payment information" class="label label-info"/></h4><br></br>
+                                <h:outputLabel value="Apartment Cost:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.APId.APCost}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Payment Type:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SAPaymentType}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Total payment:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SATotalPayment}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Amount paid:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SAAmountPaid}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Amount due:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SAAmmountDue}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Amount tax:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SATax}"></h:outputLabel><br></br>
+                                <h:outputLabel value="Contract status:"/>&nbsp;&nbsp;<h:outputLabel value="#{contractDetail.contract.SAStatus}"></h:outputLabel><br></br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">        
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

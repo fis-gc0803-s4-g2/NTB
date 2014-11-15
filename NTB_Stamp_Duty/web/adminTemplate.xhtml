@@ -14,15 +14,15 @@
 
         <link href="resources/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
         <script src="resources/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        
-       
+
+
         <link href="resources/css/datepicker.css" rel="stylesheet" type="text/css"/>
         <script src="resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
-                 $('.sample').datepicker({
+                $('.sample').datepicker({
                     format: 'yyyy-mm-dd'
                 });
                 $('#example_filter').hide();
@@ -115,8 +115,20 @@
                         <li><a href="#collapseAccount" data-toggle="collapse" data-parent="#accordion"> Account Management<i class="pull-right fa fa-plus"></i></a>
                             <div id="collapseAccount" class="panel-collapse collapse">
                                 <ul class="nav nav-second-level">
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Add </a></li>
-                                    <li><a href="#"><i class="fa fa-upload fa-fw"></i>Edit</a></li>
+                                    <li>
+                                        <h:form>
+                                            <h:commandLink action="#{showAllAccount.accountIndex()}">
+                                                <i class="fa fa-list-alt fa-fw"></i> Account Manage
+                                            </h:commandLink>
+                                        </h:form>
+                                    </li>
+                                    <li>
+                                        <h:form>
+                                            <h:commandLink action="#{createAnAccount.createAccountIndex()}">
+                                                <i class="fa fa-list-alt fa-fw"></i>Create an account
+                                            </h:commandLink>
+                                        </h:form>
+                                    </li>
 
                                 </ul>
                             </div>

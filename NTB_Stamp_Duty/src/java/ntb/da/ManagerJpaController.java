@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
@@ -36,7 +35,7 @@ public class ManagerJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
+
     public Manager managerLogin(String mUsername, String mPassword) {
         TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m WHERE m.mUsername = :mUsername and m.mPassword = :mPassword", Manager.class);
         query.setParameter("mUsername", mUsername);
@@ -45,6 +44,11 @@ public class ManagerJpaController implements Serializable {
             return query.getResultList().get(0);
         }
         return null;
+    }
+
+    public List<Manager> getAllAccount() {
+        TypedQuery<Manager> query = getEntityManager().createQuery("SELECT m FROM Manager m", Manager.class);
+        return query.getResultList();
     }
 
     public void create(Manager manager) throws RollbackFailureException, Exception {
@@ -169,5 +173,5 @@ public class ManagerJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

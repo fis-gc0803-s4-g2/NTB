@@ -15,7 +15,33 @@
                 <div>&nbsp;</div>
                 <h4 style="text-transform: uppercase">THE APARTMENTS OF <span style="color:#2BCDF4">#{showAllApartment.buildingName}</span> BUILDING</h4>
                 <div class="panel panel-info">
-                    <div class="panel-heading">Apartment Management</div>
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <h4>Apartment Management</h4>
+
+                            </div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-5">
+                                <h:form class="form-inline">
+
+                                    <h:selectOneMenu value="#{showAllApartment.area}" class="form-control input-sm">
+                                        <f:selectItem itemValue="500" itemLabel="Choose area less than "/>
+                                        <f:selectItem itemValue="500" itemLabel="500 m2"/>
+                                        <f:selectItem itemValue="100" itemLabel="100 m2"/>
+                                        <f:selectItem itemValue="90" itemLabel="90 m2"/>
+                                        <f:selectItem itemValue="80" itemLabel="80 m2"/>
+                                        <f:selectItem itemValue="70" itemLabel="70 m2"/>
+                                        <f:selectItem itemValue="60" itemLabel="60 m2"/>
+                                        <f:selectItem itemValue="50" itemLabel="50 m2"/>
+                                    </h:selectOneMenu>&nbsp;
+
+                                    <h:commandButton action="#{showAllApartment.searchApartment()}" value="Search" class="btn btn-info btn-sm" />
+                                </h:form>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <h:form>

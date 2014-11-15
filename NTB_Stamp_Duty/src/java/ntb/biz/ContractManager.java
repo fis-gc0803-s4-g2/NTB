@@ -47,9 +47,9 @@ public class ContractManager {
         return getDaController().getAllContractById(bId,paymentType);
     }
     
-    public List<Contract> searchContract(int bId, String paymentType, String status){
+    public List<Contract> searchContract(int bId, String paymentType, String status,String day,String month,String year){
         
-        return getDaController().searchContract(bId, paymentType, status);    
+        return getDaController().searchContract(bId, paymentType, status,day,month,year);    
     }
     
     public boolean searchContractById(int aId){

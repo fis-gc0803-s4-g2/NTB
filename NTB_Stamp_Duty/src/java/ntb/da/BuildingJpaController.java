@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.da;
 
 import java.io.Serializable;
@@ -39,10 +38,11 @@ public class BuildingJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    public List<Building> searchBuilding(String status) {
-        TypedQuery<Building> query = getEntityManager().createQuery("SELECT b FROM Building b WHERE b.bStatus LIKE :status", Building.class);
-         query.setParameter("status","%"+status+"%");
+
+    public List<Building> searchBuilding(String status, String buildingType) {
+        TypedQuery<Building> query = getEntityManager().createQuery("SELECT b FROM Building b WHERE b.bStatus LIKE :status and b.bBuildingType LIKE :buildingType", Building.class);
+        query.setParameter("status", "%" + status + "%");
+        query.setParameter("buildingType", "%" + buildingType + "%");
         return query.getResultList();
     }
 
@@ -246,5 +246,5 @@ public class BuildingJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

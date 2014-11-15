@@ -15,11 +15,17 @@
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading"><h4>Land Management</h4>
-                        <div class="right">
-                            <h:form>
+                    <div class="panel-heading">
+                        <div class="row">
+                             <div class="col-lg-4">
+                             <h4>Land Management</h4>
 
-                                <h:selectOneMenu  value="#{showAllLand.status}" >
+                            </div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-5">
+                            <h:form class="form-inline">
+
+                                <h:selectOneMenu  value="#{showAllLand.status}" class="form-control input-sm"  >
                                     <f:selectItem itemValue="" itemLabel="Choose Status"/>
                                     <f:selectItem itemValue="Not to be applied for the building permit" itemLabel="Not to be applied for the building permit"/>  
                                     <f:selectItem itemValue="To be applied for the building permit" itemLabel="To be applied for the building permit"/>                                                                     
@@ -32,8 +38,9 @@
                                    
                                 </h:selectOneMenu>
 
-                                <h:commandButton action="#{showAllLand.searchLand()}" value="Search" />
+                                <h:commandButton action="#{showAllLand.searchLand()}" value="Search" class="btn btn-info btn-sm" />
                             </h:form>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-body">

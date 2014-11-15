@@ -13,29 +13,54 @@
             <ui:define name="content">
                 <div>&nbsp;</div>
                 <div>&nbsp;</div>
-                <h4 style="text-transform: uppercase">THE CONTRACTS OF <span style="color:#2BCDF4">#{showAllApartment.buildingName}</span> BUILDING</h4>
+                <h4 style="text-transform: uppercase">THE CONTRACTS OF <span style="color:#2BCDF4">#{showAllContract.buildingName}</span> BUILDING</h4>
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div style="padding-left: 500px">
-                            <h:form>
+                        <div class="row" >
+                           
+                            <div class="col-lg-12">
+                                <h:form class="form-inline">               
+                                    <h:selectOneMenu value="#{showAllContract.day}" style="width: 10%" class="form-control input-sm">
+                                        <f:selectItem itemValue="" itemLabel="Choose day"/>
+                                        <c:forEach items="#{showAllContract.dayList()}" var="m">
+                                            <f:selectItem itemValue="#{m.toString()}" itemLabel="#{m.toString()}"/>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    
+                                    <h:selectOneMenu value="#{showAllContract.month}" style="width: 10%" class="form-control input-sm">
+                                        <f:selectItem itemValue="" itemLabel="Choose month"/>
+                                        <c:forEach items="#{showAllContract.monthList()}" var="m">
+                                            <f:selectItem itemValue="#{m.toString()}" itemLabel="#{m.toString()}"/>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    
+                                    <h:selectOneMenu value="#{showAllContract.year}" style="width: 10%" class="form-control input-sm">
+                                        <f:selectItem itemValue="" itemLabel="Choose Year"/>
+                                        <c:forEach items="#{showAllContract.yearList()}" var="y">
+                                            <f:selectItem itemValue="#{y}" itemLabel="#{y}"/>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
 
-                                <h:selectOneMenu value="#{showAllContract.paymentType}" style="width: 40%">
-                                    <f:selectItem itemValue="" itemLabel="Choose Payment Type"/>
-                                    <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
-                                    <f:selectItem itemValue="Payment through Installments on a monthly basis for 2 years" itemLabel="Payment through Installments on a monthly basis for 2 years"/>
-                                    <f:selectItem itemValue="Payment through Installments on a yearly basis for 2 years" itemLabel="Payment through Installments on a yearly basis for 2 years"/>
-                                </h:selectOneMenu>
+                                    <h:selectOneMenu value="#{showAllContract.paymentType}" style="width: 30%" class="form-control input-sm">
+                                        <f:selectItem itemValue="" itemLabel="Choose Payment Type"/>
+                                        <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
+                                        <f:selectItem itemValue="Payment through Installments on a monthly basis for 2 years" itemLabel="Payment through Installments on a monthly basis for 2 years"/>
+                                        <f:selectItem itemValue="Payment through Installments on a yearly basis for 2 years" itemLabel="Payment through Installments on a yearly basis for 2 years"/>
+                                    </h:selectOneMenu>
 
-                                <h:selectOneMenu value="#{showAllContract.status}"  style="width: 20%">
-                                    <f:selectItem itemValue="" itemLabel="Choose Status"/>
-                                    <f:selectItem itemValue="Registration and Stamp Duty Done" itemLabel="Registration and Stamp Duty Done"/>
-                                    <f:selectItem itemValue="Yet to be registered" itemLabel="Yet to be registered"/>
-                                    <f:selectItem itemValue="Payment Not Received" itemLabel="Payment Not Received"/>
-                                </h:selectOneMenu>
+                                    <h:selectOneMenu value="#{showAllContract.status}"  style="width: 20%" class="form-control input-sm">
+                                        <f:selectItem itemValue="" itemLabel="Choose Status"/>
+                                        <f:selectItem itemValue="Registration and Stamp Duty Done" itemLabel="Registration and Stamp Duty Done"/>
+                                        <f:selectItem itemValue="Yet to be registered" itemLabel="Yet to be registered"/>
+                                        <f:selectItem itemValue="Payment Not Received" itemLabel="Payment Not Received"/>
+                                    </h:selectOneMenu>
 
-                                <h:commandButton action="#{showAllContract.searchContract()}" value="Search" />
-                            </h:form>
+                                    <h:commandButton action="#{showAllContract.searchContract()}" value="Search" class="btn btn-info btn-sm "/>
+
+                                </h:form>
+                            </div>
+
                         </div>
                     </div>
 
@@ -93,6 +118,10 @@
                                                             <f:setPropertyActionListener  target="#{createTax.contractId}" value="#{c.SAId}"/>
                                                         </h:commandLink>                                                                    
                                                     </ui:fragment>   
+
+                                                    <h:commandLink action="#{contractDetail.contractDetailIndex}"  title="Contract Detail"  styleClass="fa fa-desktop fa-fw">
+                                                        <f:setPropertyActionListener  target="#{contractDetail.contractId}" value="#{c.SAId}"/>
+                                                    </h:commandLink>
 
                                                 </td >
 
