@@ -12,11 +12,11 @@ create table Manager(
 	MFullName nvarchar(100),
 )
 go
-insert into Manager values('admin','admin','admin')
-insert into Manager values('anntgc00492','fpt','Nguyen Trong An')
-insert into Manager values('tungptgc00641','fpt','Pham Thanh Tung')
-insert into Manager values('vinhhv00574','fpt','Hoang Van Vinh')
-insert into Manager values('hoangnd00567','fpt','Ngo Dinh Hoang')
+insert into Manager values('admin','21232f297a57a5a743894a0e4a801fc3','admin')
+insert into Manager values('anntgc00492','e42d2ffb9097703605c32e83ea1ac20a','Nguyen Trong An')
+insert into Manager values('tungptgc00641','e42d2ffb9097703605c32e83ea1ac20a','Pham Thanh Tung')
+insert into Manager values('vinhhv00574','e42d2ffb9097703605c32e83ea1ac20a','Hoang Van Vinh')
+insert into Manager values('hoangnd00567','e42d2ffb9097703605c32e83ea1ac20a','Ngo Dinh Hoang')
 go
 select * from Manager
 go

@@ -19,6 +19,7 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletResponse;
 import ntb.biz.AccountManager;
 import ntb.entity.Manager;
+import ntb.validation.Encryption;
 
 /**
  *
@@ -127,7 +128,9 @@ public class AdminLogin {
 
       public String login() {
         if(username!=null&&!username.trim().isEmpty()&&password!=null&&!password.trim().isEmpty()){
-            Manager m=adminLoginManager.login(username, password);
+            Encryption cn=new Encryption();
+            String passMd5=cn.encryptPass(password);
+            Manager m=adminLoginManager.login(username, passMd5);
            
             if(m!=null){
                 role="ok";

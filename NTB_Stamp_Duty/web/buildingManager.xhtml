@@ -21,8 +21,9 @@
                                 <h4>Building Management</h4>
 
                             </div>
-                            <div class="col-lg-8">
-                                <h:form class="form-inline">
+
+                            <h:form class="form-inline">
+                                <div class="col-lg-6">
                                     <h:selectOneMenu value="#{showAllBuilding.buildingType}" class="form-control input-sm" style="width: 30%">
                                         <f:selectItem itemValue="" itemLabel="Choose Building Type"/>
                                         <f:selectItem itemValue="official" itemLabel="official"/>
@@ -39,9 +40,12 @@
                                         <f:selectItem itemValue="To be received the occupancy permit" itemLabel="To be received the occupancy permit"/>
                                     </h:selectOneMenu>
                                     <h:commandButton action="#{showAllBuilding.searchBuilding()}" value="Search" class="btn btn-info btn-sm"/>
-                                </h:form>
+                                </div>
+                                <div class="col-lg-2">
+                                    <h:commandButton action="#{showAllLand.landManagerIndex()}" value="Back to land list" class="btn btn-info btn-sm" />                       
+                                </div>
+                            </h:form>
 
-                            </div>
 
                         </div>
 

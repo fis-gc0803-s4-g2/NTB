@@ -21,10 +21,9 @@
                                 <h4>Apartment Management</h4>
 
                             </div>
-                            <div class="col-lg-3"></div>
-                            <div class="col-lg-5">
-                                <h:form class="form-inline">
 
+                            <h:form class="form-inline">
+                                <div class="col-lg-4">
                                     <h:selectOneMenu value="#{showAllApartment.area}" class="form-control input-sm">
                                         <f:selectItem itemValue="500" itemLabel="Choose area less than "/>
                                         <f:selectItem itemValue="500" itemLabel="500 m2"/>
@@ -37,8 +36,18 @@
                                     </h:selectOneMenu>&nbsp;
 
                                     <h:commandButton action="#{showAllApartment.searchApartment()}" value="Search" class="btn btn-info btn-sm" />
-                                </h:form>
-                            </div>
+                                </div>
+
+                                <div class="col-lg-4">
+
+                                    <h:commandButton action="#{showAllContract.contractIndex()}" value="Go to contract list on #{showAllContract.buildingName} building" class="btn btn-info btn-sm" >
+                                        <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+
+
                         </div>
 
                     </div>

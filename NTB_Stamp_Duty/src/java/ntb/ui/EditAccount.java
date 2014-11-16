@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import ntb.biz.AccountManager;
 import ntb.entity.Manager;
-import ntb.validation.Encryption;
 
 /**
  *
@@ -22,45 +21,62 @@ import ntb.validation.Encryption;
  */
 @ManagedBean
 @SessionScoped
-public class CreateAnAccount {
+public class EditAccount {
 
     @EJB
     private AccountManager accountManager;
 
+    private Manager manager;
+    private int accId;
     private String username;
     private String password;
     private String confirm;
     private String fullname;
     private String m;
 
-    public String createAccountIndex() {
-        username = null;
-        password = null;
-        fullname = null;
+    public String editAccountIndex() {
+        manager = accountManager.findAccount(accId);
+        username = manager.getMUsername();
+        password = manager.getMPassword();
+        fullname = manager.getMFullName();
         confirm = null;
         m = null;
-        return "addAccount?faces-redirect=true";
+        return "editAccount?faces-redirect=true";
     }
 
-    public String createAccount() {
-         if (confirm.equals(password)) {
-        Manager manager = new Manager();
+    public String editAnAccount() {
+
         manager.setMUsername(username);
-        Encryption cn = new Encryption();
-        String passMd5 = cn.encryptPass(password);
-        manager.setMPassword(passMd5);
+        manager.setMPassword(password);
         manager.setMFullName(fullname);
-        if (accountManager.createAccount(manager)) {
+        if (accountManager.editAccount(manager)) {
             username = null;
             password = null;
             fullname = null;
             confirm = null;
             m = null;
-            return "accountManager?faces-redirect=true";
+              return "accountManager?faces-redirect=true";
+        } else {
+            m = "Error";
+            return "";
         }
-        }
-         m = "Password not match";
-        return "";
+
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public int getAccId() {
+        return accId;
+    }
+
+    public void setAccId(int accId) {
+        this.accId = accId;
     }
 
     public String getUsername() {
@@ -102,8 +118,8 @@ public class CreateAnAccount {
     public void setM(String m) {
         this.m = m;
     }
-
-    public void validateUsername(FacesContext f, UIComponent c, Object obj) {
+    
+     public void validateUsername(FacesContext f, UIComponent c, Object obj) {
         String s = (String) obj;
         if (s.length() == 0) {
             throw new ValidatorException(new FacesMessage("Username is required"));
@@ -121,13 +137,6 @@ public class CreateAnAccount {
         String s = (String) obj;
         if (s.length() == 0) {
             throw new ValidatorException(new FacesMessage("Full name is required"));
-        }
-    }
-
-    public void validateConfirm(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Confirm password is required"));
         }
     }
 

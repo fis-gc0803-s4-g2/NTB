@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author TUNG
  */
 public class Encryption {
-     public static String encryptPass(String str){
+     public String encryptPass(String str){
         if(str==null||str.length()==0){
             throw new IllegalArgumentException("String to encrypt cannot be null or zero length");
         }

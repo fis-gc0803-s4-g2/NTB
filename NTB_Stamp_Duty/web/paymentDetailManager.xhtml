@@ -11,23 +11,28 @@
         <ui:composition template="./adminTemplate.xhtml">
 
             <ui:define name="content">
-                  <div>&nbsp;</div>
+                <div>&nbsp;</div>
                 <div>&nbsp;</div>
 
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4>Payment management </h4>
-                        <div class="right">
+                        <div class="row">
                             <h:form> 
-                                <h:outputLabel value="Add a payment for this Contract"/>
-                                <h:commandButton action="#{showAllPayment.addPaymentDetail()}" value="Add payment" />
-                                Amount Paid :<h:outputLabel value="#{showAllPayment.ap}"/>
-                                Amount Due: <h:outputLabel value="#{showAllPayment.ad}"/>
-                                <h:outputLabel value="#{showAllPayment.m}"/>
-                                
-                                <h:commandButton action="#{showAllContract.contractIndex()}" value="Add payment" >
-                                    <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
-                                </h:commandButton>
-                                
+                                <div class="col-lg-11">
+                                    <h:outputLabel value="Add a payment for this Contract"/>&nbsp;
+                                    <h:commandButton action="#{showAllPayment.addPaymentDetail()}" value="Add payment" class="btn btn-info btn-sm"/>
+                                    Amount Paid :<h:outputLabel value="#{showAllPayment.ap}"/>
+                                    Amount Due: <h:outputLabel value="#{showAllPayment.ad}"/>
+                                    <h:outputLabel value="#{showAllPayment.m}"/>
+                                </div>
+                                <div class="col-lg-1">
+
+                                    <h:commandButton action="#{showAllContract.contractIndex()}" value="Back" class="btn btn-info btn-sm" >
+                                        <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
+                                    </h:commandButton>
+                                </div>
+
+
                             </h:form>
                         </div>
                     </div>
@@ -44,7 +49,7 @@
                                             <th>Amount Due($)</th>
                                             <th>Paid Date</th>
                                             <th>Amount Paid($)</th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>

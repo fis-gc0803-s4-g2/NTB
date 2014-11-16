@@ -73,7 +73,7 @@ public class AccountManager {
      * @param manager
      * @return 
      */
-    public boolean editLand(Manager manager){
+    public boolean editAccount(Manager manager){
         try {
             getDaController().edit(manager);
             return true;

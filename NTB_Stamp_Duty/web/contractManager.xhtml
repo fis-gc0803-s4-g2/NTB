@@ -98,14 +98,7 @@
                                                 <td>#{c.SATax}</td>
                                                 <td>#{c.SACreateDate}</td>
                                                 <td>#{c.SAStatus}</td>
-                                                <td> 
-                                                    <h:commandLink action="#{editBuilding.editBuildingIndex()}" title="Edit" styleClass="fa fa-edit fa-fw">
-                                                        <f:setPropertyActionListener target="#{editBuilding.buildingId}" value="#{b.BId}"/>
-                                                    </h:commandLink>    
-
-                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-list fa-fw">
-                                                        <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                    </h:commandLink>
+                                                <td>   
 
                                                     <ui:fragment rendered="#{'One time payment' ne c.SAPaymentType}">
                                                         <h:commandLink action="#{showAllPayment.paymentDetailIndex()}"  title="Payment for this contract"  styleClass="fa fa-money fa-fw">
@@ -119,7 +112,7 @@
                                                         </h:commandLink>                                                                    
                                                     </ui:fragment>   
 
-                                                    <h:commandLink action="#{contractDetail.contractDetailIndex}"  title="Contract Detail"  styleClass="fa fa-desktop fa-fw">
+                                                    <h:commandLink action="#{contractDetail.contractDetailIndex}"  title="Contract Detail"  styleClass="fa fa-outdent fa-fw">
                                                         <f:setPropertyActionListener  target="#{contractDetail.contractId}" value="#{c.SAId}"/>
                                                     </h:commandLink>
 
