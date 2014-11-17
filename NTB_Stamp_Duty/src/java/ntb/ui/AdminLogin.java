@@ -147,7 +147,7 @@ public class AdminLogin {
        public String logout() {
         role = null;
         acc=null;
-        return "login?faces-redirect=true";
+        return "index?faces-redirect=true";
     }
     
     

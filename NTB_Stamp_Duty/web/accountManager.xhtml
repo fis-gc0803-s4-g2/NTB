@@ -15,7 +15,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-lg-4">
-                                <h4>Apartment Management</h4>
+                                <h4>Account Management</h4>
 
                             </div>
                           
@@ -48,7 +48,9 @@
                                                         <f:setPropertyActionListener target="#{editAccount.accId}" value="#{a.MId}"/>
                                                     </h:commandLink>   
                                           
-
+                                                    <h:commandLink action="#{deleteAccount}"  title="Delete"  styleClass="fa fa-trash-o fa-fw">
+                                                        <f:setPropertyActionListener  target="#{deleteAccount.id}" value="#{a.MId}"/>
+                                                        </h:commandLink> 
                                                 </td >
 
                                             </tr>

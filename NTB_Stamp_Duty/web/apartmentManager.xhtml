@@ -17,7 +17,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-5">
                                 <h4>Apartment Management</h4>
 
                             </div>
@@ -37,10 +37,10 @@
 
                                     <h:commandButton action="#{showAllApartment.searchApartment()}" value="Search" class="btn btn-info btn-sm" />
                                 </div>
+                                <div class="col-lg-1"></div>  
+                                <div class="col-lg-2">
 
-                                <div class="col-lg-4">
-
-                                    <h:commandButton action="#{showAllContract.contractIndex()}" value="Go to contract list on #{showAllContract.buildingName} building" class="btn btn-info btn-sm" >
+                                    <h:commandButton action="#{showAllContract.contractIndex()}" value="Go to contract list" class="btn btn-info btn-sm" >
                                         <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
                                     </h:commandButton>
                                 </div>
