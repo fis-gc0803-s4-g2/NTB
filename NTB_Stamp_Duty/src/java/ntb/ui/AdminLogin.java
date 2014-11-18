@@ -118,7 +118,7 @@ public class AdminLogin {
                 pathInfo = context.getExternalContext().getRequestPathInfo();
 
                 String contextPath = context.getExternalContext().getRequestContextPath();
-                ((HttpServletResponse) context.getExternalContext().getResponse()).sendRedirect(contextPath + "/faces/login.xhtml");
+                ((HttpServletResponse) context.getExternalContext().getResponse()).sendRedirect(contextPath + "/faces/index.xhtml");
             }
         } catch (IOException ex) {
             Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);

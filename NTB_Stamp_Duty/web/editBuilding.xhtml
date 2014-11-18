@@ -33,14 +33,14 @@
                                         </h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{editBuilding.buildingName}" class="form-control"  style="width: 70%" > 
-                                            <f:ajax event="blur" execute="@this" render="nameError"/>
+                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{editBuilding.buildingName}" class="form-control"  style="width: 70%" required="true" requiredMessage="Building name is required"> 
+                                         
                                         </h:inputText>
-                                        <h:message for="name" id="nameError" style="color: red"/>
+                                        <h:message for="name"  style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Building Type"/>
-                                        <h:selectOneMenu value="#{editBuilding.buildingType}" class="form-control" style="width: 40%">
+                                        <h:selectOneMenu value="#{editBuilding.buildingType}" class="form-control" style="width: 40%" required="true" requiredMessage="Bulding type is required">
                                             <f:selectItem itemValue="" itemLabel="Choose Building Type"/>
                                             <f:selectItem itemValue="official" itemLabel="official"/>
                                             <f:selectItem itemValue="residental" itemLabel="residental"/>
@@ -48,36 +48,37 @@
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{editBuilding.floorNumber}" class="form-control" style="width: 30%" >
-                                            <f:ajax event="blur" execute="@this" render="locationError"/>
+                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{editBuilding.floorNumber}" class="form-control" style="width: 30%" required="true" requiredMessage="Floor number is required" >
+                                          
                                         </h:inputText>
-                                        <h:message for="location" id="locationError" style="color: red"/>
+                                        <h:message for="floor"  style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Department Number"/><h:inputText id="area" value="#{editBuilding.departmentNumber}" class="form-control" style="width: 30%" >
-                                            <f:ajax event="blur" execute="@this" render="areaError"/>
+                                        <h:outputLabel value="Department Number"/><h:inputText id="depart" value="#{editBuilding.departmentNumber}" class="form-control" style="width: 30%" required="true" requiredMessage="Departnumber is required" >
+                                           
                                         </h:inputText>
-                                        <h:message for="area" id="areaError" style="color: red"/>
+                                        <h:message for="depart"  style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Start Date"/><br></br>
-                                        <h:inputText  value="#{editBuilding.startDate}" styleClass="sample"/>
-                                                                                                                     
+                                        <h:inputText id="start" value="#{editBuilding.startDate}" styleClass="sample" required="true" requiredMessage="Start date is required"/><br></br>
+                                          <h:message for="start"  style="color: red"/>                                                                             
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Completed Date"/><br></br>
-                                        <h:inputText id="complete" value="#{editBuilding.completionDate}" styleClass="sample" />
+                                        <h:inputText id="complete" value="#{editBuilding.completionDate}" styleClass="sample" required="true" requiredMessage="Complete date is required" /><br></br>
                                                                                                                   
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Occupancy Date"/><br></br>
-                                        <h:inputText id="occupancy"  value="#{editBuilding.occupancyDate}" styleClass="sample" />
-                                      
+                                        <h:inputText id="occupancy"  value="#{editBuilding.occupancyDate}" styleClass="sample" required="true" requiredMessage="Occupancy date is required" />
+                                       <h:message for="occupancy"  style="color: red"/>  
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Description"/><h:inputTextarea  value="#{editBuilding.description}" class="form-control"/>
+                                        <h:outputLabel id="description" value="Description"/><h:inputTextarea  value="#{editBuilding.description}" class="form-control"required="true" requiredMessage="Descrition is required"/>
+                                          <h:message for="description"  style="color: red"/>   
                                     </div>
 
                                     <div class="form-group">

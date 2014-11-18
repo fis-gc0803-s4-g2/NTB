@@ -18,7 +18,7 @@
         <title>NTB</title>
         <script>
             $(document).ready(function() {
-                $("ul.pagination").quickPagination({pageSize: "7"});
+                $("ul.pagination").quickPagination({pageSize: "4"});
             });
         </script>
     </h:head>
@@ -36,7 +36,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">NTB</a>
+                    <h:link outcome="index.xhtml" class="navbar-brand">National Territory Builders</h:link>
+
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,8 +82,9 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                     </div>
+                     <h:form >
                     <div class="modal-body">
-                        <h:form >
+                       
                             <div class="form-group">
                                 <label>Username</label>
 
@@ -99,18 +101,15 @@
                                 </h:inputSecret>
                                 <h:message for="password" id="passwordError" style="color: red"/>
                             </div>
-                           
-                            <div class="form-group">
 
-                                <h:commandButton value="Login" action="#{adminLogin.login()}" class="btn btn-info"/> 
 
-                            </div>
                             <h:outputText style="color: red" value="#{adminLogin.acc} " />
-                        </h:form>
                     </div>
                     <div class="modal-footer">
-                       
+                        
+                        <h:commandButton value="Login" action="#{adminLogin.login()}" class="btn btn-info"/> 
                     </div>
+                     </h:form>
                 </div>
             </div>
         </div>

@@ -173,75 +173,7 @@ public class CreateABuilding {
         return "addBuilding?faces-redirect=true";
     }
     
-     public void validateBName(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Building name is required"));
-        }
-        if (" ".contains(s)) {
-            throw new ValidatorException(new FacesMessage("Building name is not correct format"));
-        }
-    }
-
-    public void validateBType(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Building type is required"));
-        }
-    }
-
-    public void validateFNumber(FacesContext f, UIComponent c, Object obj) {
-        Integer s = (Integer) obj;
-        if (s == 0) {
-            throw new ValidatorException(new FacesMessage("Floor number is required "));
-        } else if (s < 0) {
-            throw new ValidatorException(new FacesMessage("Floor number must be greater than 0 "));
-        }
-    }
-
-    public void validateDNumber(FacesContext f, UIComponent c, Object obj) {
-        Integer s = (Integer) obj;
-        if (s == 0) {
-            throw new ValidatorException(new FacesMessage("Department number cost is required "));
-        } else if (s < 0) {
-            throw new ValidatorException(new FacesMessage("Department number must be greater than 0 "));
-        }
-    }
-
-    public void validateStartDate(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Start date is required "));
-        }
-    }
-
-    public void validateCompletionDate(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Completion date is required "));
-        }
-    }
-
-    public void validateOccupancyDate(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Occupancy date is required "));
-        }
-    }
-
-    public void validateDescription(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Description is required "));
-        }
-    }
-
-    public void validateStatus(FacesContext f, UIComponent c, Object obj) {
-        String s = (String) obj;
-        if (s.length() == 0) {
-            throw new ValidatorException(new FacesMessage("Status is required "));
-        }
-    }
+    
 
     public String createABuilding() {
         if (!"".equals(upload())) {
@@ -334,7 +266,75 @@ public class CreateABuilding {
         }
     }
 
-  
+   public void validateBName(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Building name is required"));
+        }
+        if (s.startsWith(" ")) {
+            throw new ValidatorException(new FacesMessage("Building name is not correct format"));
+        }
+    }
+
+    public void validateBType(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Building type is required"));
+        }
+    }
+
+    public void validateFNumber(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Floor number is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Floor number must be greater than 0 "));
+        }
+    }
+
+    public void validateDNumber(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Department number cost is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Department number must be greater than 0 "));
+        }
+    }
+
+    public void validateStartDate(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Start date is required "));
+        }
+    }
+
+    public void validateCompletionDate(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Completion date is required "));
+        }
+    }
+
+    public void validateOccupancyDate(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Occupancy date is required "));
+        }
+    }
+
+    public void validateDescription(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Description is required "));
+        }
+    }
+
+    public void validateStatus(FacesContext f, UIComponent c, Object obj) {
+        String s = (String) obj;
+        if (s.length() == 0) {
+            throw new ValidatorException(new FacesMessage("Status is required "));
+        }
+    }
 
    
 }

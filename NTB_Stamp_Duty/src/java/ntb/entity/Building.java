@@ -50,7 +50,6 @@ public class Building implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-
     @Column(name = "BId")
     private Integer bId;
     @Size(max = 200)

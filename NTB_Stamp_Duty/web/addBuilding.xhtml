@@ -23,62 +23,60 @@
                             <div class="panel-body">
                                 <h:form enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <h:outputLabel value="Land Code"/><h:inputText id="lId" value="#{createABuilding.landId}" class="form-control" style="width: 30%" readonly="true" >
-
-                                        </h:inputText>
+                                        <h:outputLabel value="Land Code"/>
+                                        <h:inputText id="lId" value="#{createABuilding.landId}" class="form-control" style="width: 30%" readonly="true" />
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Building name "/><h:inputText id="name" value="#{createABuilding.buildingName}" class="form-control"  style="width: 70%" validator="#{createABuilding.validateBName}" > 
-                                            <f:ajax event="blur" execute="@this" render="nameError"/>
+                                        <h:outputLabel value="Building name "/>
+                                        <h:inputText id="bname" value="#{createABuilding.buildingName}" class="form-control"  style="width: 70%" required="true" requiredMessage="Building name is required" >
+                                      
                                         </h:inputText>
-                                        <h:message for="name" id="nameError" style="color: red"/>
+                                        <h:message for="bname" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Building Type"/>
-                                        <h:selectOneMenu value="#{createABuilding.buildingType}" class="form-control" style="width: 40%">
+                                        <h:selectOneMenu id="type" value="#{createABuilding.buildingType}" class="form-control" style="width: 40%" requiredMessage="Bulding type is required">
                                             <f:selectItem itemValue="" itemLabel="Choose Building Type"/>
                                             <f:selectItem itemValue="official" itemLabel="official"/>
                                             <f:selectItem itemValue="residental" itemLabel="residental"/>
                                             <f:selectItem itemValue="shop" itemLabel="shop"/>
                                         </h:selectOneMenu>
+                                         <h:message for="type" style="color: red"/>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Floor number"/><h:inputText id="floor" value="#{createABuilding.floorNumber}" class="form-control" style="width: 30%"  validator="#{createABuilding.validateFNumber}">
-                                            <f:ajax event="blur" execute="@this" render="floorError"/>
-                                        </h:inputText>
-                                        <h:message for="floor" id="floorError" style="color: red"/>
+                                        <h:outputLabel value="Floor number"/>
+                                        <h:inputText id="floor" value="#{createABuilding.floorNumber}" class="form-control" style="width: 30%" required="true" requiredMessage="Floor number is required" />
+                                          <h:message for="floor" style="color: red"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <h:outputLabel value="Department Number"/><h:inputText id="depart" value="#{createABuilding.departmentNumber}" class="form-control" style="width: 30%" validator="#{createABuilding.validateDNumber}" >
-                                            <f:ajax event="blur" execute="@this" render="departError"/>
-                                        </h:inputText>
-                                        <h:message for="depart" id="departError" style="color: red"/>
+                                        <h:outputLabel value="Department Number"/>
+                                        <h:inputText id="depart" value="#{createABuilding.departmentNumber}" class="form-control" style="width: 30%" required="true" requiredMessage="Departnumber is required" />
+                                         <h:message for="depart" style="color: red"/>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Start Date"/><br></br>
-                                        <h:inputText  value="#{createABuilding.startDate}" styleClass="sample"/>
-                                                                                                                     
+                                        <h:inputText id="start"  value="#{createABuilding.startDate}" styleClass="sample" required="true" requiredMessage="Start date is required"/><br></br>
+                                           <h:message for="start" style="color: red"/>                                                                            
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Completed Date"/><br></br>
-                                        <h:inputText id="complete" value="#{createABuilding.completionDate}" styleClass="sample" />
-                                                                                                                  
+                                        <h:inputText id="complete" value="#{createABuilding.completionDate}" styleClass="sample"  required="true" requiredMessage="Departnumber is required"/> <br></br>                                                                                  
+                                         <h:message for="complete" style="color: red"/>    
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value="Occupancy Date"/><br></br>
-                                        <h:inputText id="occupancy"  value="#{createABuilding.occupancyDate}" styleClass="sample" />
-                                      
+                                        <h:inputText id="occupancy"  value="#{createABuilding.occupancyDate}" styleClass="sample" required="true" requiredMessage="Departnumber is required" /><br></br>
+                                         <h:message for="occupancy" style="color: red"/>    
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Image Upload"/><p:fileUpload value="#{createABuilding.file}" mode="simple"/>     
-
+                                        <h:outputLabel id="file" value="Image Upload"/><p:fileUpload value="#{createABuilding.file}" mode="simple" required="true" requiredMessage="Departnumber is required"/>     
+                                         <h:message for="file" style="color: red"/>    
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value="Description"/><h:inputTextarea  value="#{createABuilding.description}" class="form-control">
-                                        
-                                        </h:inputTextarea>
-                                       
+                                        <h:outputLabel value="Description"/>
+                                        <h:inputTextarea id="description" value="#{createABuilding.description}" class="form-control" required="true" requiredMessage="Departnumber is required"/>                                      
+                                         <h:message for="description" style="color: red"/>    
                                     </div>
 
                                     <div class="form-group">
