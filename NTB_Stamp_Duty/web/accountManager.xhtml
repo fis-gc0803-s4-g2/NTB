@@ -48,7 +48,7 @@
                                                         <f:setPropertyActionListener target="#{editAccount.accId}" value="#{a.MId}"/>
                                                     </h:commandLink>   
                                           
-                                                    <h:commandLink action="#{deleteAccount}"  title="Delete"  styleClass="fa fa-trash-o fa-fw">
+                                                    <h:commandLink action="#{deleteAccount.deleteAccount()}"  title="Delete"  styleClass="fa fa-trash-o fa-fw">
                                                         <f:setPropertyActionListener  target="#{deleteAccount.id}" value="#{a.MId}"/>
                                                         </h:commandLink> 
                                                 </td >

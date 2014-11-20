@@ -15,7 +15,10 @@
         <link href="resources/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <script src="resources/js/jquery.quick.pagination.min.js" type="text/javascript"></script>
         <script src="resources/js/popup.js" type="text/javascript"></script>
+        <link href="resources/css/pagination.css" rel="stylesheet" type="text/css"/>
+        
         <title>NTB</title>
+        <link rel="Shortcut Icon" href="resources/img/home.png" type="image/x-icon" />
         <script>
             $(document).ready(function() {
                 $("ul.pagination").quickPagination({pageSize: "4"});
@@ -46,10 +49,11 @@
                             <a href="#">Land</a>
                         </li>
                         <li>
-                            <a href="#">Apartment</a>
+
+                            <h:link outcome="listApartment">Apartment</h:link>
                         </li>
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="">Contact</a>
                         </li>
                         <li>
                             <h:link outcome="about">About</h:link>
@@ -82,34 +86,41 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                     </div>
-                     <h:form >
-                    <div class="modal-body">
-                       
-                            <div class="form-group">
-                                <label>Username</label>
+                    <h:form class="form-horizontal" >
+                        <div class="modal-body">
 
-                                <h:inputText id="username" value="#{adminLogin.username}"  class="form-control" validator="#{adminLogin.validateUsername}" >
-                                    <f:ajax event="blur" execute="@this" render="usernameError"/>
-                                </h:inputText>
-                                <h:message for="username" id="usernameError" style="color: red"/>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <label>Username</label>
+                                </div>
+
+                                <div class="col-sm-10">
+                                    <h:inputText id="username" value="#{adminLogin.username}"  class="form-control" validator="#{adminLogin.validateUsername}" >
+                                        <f:ajax event="blur" execute="@this" render="usernameError"/>
+                                    </h:inputText>
+                                    <h:message for="username" id="usernameError" style="color: red"/>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label >Password</label>
+                                <div class="col-sm-2">
+                                    <label >Password</label>
+                                </div>
 
-                                <h:inputSecret id="password" value="#{adminLogin.password}" class="form-control" validator="#{adminLogin.validatePassword}" >
-                                    <f:ajax event="blur" execute="@this" render="passwordError"/>
-                                </h:inputSecret>
-                                <h:message for="password" id="passwordError" style="color: red"/>
+                                <div class="col-sm-10">
+                                    <h:inputSecret id="password" value="#{adminLogin.password}" class="form-control" validator="#{adminLogin.validatePassword}" >
+                                        <f:ajax event="blur" execute="@this" render="passwordError"/>
+                                    </h:inputSecret>
+                                    <h:message for="password" id="passwordError" style="color: red"/>
+                                </div>
                             </div>
-
 
                             <h:outputText style="color: red" value="#{adminLogin.acc} " />
-                    </div>
-                    <div class="modal-footer">
-                        
-                        <h:commandButton value="Login" action="#{adminLogin.login()}" class="btn btn-info"/> 
-                    </div>
-                     </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <h:commandButton value="Login" action="#{adminLogin.login()}" class="btn btn-info"/> 
+                        </div>
+                    </h:form>
                 </div>
             </div>
         </div>
@@ -130,21 +141,21 @@
                     <!-- Set the first background image using inline CSS below. -->
                     <div class="fill" style="background-image:url('resources/img/banner1.jpg');"></div>
                     <div class="carousel-caption">
-                        <h2></h2>
+                        <h2>Thai Ha  official complex</h2>
                     </div>
                 </div>
                 <div class="item">
                     <!-- Set the second background image using inline CSS below. -->
                     <div class="fill" style="background-image:url('resources/img/banner2.jpg');"></div>
                     <div class="carousel-caption">
-                        <h2></h2>
+                        <h2>Ho Tung Mau  official complex</h2>
                     </div>
                 </div>
                 <div class="item">
                     <!-- Set the third background image using inline CSS below. -->
                     <div class="fill" style="background-image:url('resources/img/banner3.jpg');"></div>
                     <div class="carousel-caption">
-                        <h2></h2>
+                        <h2>Xuan Thuy  residental complex</h2>
                     </div>
                 </div>
             </div>

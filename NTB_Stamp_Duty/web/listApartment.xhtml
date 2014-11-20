@@ -1,14 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./newTemplate.xhtml">
 
             <ui:define name="content">
-                content
+            <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Apartment</h3>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">        
+
+                    <c:forEach items="#{showAllApartment.list}" var="al">
+                          
+                            <div class="col-xs-6 col-md-3">
+
+                                <div class="thumbnail" >
+                                    <h:graphicImage library="uploads" name="apartment.jpg" width="200px" height="150px" />
+                                    <div class="caption">
+                                        Square(m2):<p>#{al.APArea}</p>
+                                        On floor:<p>#{al.APOnFloor}</p>
+                                        Cost($):<p>#{al.APCost}</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </c:forEach>                                
+              
+                </div>
             </ui:define>
 
         </ui:composition>

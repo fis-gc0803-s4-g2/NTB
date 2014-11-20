@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ntb.ui;
 
 import java.util.List;
@@ -22,38 +21,44 @@ import ntb.entity.Apartment;
 @ManagedBean
 @SessionScoped
 public class ShowAllApartment {
+
     @EJB
     private BuildingManager buildingManager;
     @EJB
     private LandManager landManager;
-    
+
     @EJB
     private ApartmentManager apartmentManager;
-    
-    
 
     private List<Apartment> list;
-    
+
     private int key1;
-    private int area=500;
-    
+    private int area = 500;
+
     private String buildingName;
-    
-    public String apartmentIndex(){
-        list=apartmentManager.getApartmentById(key1, area);
+
+    public String apartmentIndex() {
         return "apartmentManager?faces-redirect=true";
     }
-    
-    public String searchApartment(){
+
+    public String searchApartment() {
+        list = apartmentManager.getApartmentById(key1, area);
+
         return "apartmentManager?faces-redirect=true";
-        
+
     }
     
+    public  List<Apartment> viewAllApartment(){
+        list=apartmentManager.getAllApartment();
+        return list;
+
+    }
+
 
     public List<Apartment> getList() {
-        list=apartmentManager.getApartmentById(key1,area);
+        list = apartmentManager.getApartmentById(key1, area);
         updateCost(list);
-        buildingName=buildingManager.findBuilding(key1).getBBuildingName();
+        buildingName = buildingManager.findBuilding(key1).getBBuildingName();
         return list;
     }
 
@@ -84,20 +89,16 @@ public class ShowAllApartment {
     public void setArea(int area) {
         this.area = area;
     }
-    
-    
-    
-    
-    private void updateCost(List<Apartment> al){
-        for(Apartment a: al){
-            int area1 =a.getAPArea();
-            int presentCost=landManager.findLand(buildingManager.findBuilding(a.getBId().getBId()).getBId()).getLPresentCost();
-            int newCost=area1*presentCost;
-            Apartment apartment=apartmentManager.findApartment(a.getAPId());
+
+    private void updateCost(List<Apartment> al) {
+        for (Apartment a : al) {
+            int area1 = a.getAPArea();
+            int presentCost = landManager.findLand(buildingManager.findBuilding(a.getBId().getBId()).getBId()).getLPresentCost();
+            int newCost = area1 * presentCost;
+            Apartment apartment = apartmentManager.findApartment(a.getAPId());
             apartment.setAPCost(newCost);
             apartmentManager.editApartment(apartment);
         }
-    } 
-    
-    
+    }
+
 }

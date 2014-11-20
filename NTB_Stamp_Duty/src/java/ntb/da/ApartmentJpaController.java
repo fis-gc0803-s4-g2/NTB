@@ -46,6 +46,11 @@ public class ApartmentJpaController implements Serializable {
           query.setParameter("area", area);
         return query.getResultList();
     }
+    
+      public List<Apartment> getAllApartment(){
+          TypedQuery<Apartment> query = getEntityManager().createQuery("SELECT a FROM Apartment a", Apartment.class);
+        return query.getResultList();
+    }
 
     public void create(Apartment apartment) throws RollbackFailureException, Exception {
         if (apartment.getContractList() == null) {

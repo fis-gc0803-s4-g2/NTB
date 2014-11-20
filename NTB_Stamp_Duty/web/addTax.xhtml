@@ -21,17 +21,16 @@
                             <div class="panel-body">
                                 <h:form >
                                     <div class="form-group">
-                                        <h:outputLabel value="Contract Id"/><h:inputText id="onfloor" value="#{createTax.contractId}" class="form-control" style="width: 30%"   >
-                                         <f:ajax event="blur" execute="@this" render="onfloorError"/>
+                                        <h:outputLabel value="Contract Id"/><h:inputText id="onfloor" value="#{createTax.contractId}" class="form-control" style="width: 30%" readonly="true"  >
+                                         
                                         </h:inputText>
-                                        <h:message for="onfloor" id="onfloorError" style="color: red"/>
                                     </div>
                                     
                                       <div class="form-group">
-                                          <h:outputLabel value="Tax($)"/><h:inputText id="area" value="#{createTax.tax}" class="form-control" style="width: 30%"   >
-                                         <f:ajax event="blur" execute="@this" render="areaError"/>
+                                          <h:outputLabel value="Tax($)"/><h:inputText id="tax" value="#{createTax.tax}" class="form-control" style="width: 30%" validator="#{createTax.validateTax}"   >
+                                         <f:ajax event="blur" execute="@this" render="taxError"/>
                                           </h:inputText>
-                                          <h:message for="area" id="areaError" style="color: red"/>
+                                          <h:message for="tax" id="taxError" style="color: red"/>
                                     </div>
  
                                     <h:commandButton action="#{createTax.addTax()}" value="Create" class="btn btn-info"/>

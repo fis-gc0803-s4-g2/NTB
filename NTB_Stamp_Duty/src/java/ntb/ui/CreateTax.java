@@ -6,8 +6,12 @@
 package ntb.ui;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import ntb.biz.ContractManager;
 import ntb.entity.Contract;
 
@@ -82,5 +86,13 @@ public class CreateTax {
     public void setM(String m) {
         this.m = m;
     }
-
+    
+    public void validateTax(FacesContext f, UIComponent c, Object obj) {
+        Integer s = (Integer) obj;
+        if (s == 0) {
+            throw new ValidatorException(new FacesMessage("Tax is required "));
+        } else if (s < 0) {
+            throw new ValidatorException(new FacesMessage("Tax must be greater than 0 "));
+        }
+    }
 }
