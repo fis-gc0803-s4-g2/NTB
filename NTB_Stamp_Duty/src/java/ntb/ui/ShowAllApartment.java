@@ -43,18 +43,10 @@ public class ShowAllApartment {
 
     public String searchApartment() {
         list = apartmentManager.getApartmentById(key1, area);
-
         return "apartmentManager?faces-redirect=true";
 
     }
     
-    public  List<Apartment> viewAllApartment(){
-        list=apartmentManager.getAllApartment();
-        return list;
-
-    }
-
-
     public List<Apartment> getList() {
         list = apartmentManager.getApartmentById(key1, area);
         updateCost(list);

@@ -27,12 +27,14 @@
 
                                     <div class="form-group">
                                         <h:outputLabel value="Payment Type"/>
-                                        <h:selectOneMenu value="#{createAContract.paymentType}" class="form-control" style="width: 90%">
-                                            <f:selectItem itemValue="Choose Payment Type" itemLabel="Choose Payment Type"/>
+                                        <h:selectOneMenu id="payment" value="#{createAContract.paymentType}" class="form-control" style="width: 90%" required="true" requiredMessage="Payment type is required" >
+                                            <f:selectItem itemValue=" " itemLabel="Choose Payment Type"/>
                                             <f:selectItem itemValue="One time payment" itemLabel="One time payment"/>
                                             <f:selectItem itemValue="Payment through Installments on a monthly basics for 2 years" itemLabel="Payment through Installments on a monthly basics for 2 years"/>
                                             <f:selectItem itemValue="Payment through Installments on a yearly basics for 2 years" itemLabel="Payment through Installments on a yearly basics for 2 years"/>
                                         </h:selectOneMenu>
+                                        <h:message for="payment" style="color: red"/>
+
                                     </div>
 
                                     <div class="form-group">

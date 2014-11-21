@@ -10,33 +10,7 @@
         <ui:composition template="./newTemplate.xhtml">
 
             <ui:define name="content">
-            <div class="row">
-                    <div class="col-lg-12">
-                        <h3>Apartment</h3>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">        
-
-                    <c:forEach items="#{showAllApartment.list}" var="al">
-                          
-                            <div class="col-xs-6 col-md-3">
-
-                                <div class="thumbnail" >
-                                    <h:graphicImage library="uploads" name="apartment.jpg" width="200px" height="150px" />
-                                    <div class="caption">
-                                        Square(m2):<p>#{al.APArea}</p>
-                                        On floor:<p>#{al.APOnFloor}</p>
-                                        Cost($):<p>#{al.APCost}</p>
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                           
-                        </c:forEach>                                
-              
-                </div>
+                
             </ui:define>
 
         </ui:composition>

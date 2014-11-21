@@ -150,7 +150,7 @@ public class CreateAContract {
                 paymentType = "";
                 confirmPassword = null;
                 m = null;
-                return "ok?faces-redirect=true";
+                return "buildingManager?faces-redirect=true";
             }
 
         }

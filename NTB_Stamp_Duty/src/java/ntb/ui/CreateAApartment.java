@@ -53,7 +53,7 @@ public class CreateAApartment {
                 onFloor = 0;
                 area = 0;
                 m = null;
-                return "apartmentManager?faces-redirect=true";
+                return "buildingManager?faces-redirect=true";
             } else {
                 m = "Error";
                 return "";

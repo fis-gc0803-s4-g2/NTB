@@ -40,9 +40,7 @@
                                 <div class="col-lg-1"></div>  
                                 <div class="col-lg-2">
 
-                                    <h:commandButton action="#{showAllContract.contractIndex()}" value="Go to contract list" class="btn btn-info btn-sm" >
-                                        <f:setPropertyActionListener target="#{showAllContract.buildingId}" value="#{showAllContract.buildingId}"/>
-                                    </h:commandButton>
+                                   
                                 </div>
                             </h:form>
 
@@ -84,10 +82,6 @@
                                                             <f:setPropertyActionListener  target="#{createAContract.apartmentId}" value="#{a.APId}"/>
                                                         </h:commandLink>     
                                                     </ui:fragment>      
-
-<!--                                                    <h:commandLink action="#{showAllApartment.apartmentIndex()}"  title="Go to Its apartment"  styleClass="fa fa-edit fa-fw">
-                                                        <f:setPropertyActionListener  target="#{showAllApartment.key1}" value="#{b.BId}"/>
-                                                    </h:commandLink>  -->
 
                                                 </td >
 
